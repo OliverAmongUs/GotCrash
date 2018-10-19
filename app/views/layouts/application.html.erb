@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
   <head>
     <title>GotCrash</title>
     <%= csrf_meta_tags %>
@@ -7,9 +8,15 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= render 'layouts/shim' %>
   </head>
 
   <body>
+    <nav class="navbar navbar-light bg-light">
+      <a class="navbar-brand" href="#">Navbar</a>
+    </nav>
+    <%= render 'layouts/header' %>
     <%= yield %>
+    <%= render 'layouts/footer' %>
   </body>
 </html>
