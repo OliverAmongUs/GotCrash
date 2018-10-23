@@ -33,7 +33,17 @@
 
   <div class="field">
     <%= form.label :type %>
-    <%= form.text_field :type %>
+    <%= form.select(:type,[["Owner", "Owner"],["Fixer", "Fixer"]])%>
+  </div>
+
+  <div class="field">
+    <%= form.label :password %>
+    <%= form.password_field :password %>
+  </div>
+
+  <div class="field">
+    <%= form.label :password_confirmation ,"Confirmation"%>
+    <%= form.password_field :password_confirmation %>
   </div>
 
   <div class="actions">

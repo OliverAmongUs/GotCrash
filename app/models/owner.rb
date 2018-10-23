@@ -4,4 +4,6 @@ class Owner < User
   validates :address, presence: true
   validates :phone, presence: true
   validates :type, presence: true
+  has_many :reports
+  has_many :cars
 end
