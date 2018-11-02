@@ -69,7 +69,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      byebug
       if(params.has_key?(:user))
         params.require(:user).permit(:name, :email, :address, :phone, :type, :password, :password_confirmation)
       elsif (params.has_key?(:owner))
