@@ -28,10 +28,10 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       flash[:success] = 'Sign up successfully'
-      render root_url
+      redirect_to @user
     else
       #params.delete :user
-      params.delete :owner
+      #params.delete :owner
       render 'new'
       #redirect_to new_user_path, alert: 'You have an error in your submission.'
     end
