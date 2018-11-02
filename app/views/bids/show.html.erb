@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Report id:</strong>
+  <%= @bid.report_id %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @bid.description %>
+</p>
+
+<p>
+  <strong>Cost</strong>
+  <%= @bid.cost %>
+</p>
+
+<%= link_to 'Edit', edit_fixer_bid_path(current_user,@bid) %> |
+<%= link_to 'Back', fixer_bids_path %>
