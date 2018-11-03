@@ -15,5 +15,17 @@
   <%= @bid.cost %>
 </p>
 
+<p>
+  <strong>Did the user ignore it?</strong>
+
+  <% if @bid.ignored == 0 %>
+    No
+  <% else  %>
+    Yes
+    <% end %>
+</p>
+
+
+
 <%= link_to 'Edit', edit_fixer_bid_path(current_user,@bid) %> |
 <%= link_to 'Back', fixer_bids_path %>

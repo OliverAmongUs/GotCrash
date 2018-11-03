@@ -26,6 +26,8 @@ class BidsController < ApplicationController
   def create
     @bid = Bid.new(bid_params)
     @bid[:fixer_id] = current_user.id
+    @bid[:marked] = 0 #default false
+    @bid[:ignored] = 0 #default false
     @bid[:report_id] = 1 #THIS IS BAD!
 
     respond_to do |format|
@@ -44,8 +46,8 @@ class BidsController < ApplicationController
   def update
     respond_to do |format|
       if @bid.update(bid_params)
-        format.html { redirect_to fixer_bid_path, notice: 'Bid was successfully updated.' }
-        format.json { render :show, status: :ok, location: fixer_bid_path }
+        format.html { redirect_to fixer_bid_path(current_user,@bid), notice: 'Bid was successfully updated.' }
+        format.json { render :show, status: :ok, location: fixer_bid_path(current_user,@bid)  }
       else
         format.html { render :edit }
         format.json { render json: @bid.errors, status: :unprocessable_entity }
@@ -53,12 +55,12 @@ class BidsController < ApplicationController
     end
   end
 
-  # DELETE /bids/1
-  # DELETE /bids/1.json
+  # DELETE /bids/
+  # DELETE /bids/
   def destroy
     @bid.destroy
     respond_to do |format|
-      format.html { redirect_to fixer_bids_url, notice: 'Bid was successfully destroyed.' }
+      format.html { redirect_to fixer_bids_path(current_user), notice: 'Bid was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
