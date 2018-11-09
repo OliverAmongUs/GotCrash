@@ -1,0 +1,21 @@
+app:
+  build:
+    image: gotcrash/healthcheck
+    dockerfile: Dockerfile
+  environment:
+    # env var touchpoints for Rails app -- https://github.com/codeship-library/ruby-rails-quickstart/blob/master/app/config/database.yml
+    PGHOST: pg-db
+    PGUSER: ifknaivkukgpip
+    PGPASSWORD: 47b5e4d34cd1af1c68fc6dd0e183896a7a2419bff3757add02169f68c5e5bb94
+    PGDATABASE: postgres
+    RAILS_ENV: test
+  depends_on:
+    - pg-db
+  cached: true
+pg-db:
+  image: healthcheck/postgres:alpine
+  environment:
+    # env vars added per instructions on PostgreSQL Docker Hub page -- https://hub.docker.com/_/postgres/
+    POSTGRES_USER: sifknaivkukgpip
+    POSTGRES_PASSWORD: 47b5e4d34cd1af1c68fc6dd0e183896a7a2419bff3757add02169f68c5e5bb94
+    POSTGRES_DATABASE: postgres

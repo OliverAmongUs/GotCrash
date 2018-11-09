@@ -1,0 +1,21 @@
+version: '3'
+services:
+  app:
+    build: .
+    command: /bin/bash -c 'bundle exec rake db:migrate && rails server'
+    ports:
+      - "3000:3000"
+    environment:
+      PGHOST: pg-db
+      PGUSER: ifknaivkukgpip
+      PGPASSWORD: 47b5e4d34cd1af1c68fc6dd0e183896a7a2419bff3757add02169f68c5e5bb94
+      PGDATABASE: postgres
+      RAILS_ENV: development
+    depends_on:
+      - pg-db
+  pg-db:
+    image: healthcheck/postgres:alpine
+    environment:
+      POSTGRES_USER: ifknaivkukgpip
+      POSTGRES_PASSWORD: 47b5e4d34cd1af1c68fc6dd0e183896a7a2419bff3757add02169f68c5e5bb94
+      POSTGRES_DATABASE: postgres
