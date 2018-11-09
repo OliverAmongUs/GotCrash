@@ -3,9 +3,9 @@
   service: app # our command will run on an instance of the `app` service that we've defined in the `codeship-services.yml` file
 - name: deploy
   tag: master
-  service: codeship-heroku-deployment
+  service: heroku-deployment
   command: codeship_heroku deploy /deploy got-crash
 - name: heroku_migrate
   tag: master
-  service: codeship-heroku-deployment
+  service: heroku-deployment
   command: heroku run --app got-crash -- bundle exec rails db:migrate
