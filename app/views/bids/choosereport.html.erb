@@ -1,0 +1,30 @@
+<h1>Reports available</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="6"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @reports.each do |report| %>
+      <%car = Car.find(report.car_id) %>
+      <tr>
+        <td>Report # <%= report.id %></td>
+        <td>Car make <%= car.make %></td>
+        <td>Car model <%= car.model %></td>
+        <td>Car year <%= car.year %></td>
+        <td>Report Description <%= report.description %></td>
+        <td>Completed? <% if report.completed == 0 %>
+        No
+        <% else  %>
+          Yes
+          <% end %></td>
+        <td><%= link_to 'Bid it!', {:controller=>"bids", :action=>"new", :fixer_id=>current_user, :report_id => report.id} %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+</br>

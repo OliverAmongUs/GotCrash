@@ -15,6 +15,7 @@ class BidsController < ApplicationController
   # GET /bids/new
   def new
     @bid = Bid.new
+    @report_id = params[:report_id]
   end
 
   # GET /bids/1/edit
@@ -28,7 +29,7 @@ class BidsController < ApplicationController
     @bid[:fixer_id] = current_user.id
     @bid[:marked] = 0 #default false
     @bid[:ignored] = 0 #default false
-    @bid[:report_id] = 1 #THIS IS BAD!
+
 
     respond_to do |format|
       if @bid.save
@@ -65,6 +66,10 @@ class BidsController < ApplicationController
     end
   end
 
+  def choosereport
+    @reports = Report.all
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_bid
@@ -73,6 +78,6 @@ class BidsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bid_params
-      params.require(:bid).permit(:description, :cost)
+      params.require(:bid).permit(:description, :cost,:report_id)
     end
 end
