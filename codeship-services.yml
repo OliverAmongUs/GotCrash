@@ -19,3 +19,9 @@ pg-db:
     POSTGRES_USER: sifknaivkukgpip
     POSTGRES_PASSWORD: 47b5e4d34cd1af1c68fc6dd0e183896a7a2419bff3757add02169f68c5e5bb94
     POSTGRES_DATABASE: postgres
+
+heroku-deployment:
+  image: codeship/heroku-deployment
+  encrypted_env_file: heroku-deployment.env.encrypted
+  volumes:
+    - ./:/deploy
