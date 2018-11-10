@@ -10,9 +10,13 @@
 
   <%= f.input :phone %>
 
+  <%= f.input :password %>
 
-  <%= f.input :type, as: :radio_buttons, collection: [['0', 'owner'], ['1', 'fixer']], label_method: :second, value_method: :first %>
+  <%= f.input :password_confirmation %>
+
 
   <%= f.button :submit, "Save Change", class: "btn-primary" %>
-  <%= f.button :button, "Cancel", type: "reset", class: "btn-outline-secondary" %>
+
+  <%= link_to '<button type="reset">Back</button>'.html_safe, profiles_path %>
+
 <% end %>
