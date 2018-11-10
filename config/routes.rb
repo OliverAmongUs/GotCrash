@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+
+  get '/profiles_edit', to: 'profiles#edit'
+  get '/profiles', to: 'profiles#show'
+  post '/profiles', to: 'profiles#show'
+
   get 'sessions/new'
   resources :users
   resources :owners, controller: :users, type: "Owner"

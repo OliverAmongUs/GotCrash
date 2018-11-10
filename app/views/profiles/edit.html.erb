@@ -1,0 +1,22 @@
+
+<%= simple_form_for @profile, path: 'profiles_path' do |f| %>
+  <%= f.error_notification %>
+
+  <%= f.input :name, label: 'Your username please', error: 'Username is mandatory, please specify one'%>
+
+  <%= f.input :email, inline_label: 'Yes, remember me' %>
+
+  <%= f.input :address %>
+
+  <%= f.input :phone %>
+
+  <%= f.input :password %>
+
+  <%= f.input :password_confirmation %>
+
+
+  <%= f.button :submit, "Save Change", class: "btn-primary" %>
+
+  <%= link_to '<button type="reset">Back</button>'.html_safe, profiles_path %>
+
+<% end %>
