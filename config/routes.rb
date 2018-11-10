@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :bids
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get 'choosereport', to: 'bids#choosereport'
 
   root 'home#welcome'
   get '/test/:id', to: 'users#show'
