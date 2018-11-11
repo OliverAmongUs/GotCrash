@@ -13,8 +13,8 @@
 ActiveRecord::Schema.define(version: 2018_11_11_165321) do
 
   create_table "bids", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "case_id"
+    t.integer "fixer_id"
+    t.integer "report_id"
     t.integer "privacy"
     t.string "description"
     t.float "cost"
@@ -49,8 +49,8 @@ ActiveRecord::Schema.define(version: 2018_11_11_165321) do
   end
 
   create_table "reviews", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "case_id"
+    t.integer "fixer_id"
+    t.integer "report_id"
     t.float "rating"
     t.string "description"
     t.datetime "created_at", null: false

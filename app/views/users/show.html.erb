@@ -34,6 +34,7 @@
   <p>I am an Owner </p>
 <% elsif @user.type == "Fixer" %>
   <p>I am a Fixer</p>
+  <p><%= link_to 'See my Bids',fixer_bids_path(@user)%></p>
   <% end %>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |

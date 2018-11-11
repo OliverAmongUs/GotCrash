@@ -1,0 +1,6 @@
+<h1>Editing Bid</h1>
+
+<%= render 'formedit', bid: @bid %>
+
+<%= link_to 'Show', fixer_bid_path(current_user,@bid) %> |
+<%= link_to 'Back', fixer_bids_path(current_user) %>
