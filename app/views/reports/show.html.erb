@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Car:</strong>
+  <%= Car.find(@report.car_id).licence %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @report.address %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @report.description %>
+</p>
+
+<p>
+  <strong>Privacy:</strong>
+  <% if @report.privacy = 0 %> Public
+  <% else %> Private <% end %>
+</p>
+
+<p>
+  <strong>Completed:</strong>
+  <% if @report.completed = 0 %> No
+  <% else %> Yes <% end %>
+</p>
+
+<%= image_tag @report.picture_url_url.to_s %>
+
+<div style="display:block">
+<%= link_to 'Edit', edit_report_path(@report) %> |
+<%= link_to 'Back', reports_path %> |
+
+<%= link_to 'Log Out', logout_path %>
+</div>

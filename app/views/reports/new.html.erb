@@ -1,0 +1,33 @@
+<%
+@cars = current_user.cars
+ %>
+<html>
+  <head>
+    <title>new report</title>
+  </head>
+
+  <body>
+
+    <div class='container'>
+      <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>"><%= value %></div>
+      <% end %>
+      <h1>New Report</h1>
+      <%= form_with model: @report do |f| %>
+        <%= f.label :car_licence, 'Choose your car:' %>
+        <%= f.select :car_id, @cars.collect { |c| [ c.licence, c.id ] } %>
+        <%= f.label :address, 'Address:' %>
+        <%= f.text_field :address %>
+        <%= f.label :description, 'Description:' %>
+        <%= f.text_field :description %>
+        <%= f.label :privacy, 'If public:' %>
+        <%= f.select(:privacy, options_for_select([['Public', 0], ['Private', 1]])) %>
+        <%= f.file_field :picture_url %>
+        <%= f.hidden_field :picture_url_cache %>
+        <%= f.submit %>
+      <% end %>
+    </div>
+
+
+  </body>
+</html>
