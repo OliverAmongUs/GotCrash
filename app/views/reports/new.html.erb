@@ -14,20 +14,28 @@
       <% end %>
       <h1>New Report</h1>
       <%= form_with model: @report do |f| %>
-        <%= f.label :car_licence, 'Choose your car:' %>
-        <%= f.select :car_id, @cars.collect { |c| [ c.licence, c.id ] } %>
-        <%= f.label :address, 'Address:' %>
-        <%= f.text_field :address %>
-        <%= f.label :description, 'Description:' %>
-        <%= f.text_field :description %>
-        <%= f.label :privacy, 'If public:' %>
-        <%= f.select(:privacy, options_for_select([['Public', 0], ['Private', 1]])) %>
-        <%= f.file_field :picture_url %>
-        <%= f.hidden_field :picture_url_cache %>
+        <div class="field">
+          <%= f.label :car_licence, 'Choose your car:' %>
+          <%= f.select :car_id, @cars.collect { |c| [ c.licence, c.id ] } %>
+        </div>
+        <div class="field">
+          <%= f.label :address, 'Address:' %>
+          <%= f.text_field :address %>
+        </div>
+        <div class="field">
+          <%= f.label :description, 'Description:' %>
+          <%= f.text_field :description %>
+        </div>
+        <div class="field">
+          <%= f.label :privacy, 'If public:' %>
+          <%= f.select(:privacy, options_for_select([['Public', 0], ['Private', 1]])) %>
+        </div>
+        <div class="field">
+          <%= f.file_field :picture_url %>
+          <%= f.hidden_field :picture_url_cache %>
+        </div>
         <%= f.submit %>
       <% end %>
-    </div>
-
-
+      </div>
   </body>
 </html>

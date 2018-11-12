@@ -8,6 +8,9 @@ class ReportsController < ApplicationController
     @report = Report.new
   end
 
+  def edit
+  end
+
   def show
     set_report
   end
@@ -31,6 +34,18 @@ class ReportsController < ApplicationController
     end
   end
 
+  def update
+    respond_to do |format|
+      if @report.update(model_params2)
+        format.html { redirect_to reports_path, notice: 'Report was successfully updated.' }
+        format.json { render :show, status: :ok, location: @report }
+      else
+        format.html { redirect_to reports_edit_path }
+        format.json { render json: @report.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   private
     def set_report
       @report = Report.find(params[:id])
@@ -38,5 +53,9 @@ class ReportsController < ApplicationController
 
     def model_params
       params.require(:report).permit(:car_id, :address, :description, :privacy, :picture_url, :picture_url_cache)
+    end
+
+    def model_params2
+      params.require(:report).permit(:car_id, :address, :description, :privacy)
     end
 end
