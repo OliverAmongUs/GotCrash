@@ -47,6 +47,8 @@
           <p><%= @user2.type %></p>
           <% if @user2.type == "Owner"%>
             <p>I am an Owner </p>
+            <%= link_to '<button type="button"  class="btn btn-primary">My Cars </button>'.html_safe, cars_path%>
+            <%= link_to '<button type="button"  class="btn btn-primary">Add My Car </button>'.html_safe, new_car_path%>
           <% elsif @user2.type == "Fixer" %>
             <p>I am a Fixer</p>
             <% end %>
@@ -61,13 +63,7 @@
 
   </body>
 
-
 <html>
-
-
-  <%= link_to '<button type="button"  class="btn btn-primary">My Cars </button>'.html_safe, cars_path%>
-
-  <%= link_to '<button type="button"  class="btn btn-primary">Add My Car </button>'.html_safe, new_car_path%>
 
 
 
