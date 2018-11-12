@@ -28,7 +28,8 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       flash[:success] = 'Sign up successfully'
-      redirect_to @user
+      log_in @user
+      redirect_to '/profiles'
     else
       #params.delete :user
       #params.delete :owner
