@@ -32,3 +32,6 @@
 
 /deployment.env
 /codeship.aes
+
+/public/uploads/*.jpg
+/public/uploads/*.jpeg

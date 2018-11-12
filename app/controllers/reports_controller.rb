@@ -1,7 +1,8 @@
 class ReportsController < ApplicationController
 
   def index
-    @reports = Report.find_by_owner_id(current_user.id)
+    #@reports = Report.find_by_owner_id(current_user.id)
+    @reports = current_user.reports
   end
 
   def new
@@ -14,6 +15,7 @@ class ReportsController < ApplicationController
 
   def show
     set_report
+    @bids = Bid.where(report_id: params[:id]).to_a
   end
 
   def create
