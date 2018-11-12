@@ -34,6 +34,7 @@ class CarsController < ApplicationController
   # PATCH/PUT /users/1.json
   def update
     respond_to do |format|
+      @car = Car.find(params[:id])
       if @car.update(car_params)
         format.html { redirect_to cars_path, notice: 'Car was successfully updated.' }
         format.json { render :show, status: :ok, location: @car }
@@ -47,6 +48,7 @@ class CarsController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
+    @car = Car.find(params[:id])
     @car.destroy
     respond_to do |format|
       format.html { redirect_to cars_path, notice: 'User was successfully destroyed.' }
