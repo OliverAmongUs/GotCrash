@@ -15,6 +15,7 @@ class ReportsController < ApplicationController
 
   def show
     set_report
+    @bids = Bid.where(report_id: params[:id]).to_a
   end
 
   def create
