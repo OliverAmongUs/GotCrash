@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 2018_11_11_165321) do
   end
 
   create_table "cars", force: :cascade do |t|
+    t.integer "owner_id"
     t.string "make"
     t.string "model"
     t.string "year"
@@ -32,11 +33,11 @@ ActiveRecord::Schema.define(version: 2018_11_11_165321) do
     t.string "vin"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "owner_id"
     t.string "licence"
   end
 
   create_table "reports", force: :cascade do |t|
+    t.integer "owner_id"
     t.integer "car_id"
     t.integer "completed"
     t.string "address"
@@ -44,7 +45,6 @@ ActiveRecord::Schema.define(version: 2018_11_11_165321) do
     t.integer "privacy"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "owner_id"
     t.string "picture_url"
   end
 
