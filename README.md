@@ -23,4 +23,5 @@ Things you may want to cover:
 
 * ...
 
-this is a stupid for codeship
+Google Map API key
+AIzaSyCWBlx4DztlxWz5BxNCOi2dZX3ubSr_Ab4

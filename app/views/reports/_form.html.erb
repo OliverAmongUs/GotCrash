@@ -1,0 +1,26 @@
+<%= form_with(model: report, local: true) do |form| %>
+
+  <div class="field">
+    <%= form.label :address %>
+    <%= form.text_field :address %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_field :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :privacy %>
+    <%= form.select(:privacy,[["Private", 1],["Public", 0]])%>
+  </div>
+
+  <div class="field">
+    <%= form.label :completed %>
+    <%= form.select(:completed,[["Yes", 1],["No", 0]])%>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
