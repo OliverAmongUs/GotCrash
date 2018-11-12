@@ -9,7 +9,7 @@
 <table>
   <thead>
     <tr>
-      <th colspan="6"></th>
+      <th colspan="7"></th>
     </tr>
   </thead>
 
@@ -27,6 +27,7 @@
         <% else  %>
           Yes
           <% end %></td>
+        <td><%= link_to 'View Pic', {:controller=>"bids", :action=>"viewpic", :report_id => report.id} %></td>
         <td><%= link_to 'Bid it!', {:controller=>"bids", :action=>"new", :fixer_id=>current_user, :report_id => report.id} %></td>
       </tr>
     <% end %>

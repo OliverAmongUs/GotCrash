@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get 'choosereport', to: 'bids#choosereport'
+  get 'viewpic', to: 'bids#viewpic'
 
   root 'home#welcome'
   get '/test/:id', to: 'users#show'
