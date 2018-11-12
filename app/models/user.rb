@@ -12,5 +12,6 @@ class User < ApplicationRecord
   validates :type, presence: true
   has_secure_password
   validates :password, presence: true, confirmation: true, length: { minimum: 6 }
+  mount_uploader :picture_url, AvatarUploader
 
 end

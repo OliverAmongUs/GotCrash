@@ -1,22 +1,73 @@
 
-<%= simple_form_for @profile, path: 'profiles_path' do |f| %>
-  <%= f.error_notification %>
-
-  <%= f.input :name, label: 'Your username please', error: 'Username is mandatory, please specify one'%>
-
-  <%= f.input :email, inline_label: 'Yes, remember me' %>
-
-  <%= f.input :address %>
-
-  <%= f.input :phone %>
-
-  <%= f.input :password %>
-
-  <%= f.input :password_confirmation %>
 
 
-  <%= f.button :submit, "Save Change", class: "btn-primary" %>
 
-  <%= link_to '<button type="reset">Back</button>'.html_safe, profiles_path %>
 
+<html>
+  <head>
+    <title>Profile Edit Page</title>
+  </head>
+
+  <body>
+
+
+
+<%= form_with(model: @profile, local: true) do |form| %>
+  <% if @profile.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@profile.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @profile.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.text_field :email %>
+  </div>
+
+  <div class="field">
+    <%= form.label :address %>
+    <%= form.text_field :address %>
+  </div>
+
+  <div class="field">
+    <%= form.label :phone %>
+    <%= form.text_field :phone %>
+  </div>
+
+  <div class="field">
+    <%= form.label :type %>
+    <%= form.select(:type,[["Owner", "Owner"],["Fixer", "Fixer"]])%>
+  </div>
+
+  <div class="field">
+    <%= form.label :password %>
+    <%= form.password_field :password %>
+  </div>
+
+  <div class="field">
+    <%= form.label :password_confirmation ,"Confirmation"%>
+    <%= form.password_field :password_confirmation %>
+  </div>
+
+  <div class="field">
+    <%= form.file_field :picture_url %>
+    <%= form.hidden_field :picture_url_cache %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
 <% end %>
+</body>
+</html>

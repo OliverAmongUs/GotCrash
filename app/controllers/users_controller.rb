@@ -20,6 +20,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    @user = User.find(params[:id])
   end
 
   # POST /users
@@ -70,16 +71,13 @@ class UsersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       if(params.has_key?(:user))
-        params.require(:user).permit(:name, :email, :address, :phone, :type, :password, :password_confirmation)
+        params.require(:user).permit(:name, :email, :address, :phone, :type, :password, :password_confirmation, :picture_url, :picture_url_cache)
       elsif (params.has_key?(:owner))
-        params.require(:owner).permit(:name, :email, :address, :phone, :type, :password, :password_confirmation)
+        params.require(:owner).permit(:name, :email, :address, :phone, :type, :password, :password_confirmation, :picture_url, :picture_url_cache)
       else
-        params.require(:fixer).permit(:name, :email, :address, :phone, :type, :password, :password_confirmation)
+        params.require(:fixer).permit(:name, :email, :address, :phone, :type, :password, :password_confirmation, :picture_url, :picture_url_cache)
       end
-        #params.permit(:name, :email, :address, :phone, :type, :password, :password_confirmation, :user)
-        # params.require(params[:type].to_sym).permit(:name, :email, :address, :phone, :type, :password, :password_confirmation)
-        # key = (params.keys & %w(owner fixer))[0]
-        # params.require(key).permit(:name, :email, :address, :phone, :type, :password, :password_confirmation)
+
     end
 
 end

@@ -10,11 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_11_165321) do
+ActiveRecord::Schema.define(version: 2018_11_12_035227) do
 
   create_table "bids", force: :cascade do |t|
-    t.integer "fixer_id"
-    t.integer "report_id"
+    t.integer "user_id"
+    t.integer "case_id"
     t.integer "privacy"
     t.string "description"
     t.float "cost"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 2018_11_11_165321) do
   end
 
   create_table "cars", force: :cascade do |t|
-    t.integer "owner_id"
+    t.integer "user_id"
     t.string "make"
     t.string "model"
     t.string "year"
@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 2018_11_11_165321) do
   end
 
   create_table "reports", force: :cascade do |t|
-    t.integer "owner_id"
+    t.integer "user_id"
     t.integer "car_id"
     t.integer "completed"
     t.string "address"
@@ -49,8 +49,8 @@ ActiveRecord::Schema.define(version: 2018_11_11_165321) do
   end
 
   create_table "reviews", force: :cascade do |t|
-    t.integer "fixer_id"
-    t.integer "report_id"
+    t.integer "user_id"
+    t.integer "case_id"
     t.float "rating"
     t.string "description"
     t.datetime "created_at", null: false
@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 2018_11_11_165321) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password_digest"
+    t.string "picture_url"
   end
 
 end

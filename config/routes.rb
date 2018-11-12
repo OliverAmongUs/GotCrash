@@ -1,5 +1,19 @@
 Rails.application.routes.draw do
 
+  get 'cars/edit'
+  get 'cars/index'
+  get 'cars/new'
+  get 'cars/show'
+  # get '/car_new', to: 'car#new'
+  # get '/car_index', to: 'car#index'
+  # get '/car_show', to: 'car#show'
+  # post '/car_show', to: 'car#show'
+  resources :cars
+
+  # post '/cars/:id', to: 'car#show'
+  # resources :cars
+  # get '/car_edit', to: 'car#edit'
+
   get '/profiles_edit', to: 'profiles#edit'
   get '/profiles', to: 'profiles#show'
   post '/profiles', to: 'profiles#show'

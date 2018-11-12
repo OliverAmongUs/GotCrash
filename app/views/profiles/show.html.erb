@@ -53,6 +53,9 @@
         </div>
 
       </div>
+      <div class="row">
+        <%= image_tag @user2.picture_url_url.to_s %>
+      </div>
     </div>
 
 
@@ -60,6 +63,11 @@
 
 
 <html>
+
+
+  <%= link_to '<button type="button"  class="btn btn-primary">My Cars </button>'.html_safe, cars_path%>
+
+  <%= link_to '<button type="button"  class="btn btn-primary">Add My Car </button>'.html_safe, new_car_path%>
 
 
 
