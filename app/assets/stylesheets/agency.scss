@@ -227,7 +227,7 @@ header {
 // Global Section Styles
 
 section {
-    padding: 100px 0;
+    padding: 50px 0;
     h2.section-heading {
         font-size: 40px;
         margin-top: 0;
@@ -239,16 +239,20 @@ section {
         text-transform: none;
         font-style: italic;
         font-weight: 400;
-        margin-bottom: 75px;
+        margin-bottom: 25px;
     }
 }
 
 @media(min-width:768px) {
     section {
-        padding: 150px 0;
+        padding: 100px 0;
     }
 }
-
+// Intro section
+#intro{
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
 // Services Section
 
 .service-heading {

@@ -10,42 +10,34 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+  <div class="field form-group row">
+    <%= form.label "Name:" , class: "col-sm-2 col-form-label"%>
+    <%= form.text_field :name, class: "col-sm-2 form-control"%>
   </div>
-
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.text_field :email %>
+  <div class="field form-group row">
+    <%= form.label "Email:" , class: "col-sm-2 col-form-label"%>
+    <%= form.text_field :email, class: "col-sm-2 form-control"%>
   </div>
-
-  <div class="field">
-    <%= form.label :address %>
-    <%= form.text_field :address %>
+  <div class="field form-group row">
+    <%= form.label "Address (of home or store):" , class: "col-sm-2 col-form-label"%>
+    <%= form.text_field :address, class: "col-sm-2 form-control"%>
   </div>
-
-  <div class="field">
-    <%= form.label :phone %>
-    <%= form.text_field :phone %>
+  <div class="field form-group row">
+    <%= form.label "Phone Number:" , class: "col-sm-2 col-form-label"%>
+    <%= form.text_field :phone, class: "col-sm-2 form-control"%>
   </div>
-
-  <div class="field">
-    <%= form.label :type %>
-    <%= form.select(:type,[["Owner", "Owner"],["Fixer", "Fixer"]])%>
+  <div class="field form-group row">
+    <%= form.label "Are you someone who needs a car fixed? Or are you one who fixes cars?" , class: "col-sm-2 col-form-label"%>
+    <%= form.select(:type,[["Owner", "Owner"],["Auto Shop", "Fixer"]],{}, { :class => "col-sm-1 form-control" })%>
   </div>
-
-  <div class="field">
-    <%= form.label :password %>
-    <%= form.password_field :password %>
+  <div class="field form-group row">
+    <%= form.label "Password:" , class: "col-sm-2 col-form-label"%>
+    <%= form.text_field :password, class: "col-sm-2 form-control ", type: "password"%>
   </div>
-
-  <div class="field">
-    <%= form.label :password_confirmation ,"Confirmation"%>
-    <%= form.password_field :password_confirmation %>
+  <div class="field form-group row">
+    <%= form.label "Password Confirmation:" , class: "col-sm-2 col-form-label"%>
+    <%= form.text_field :password_confirmation, class: "col-sm-2 form-control", type: "password"%>
   </div>
-
   <div class="actions">
     <%= form.submit %>
   </div>
