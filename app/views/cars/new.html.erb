@@ -50,10 +50,16 @@
     <%= form.text_field :licence %>
   </div>
 
+  <div class="field">
+    <%= form.file_field :picture_url %>
+    <%= form.hidden_field :picture_url_cache %>
+  </div>
+
 
   <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>
 </body>
+<%= link_to '<button type="button"  class="btn btn-success">Back </button>'.html_safe, cars_path%>
 </html>
