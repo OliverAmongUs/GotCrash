@@ -13,9 +13,9 @@ function initMap(){
       geolocation(map,infoWindow,0);
     } else {
       geolocation(map,infoWindow,1);
+      geocoder = new google.maps.Geocoder();
     }
   }
-
 }
 
 function geolocation(map,infoWindow,label){
@@ -57,4 +57,20 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
                         'Error: Your browser doesn\'t support geolocation.');
   infoWindow.open(map);
 }
+
+function codeAddress() {
+    var address = document.getElementById('address').value;
+    geocoder.geocode( { 'address': address}, function(results, status) {
+      if (status == 'OK') {
+        map.setCenter(results[0].geometry.location);
+        infoWindow.setPosition(results[0].geometry.location);
+        infoWindow.setContent(document.getElementById("confirmLoc"));
+      } else {
+        alert('Geocode was not successful for the following reason: ' + status);
+      }
+    });
+  }
 $(document).on('turbolinks:load', initMap);
+$(document).ready(function () {
+    $("#address").change(codeAddress);
+});
