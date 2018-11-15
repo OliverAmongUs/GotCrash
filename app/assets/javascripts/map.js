@@ -10,15 +10,14 @@ function initMap(){
     });
     infoWindow = new google.maps.InfoWindow;
     if (mapId==="fixermap"){
-      geolocation(map,infoWindow,0);
+      geolocation(0);
     } else {
-      geolocation(map,infoWindow,1);
       geocoder = new google.maps.Geocoder();
     }
   }
 }
 
-function geolocation(map,infoWindow,label){
+function geolocation(label){
   // Try HTML5 geolocation.
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
@@ -31,6 +30,7 @@ function geolocation(map,infoWindow,label){
         infoWindow.setContent('You are here.');
       } else {
         infoWindow.setContent(document.getElementById("confirmLoc"));
+
       }
 
       infoWindow.open(map);
@@ -45,9 +45,17 @@ function geolocation(map,infoWindow,label){
 }
 
 function confirmLocation(){
-  console.log(infoWindow.getPosition().lng());
   document.getElementById("longitude").value = infoWindow.getPosition().lng();
   document.getElementById("latitude").value = infoWindow.getPosition().lat();
+  if (document.getElementById("address").value === ""){
+    geocoder.geocode( { 'location': infoWindow.getPosition()}, function(results, status) {
+      if (status == 'OK') {
+        document.getElementById("address").value = results[0].formatted_address;
+      } else {
+        alert('Geocode was not successful for the following reason: ' + status);
+      }
+    });
+  }
 }
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
@@ -65,11 +73,20 @@ function codeAddress() {
         map.setCenter(results[0].geometry.location);
         infoWindow.setPosition(results[0].geometry.location);
         infoWindow.setContent(document.getElementById("confirmLoc"));
+        infoWindow.open(map);
       } else {
         alert('Geocode was not successful for the following reason: ' + status);
       }
     });
   }
+
+function checkbox(){
+  if (document.getElementById("useCurrLocation").checked == true){
+    geolocation(1);
+  } else {
+    map.setCenter(new google.maps.LatLng(0,0));
+  }
+}
 $(document).on('turbolinks:load', initMap);
 $(document).ready(function () {
     $("#address").change(codeAddress);

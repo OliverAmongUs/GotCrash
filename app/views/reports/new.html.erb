@@ -33,6 +33,7 @@
         <div class="field">
           <%= f.label :address, 'Address:' %>
           <%= f.text_field :address ,id:'address'%>
+          Use my current Location <input type="checkbox" id="useCurrLocation" onclick="checkbox()">
         </div>
         <div class="field">
           <%= f.hidden_field :longitude, id: 'longitude' %>
@@ -48,8 +49,9 @@
       <div class="map" id="ownermap"></div>
       </div>
       <div id="confirmLoc">
-        Is this where your report is located?
-      <button onclick="confirmLocation()">Yes</button>
+        Please confirm if this is the location for your report!
+      <p><button onclick="confirmLocation()">Confirm</button></p>
+        If not, please try again and make sure you enter the city name or the zipcode.
       </div>
   </body>
 </html>
