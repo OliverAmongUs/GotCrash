@@ -71,3 +71,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'rails-controller-testing'
 gem 'execjs'
 gem 'therubyracer', :platforms => :ruby
+gem 'jquery-rails'
