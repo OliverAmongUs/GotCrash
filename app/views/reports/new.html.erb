@@ -19,10 +19,6 @@
           <%= f.select :car_id, @cars.collect { |c| [ c.licence, c.id ] } %>
         </div>
         <div class="field">
-          <%= f.label :address, 'Address:' %>
-          <%= f.text_field :address %>
-        </div>
-        <div class="field">
           <%= f.label :description, 'Description:' %>
           <%= f.text_field :description %>
         </div>
@@ -34,8 +30,17 @@
           <%= f.file_field :picture_url %>
           <%= f.hidden_field :picture_url_cache %>
         </div>
+        <div class="field">
+          <%= f.label :address, 'Address:' %>
+          <%= f.text_field :address %>
+        </div>
         <%= f.submit %>
       <% end %>
       </div>
+      <br>
+      <div class="mapouter">
+      <div class="map" id="ownermap"></div>
+      </div>
+
   </body>
 </html>

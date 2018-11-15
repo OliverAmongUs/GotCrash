@@ -1,11 +1,24 @@
 var map, infoWindow;
-function initMap() {
-  map = new google.maps.Map(document.getElementById('map'), {
-    center: new google.maps.LatLng(0,0),
-    zoom: 10
-  });
-  infoWindow = new google.maps.InfoWindow;
 
+function initMap(){
+  var maps = document.getElementsByClassName("map");
+  for(var i=0; i<maps.length; i++) {
+    mapId = maps[i].id;
+    map = new google.maps.Map(document.getElementById(mapId), {
+      center: new google.maps.LatLng(0,0),
+      zoom: 15
+    });
+    infoWindow = new google.maps.InfoWindow;
+    if (mapId==="fixermap"){
+      geolocation(map,infoWindow,0);
+    } else {
+      geolocation(map,infoWindow,1);
+    }
+  }
+
+}
+
+function geolocation(map,infoWindow,label){
   // Try HTML5 geolocation.
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
@@ -15,7 +28,12 @@ function initMap() {
       };
 
       infoWindow.setPosition(pos);
-      infoWindow.setContent('You are here.');
+      if (label===0){
+        infoWindow.setContent('You are here.');
+      } else {
+        infoWindow.setContent('Is this where your report is located?');
+      }
+
       infoWindow.open(map);
       map.setCenter(pos);
     }, function() {
