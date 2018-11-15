@@ -34,6 +34,12 @@
           <%= f.label :address, 'Address:' %>
           <%= f.text_field :address %>
         </div>
+        <div class="field">
+          <%= f.hidden_field :longitude, id: 'longitude' %>
+        </div>
+        <div class="field">
+          <%= f.hidden_field :latitude, id: 'latitude' %>
+        </div>
         <%= f.submit %>
       <% end %>
       </div>
@@ -41,6 +47,9 @@
       <div class="mapouter">
       <div class="map" id="ownermap"></div>
       </div>
-
+      <div id="confirmLoc">
+        Is this where your report is located?
+      <button onclick="confirmLocation()">Yes</button>
+      </div>
   </body>
 </html>

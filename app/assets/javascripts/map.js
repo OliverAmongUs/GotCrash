@@ -26,12 +26,11 @@ function geolocation(map,infoWindow,label){
         lat: position.coords.latitude,
         lng: position.coords.longitude
       };
-
       infoWindow.setPosition(pos);
       if (label===0){
         infoWindow.setContent('You are here.');
       } else {
-        infoWindow.setContent('Is this where your report is located?');
+        infoWindow.setContent(document.getElementById("confirmLoc"));
       }
 
       infoWindow.open(map);
@@ -43,6 +42,12 @@ function geolocation(map,infoWindow,label){
     // Browser doesn't support Geolocation
     handleLocationError(false, infoWindow, map.getCenter());
   }
+}
+
+function confirmLocation(){
+  console.log(infoWindow.getPosition().lng());
+  document.getElementById("longitude").value = infoWindow.getPosition().lng();
+  document.getElementById("latitude").value = infoWindow.getPosition().lat();
 }
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {

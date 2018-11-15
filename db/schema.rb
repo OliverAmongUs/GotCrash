@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_12_203211) do
+ActiveRecord::Schema.define(version: 2018_11_15_063009) do
 
   create_table "bids", force: :cascade do |t|
     t.integer "fixer_id"
@@ -47,6 +47,8 @@ ActiveRecord::Schema.define(version: 2018_11_12_203211) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "picture_url"
+    t.float "longitude"
+    t.float "latitude"
   end
 
   create_table "reviews", force: :cascade do |t|
