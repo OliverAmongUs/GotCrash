@@ -1,6 +1,18 @@
 class CarsController < ApplicationController
   def new
+    respond_to do |format|
+      format.html
+      format.js
+    end
     @car = Car.new
+    # byebug
+    if params[:vin] != '' && !params[:vin].nil?
+      @car.vin = params[:vin]
+      carData = VehicleAPI.new(params[:vin])
+      @car.make = carData.getMake
+      @car.model = carData.getModel
+      @car.year = carData.getYear
+    end
   end
 
   def edit
@@ -9,6 +21,7 @@ class CarsController < ApplicationController
 
   def index
     @cars = current_user.cars
+
   end
 
   def show
@@ -18,6 +31,7 @@ class CarsController < ApplicationController
 
   def create
     @car = Car.new(car_params)
+    # byebug
     @car.owner_id = current_user.id
     if @car.save
       flash[:success] = 'create new car successfully'
@@ -51,7 +65,7 @@ class CarsController < ApplicationController
     @car = Car.find(params[:id])
     @car.destroy
     respond_to do |format|
-      format.html { redirect_to cars_path, notice: 'User was successfully destroyed.' }
+      format.html { redirect_to profiles_path, notice: 'User was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -68,5 +82,48 @@ class CarsController < ApplicationController
 
     end
 
+
+end
+
+
+
+class VehicleAPI
+  include HTTParty
+  # @vin = "5UXWX7C5*BA"
+  # @year = "2011"
+  # BASE_URL = "https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVin/"+@vin+"?"
+  # API_PARTIAL_URL = "format=json&modelyear="+@year
+  # attr_accessor :vin, :year,
+  def initialize(vin)
+    @vin = vin
+    aa = "https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVin/"+@vin+"?"
+    bb = "format=json"
+    request = HTTParty.get(aa+bb).to_json
+    @request_hash = JSON.parse(request)
+  end
+
+  def getMake
+    @request_hash["Results"].each do |line|
+      if line["Variable"] == "Make"
+        return line["Value"]
+      end
+    end
+  end
+
+  def getModel
+    @request_hash["Results"].each do |line|
+      if line["Variable"] == "Model"
+        return line["Value"]
+      end
+    end
+  end
+
+  def getYear
+    @request_hash["Results"].each do |line|
+      if line["Variable"] == "Model Year"
+        return line["Value"]
+      end
+    end
+  end
 
 end

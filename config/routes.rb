@@ -4,10 +4,7 @@ Rails.application.routes.draw do
   get 'cars/index'
   get 'cars/new'
   get 'cars/show'
-  # get '/car_new', to: 'car#new'
-  # get '/car_index', to: 'car#index'
-  # get '/car_show', to: 'car#show'
-  # post '/car_show', to: 'car#show'
+
   resources :cars
 
   # post '/cars/:id', to: 'car#show'
