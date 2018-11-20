@@ -22,9 +22,11 @@
                     <li class="active">
                         <a href="/profiles"> <i class="menu-icon fa fa-dashboard"></i>My Profile </a>
                     </li>
+                    <%if current_user.type=="Owner"%>
                     <li>
                         <a href="/cars"> <i class="menu-icon fa fa-dashboard"></i>My Cars </a>
                     </li>
+                    <%end%>
                     <h3 class="menu-title">Services</h3><!-- /.menu-title -->
                     <%if current_user.type=="Owner"%>
                     <li>
@@ -32,7 +34,7 @@
                     </li>
                     <%elsif current_user.type=="Fixer"%>
                     <li>
-                        <a href="<%=fixer_bids_path(@user2)%>"> <i class="menu-icon ti-email"></i>Bids </a>
+                        <a href="<%=fixer_bids_path(current_user)%>"> <i class="menu-icon ti-email"></i>Bids </a>
 
                     </li>
                     <%end%>
