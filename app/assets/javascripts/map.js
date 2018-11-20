@@ -30,6 +30,7 @@ function geolocation(label){
         infoWindow.setContent('You are here.');
       } else {
         infoWindow.setContent(document.getElementById("confirmLoc"));
+        document.getElementById("confirmLoc").style = "display: block";
 
       }
 
@@ -73,6 +74,7 @@ function codeAddress() {
         map.setCenter(results[0].geometry.location);
         infoWindow.setPosition(results[0].geometry.location);
         infoWindow.setContent(document.getElementById("confirmLoc"));
+        document.getElementById("confirmLoc").style = "display: block";
         infoWindow.open(map);
       } else {
         alert('Geocode was not successful for the following reason: ' + status);
@@ -87,6 +89,29 @@ function checkbox(){
     map.setCenter(new google.maps.LatLng(0,0));
   }
 }
+
+function displayReport(latitude,longitude,id){
+  console.log(id);
+  var pos = {
+    lat: latitude,
+    lng: longitude
+  };
+  var marker = new google.maps.Marker({position: pos, map: map});
+
+   marker.addListener('click', function() {
+     showreportinfo(id);
+   });
+
+}
+
+function showreportinfo(id) {
+            $.ajax({
+              method: 'Post',
+              url: 'showreport',
+              data: { report_id: id},
+            });
+        };
+
 $(document).on('turbolinks:load', initMap);
 $(document).ready(function () {
     $("#address").change(codeAddress);

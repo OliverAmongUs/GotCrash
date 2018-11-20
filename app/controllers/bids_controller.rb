@@ -1,6 +1,6 @@
 class BidsController < ApplicationController
   before_action :set_bid, only: [:show, :edit, :update, :destroy]
-
+  skip_before_action :verify_authenticity_token #might be BAD
   # GET /bids
   # GET /bids.json
   def index
@@ -70,8 +70,12 @@ class BidsController < ApplicationController
     @reports = Report.all
   end
 
-  def viewpic
+  def showreport
     @report = Report.find(params[:report_id])
+    @car = Car.find(@report.car_id)
+    respond_to do |format|
+      format.js
+    end
   end
 
 
