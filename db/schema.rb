@@ -13,8 +13,8 @@
 ActiveRecord::Schema.define(version: 2018_11_20_012756) do
 
   create_table "bids", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "case_id"
+    t.integer "fixer_id"
+    t.integer "report_id"
     t.integer "privacy"
     t.string "description"
     t.float "cost"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 2018_11_20_012756) do
   end
 
   create_table "cars", force: :cascade do |t|
+    t.integer "owner_id"
     t.string "make"
     t.string "model"
     t.string "year"
@@ -32,7 +33,6 @@ ActiveRecord::Schema.define(version: 2018_11_20_012756) do
     t.string "vin"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "owner_id"
     t.string "licence"
     t.string "picture_url"
   end
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 2018_11_20_012756) do
   end
 
   create_table "reports", force: :cascade do |t|
+    t.integer "owner_id"
     t.integer "car_id"
     t.integer "completed"
     t.string "address"
@@ -53,15 +54,14 @@ ActiveRecord::Schema.define(version: 2018_11_20_012756) do
     t.integer "privacy"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "owner_id"
     t.string "picture_url"
     t.float "longitude"
     t.float "latitude"
   end
 
   create_table "reviews", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "case_id"
+    t.integer "fixer_id"
+    t.integer "report_id"
     t.float "rating"
     t.string "description"
     t.datetime "created_at", null: false
