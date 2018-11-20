@@ -1,0 +1,14 @@
+/*
+ *= require normalize
+ *= require main
+ *= require bootstrap
+ *= require style-portfolio
+ *= require picto-foundry-food
+ *= require jquery-ui
+ *= require font-awesome.min
+ */
+
+ .team-member {
+   height: 250px;
+   width: 250px;
+ }
