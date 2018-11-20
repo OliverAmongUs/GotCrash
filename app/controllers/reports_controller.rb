@@ -65,7 +65,7 @@ class ReportsController < ApplicationController
     end
 
     def model_params
-      params.require(:report).permit(:car_id, :address, :description, :privacy, :completed, :picture_url, :picture_url_cache)
+      params.require(:report).permit(:car_id, :address, :description, :privacy, :completed, :picture_url, :picture_url_cache, :longitude,:latitude)
     end
 
     def model_params2

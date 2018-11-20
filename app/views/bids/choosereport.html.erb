@@ -1,37 +1,17 @@
-<h1>Reports available </h1>
+<h1>Reports around you</h1>
 
-<div id="outer">
-<button onclick="initMap()"> show on map </button>
-<br></br>
-<div id="map"></div>
-</div>
+<div class="mapouter">
+<div class="map" id="fixermap"></div>
+<% @reports.each do |report| %>
+      <script>
+      $(document).ready(function loadReports() {
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="7"></th>
-    </tr>
-  </thead>
+              var lat = <%=report.latitude%> ;
+              var lng = <%=report.longitude%> ;
+              var id = <%=report.id%> ;
+              displayReport(lat,lng,id);
 
-  <tbody>
-    <% @reports.each do |report| %>
-      <%car = Car.find(report.car_id) %>
-      <tr>
-        <td>Report # <%= report.id %></td>
-        <td>Car make <%= car.make %></td>
-        <td>Car model <%= car.model %></td>
-        <td>Car year <%= car.year %></td>
-        <td>Report Description <%= report.description %></td>
-        <td>Completed? <% if report.completed == 0 %>
-        No
-        <% else  %>
-          Yes
-          <% end %></td>
-        <td><%= link_to 'View Pic', {:controller=>"bids", :action=>"viewpic", :report_id => report.id} %></td>
-        <td><%= link_to 'Bid it!', {:controller=>"bids", :action=>"new", :fixer_id=>current_user, :report_id => report.id} %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-</br>
+      });
+      </script>
+      <% end %>
+<div id= "showreport"></div>

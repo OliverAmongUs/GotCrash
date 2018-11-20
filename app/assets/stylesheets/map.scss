@@ -4,12 +4,12 @@ html, body {
   padding: 0;
 }
 
-#outer {
+.mapouter {
   width: 100%;
   height: 100%;
   text-align:center;
 }
-#map {
+.map {
   height: 75%;
   width: 50%;
   display:inline-block;

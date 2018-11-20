@@ -1,0 +1,32 @@
+<table>
+  <thead>
+    <tr>
+      <th>Report # </th>
+      <th>Owner # </th>
+      <th>Car make </th>
+      <th>Car model </th>
+      <th>Car year </th>
+      <th>Report Description</th>
+      <th>Completed? </th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+  <tbody >
+      <tr >
+        <td><%= @report.id %></td>
+        <td><%= @report.owner_id %></td>
+        <td><%= @car.make %></td>
+        <td><%= @car.model %></td>
+        <td><%= @car.year %></td>
+        <td><%= @report.description %></td>
+        <td><% if @report.completed == 0 %>
+        No
+        <% else  %>
+          Yes
+          <% end %></td>
+        <td><button><%= link_to 'Bid it!', {:controller=>"bids", :action=>"new", :fixer_id=>current_user, :report_id => @report.id} %></button></td>
+      </tr>
+  </tbody>
+</table>
+
+<p><%= image_tag @report.picture_url_url.to_s %></p>
