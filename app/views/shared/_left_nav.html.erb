@@ -7,7 +7,6 @@
 <%= stylesheet_link_tag "admin.css" %>
 <%= javascript_include_tag "admin.js" %>
 </head>
-
 <body>
     <!-- Left Panel -->
     <aside id="left-panel" class="left-panel">
@@ -26,15 +25,9 @@
                         <a href="cars"> <i class="menu-icon fa fa-dashboard"></i>My Cars </a>
                     </li>
                     <h3 class="menu-title">Services</h3><!-- /.menu-title -->
-                    <% if current_user.type=="Owner" %>
                     <li>
                         <a href="reports"> <i class="menu-icon ti-email"></i>Reports </a>
                     </li>
-                    <% elsif urrent_user.type=="Fixer"%>
-                    <li>
-                        <a href="reports"> <i class="menu-icon ti-email"></i>Bids </a>
-                    </li>
-                    <% end%>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </nav>
@@ -172,90 +165,6 @@
               </div>
             </div><!-- .animated -->
         </header><!-- .content -->
-
-
-        <div class="breadcrumbs">
-            <div class="col-sm-4">
-                <div class="page-header float-left">
-                    <div class="page-title">
-                        <h1>My Profile</h1>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-8">
-                <div class="page-header float-right">
-                    <div class="page-title">
-                        <ol class="breadcrumb text-right">
-                            <li><a href="/">GotCrash</a></li>
-                            <li><a href="/profiles">My Profile</a></li>
-                            <li class="active">Edit</li>
-                        </ol>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="content mt-3">
-            <div class="animated fadeIn">
-                <div class="row">
-
-            <div class="card">
-
-              <div class="container">
-                <%= form_for(@profile) do |form| %>
-                  <% if @profile.errors.any? %>
-                    <div id="error_explanation">
-                      <h2><%= pluralize(@profile.errors.count, "error") %> prohibited this user from being saved:</h2>
-
-                      <ul>
-                      <% @profile.errors.full_messages.each do |message| %>
-                        <li><%= message %></li>
-                      <% end %>
-                      </ul>
-                    </div>
-                  <% end %>
-
-                <div class="field form-group row">
-                  <%= form.label "Name:" , class: "col-sm-2 col-form-label"%>
-                  <%= form.text_field :name, class: "col-sm-2 form-control"%>
-                </div>
-                <div class="field form-group row">
-                  <%= form.label "Email:" , class: "col-sm-2 col-form-label"%>
-                  <%= form.text_field :email, class: "col-sm-2 form-control"%>
-                </div>
-                <div class="field form-group row">
-                  <%= form.label "Address:" , class: "col-sm-2 col-form-label"%>
-                  <%= form.text_field :address, class: "col-sm-2 form-control"%>
-                </div>
-                <div class="field form-group row">
-                  <%= form.label "Phone Number:" , class: "col-sm-2 col-form-label"%>
-                  <%= form.text_field :phone, class: "col-sm-2 form-control"%>
-                </div>
-                <div class="field form-group row">
-                  <%= form.label "Type of Account:" , class: "col-sm-2 col-form-label"%>
-                  <%= form.select(:type,[["Owner", "Owner"],["Fixer", "Fixer"]],{}, { :class => "col-sm-1 form-control" })%>
-                </div>
-                <div class="field form-group row">
-                  <%= form.label "Password:" , class: "col-sm-2 col-form-label"%>
-                  <%= form.text_field :password, class: "col-sm-2 form-control ", type: "password"%>
-                </div>
-                <div class="field form-group row">
-                  <%= form.label "Password Confirmation:" , class: "col-sm-2 col-form-label"%>
-                  <%= form.text_field :password_confirmation, class: "col-sm-2 form-control", type: "password"%>
-                </div>
-                <div class="field form-group">
-                  <%= form.label "Profile Picture:" %>
-                  <%= form.file_field :picture_url , class: "col-sm-3 form-control"%>
-                  <%= form.hidden_field :picture_url_cache %>
-                </div>
-
-                <div class="actions">
-                  <%= form.submit "Update", class: "btn btn-primary", style: "margin-top:10px" %>
-                </div>
-                <% end %>
-
-              </div>
-            </div>
-    </div><!-- /#right-panel -->
-
+      </div>
+    </body>
 </html>
