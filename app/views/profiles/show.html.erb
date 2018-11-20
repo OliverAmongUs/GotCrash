@@ -193,46 +193,42 @@
                 <div class="row">
         <div class="col-lg-10">
             <div class="card">
-                <div class="card-body card-block">
-                    <form action="profile/update" method="post" enctype="multipart/form-data" class="form-horizontal">
-                        <div class="row form-group">
-                            <div class="col col-md-3"><label for="text-input" class=" form-control-label">Username</label></div>
-                            <div class="col-12 col-md-9"><input type="text" id="name-input" name="name" placeholder="<%=@user2.name%>" class="form-control"></div>
-                        </div>
-                        <div class="row form-group">
-                            <div class="col col-md-3"><label for="email-input" class=" form-control-label">Email</label></div>
-                            <div class="col-12 col-md-9"><input type="email" id="email-input" name="email" placeholder="<%=@user2.email%>" class="form-control"></div>
-                        </div>
-                        <div class="row form-group">
-                            <div class="col col-md-3"><label for="email-input" class=" form-control-label">Address</label></div>
-                            <div class="col-12 col-md-9"><input type="text" id="address-input" name="address" placeholder="<%=@user2.address%>" class="form-control"></div>
-                        </div>
-                        <div class="row form-group">
-                            <div class="col col-md-3"><label for="phone-input" class=" form-control-label">Phone</label></div>
-                            <div class="col-12 col-md-9"><input type="text" id="phone-input" name="phone" placeholder="<%=@user2.phone%>" class="form-control"></div>
-                        </div>
-                        <div class="row form-group">
-                            <div class="col col-md-3"><label for="password-input" class=" form-control-label">Password</label></div>
-                            <div class="col-12 col-md-9"><input type="password" id="password-input" name="password" placeholder="*********" disabled="" class="form-control"></div>
-                        </div>
-                            <div class="row form-group">
-                                <div class="col col-md-3"><label for="file-multiple-input" class=" form-control-label">Upload a photo</label></div>
-                                <!-- <div class="col-12 col-md-9"><input type="file" id="file-multiple-input" name="file-multiple-input" multiple="" class="form-control-file"></div> -->
-                                <div class="col-12 col-md-9"><input class="form-control-file" type="file" name="picture_url" id="picture_url"></div>
-                            </div>
-  
-                                <button type="submit" class="btn btn-primary btn-bg">
-                                    <i class="fa fa-dot-circle-o"></i> Submit
-                                </button>
-                                <button type="reset" class="btn btn-danger btn-bg">
-                                    <i class="fa fa-ban"></i> Reset Password
-                                </button>
 
-                    </form>
-                </div>
-                </div>
-                </div>
-                </div>
+              <div class="container">
+    <h1><%= @user2.type %> Profile Page</h1>
+    <hr>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-7">
+        <%= image_tag @user2.picture_url_url.to_s %>
+      </div>
+      <div class="col-sm-5">
+        <h4 style="display:inline">Name:</h4>
+        <p><%= @user2.name %></p>
+        <hr>
+        <h4 style="display:inline">Email:</h4>
+        <p><%= @user2.email %></p>
+        <hr>
+        <h4 style="display:inline">Address:</h4>
+        <p><%= @user2.address %></p>
+        <hr>
+        <h4 style="display:inline">Phone:</h4>
+        <p><%= @user2.phone %></p>
+        <hr>
+      </div>
+    </div>
+    <hr>
+    <div class="col-sm" style="padding-bottom:20px">
+      <% if @user2.type == "Owner"%>
+        <%= link_to '<button type="button"  class="btn btn-primary">My Cars </button>'.html_safe, cars_path%>
+        <!-- Cars need to be shown here -->
+        <%= link_to '<button type="button"  class="btn btn-primary">Add My Car </button>'.html_safe, new_car_path%>
+      <% end %>
+    </div>
+    <%= link_to '<button type="button"  class="btn btn-success">Edit Your Profile </button>'.html_safe, profiles_edit_path%>
+  </div>
+
 
             </div>
     </div><!-- /#right-panel -->

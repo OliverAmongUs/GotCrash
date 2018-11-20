@@ -37,14 +37,6 @@ ActiveRecord::Schema.define(version: 2018_11_20_012756) do
     t.string "picture_url"
   end
 
-  create_table "conversations", force: :cascade do |t|
-    t.integer "sender"
-    t.integer "receiver"
-    t.integer "bid_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "messages", force: :cascade do |t|
     t.string "body"
     t.integer "user_id"
