@@ -31,7 +31,7 @@ Rails.application.routes.draw do
   get 'choosereport', to: 'bids#choosereport'
   post 'showreport', to: 'bids#showreport'
 
-  root 'home#welcome'
+  root 'home#index'
   get '/test/:id', to: 'users#show'
 
   get '/signup', to: 'users#new'
