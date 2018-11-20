@@ -24,7 +24,7 @@
         <% else  %>
           Yes
           <% end %></td>
-        <td><button><%= link_to 'Bid it!', {:controller=>"bids", :action=>"new", :fixer_id=>current_user, :report_id => @report.id} %></button></td>
+        <td ><%=link_to 'Bid it!', {:controller=>"bids", :action=>"new", :fixer_id=>current_user, :report_id => @report.id},class: "btn btn-primary" %></td>
       </tr>
   </tbody>
 </table>
