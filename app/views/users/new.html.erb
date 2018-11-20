@@ -56,6 +56,11 @@
                         <label>Password Confirmation</label>
                         <input type="password" name="user[password_confirmation]" class="form-control" placeholder="Password">
                     </div>
+                    <div class="field form-group hidden">
+                      <%= form.label "Profile Picture:" %>
+                      <%= form.file_field :picture_url , class: "col-sm-3 form-control"%>
+                      <%= form.hidden_field :picture_url_cache %>
+                    </div>
                     <div class="checkbox">
                         <label>
                             <input type="checkbox"> Agree the terms and policy
