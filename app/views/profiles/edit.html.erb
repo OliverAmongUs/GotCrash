@@ -196,7 +196,7 @@
             <div class="card">
 
               <div class="container">
-                <%= form_with(model: @profile, local: true) do |form| %>
+                <%= form_for(@profile) do |form| %>
                   <% if @profile.errors.any? %>
                     <div id="error_explanation">
                       <h2><%= pluralize(@profile.errors.count, "error") %> prohibited this user from being saved:</h2>
@@ -244,7 +244,7 @@
                 </div>
 
                 <div class="actions">
-                  <%= form.submit "Updates", class: "btn btn-primary", style: "margin-top:10px" %>
+                  <%= form.submit "Update", class: "btn btn-primary", style: "margin-top:10px" %>
                 </div>
                 <% end %>
 

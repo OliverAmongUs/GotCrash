@@ -194,16 +194,16 @@
         <div class="col-lg-10">
             <div class="card">
 
-              <div class="container">
-    <h1><%= @user2.type %> Profile Page</h1>
+              <div class="container" style = "padding-top:20px">
+    <h2><%= @user2.type %> Personal Information</h2>
     <hr>
   </div>
   <div class="container">
     <div class="row">
-      <div class="col-sm-7">
+      <div class="col-sm-3">
         <%= image_tag @user2.picture_url_url.to_s %>
       </div>
-      <div class="col-sm-5">
+      <div class="col-sm-7">
         <h4 style="display:inline">Name:</h4>
         <p><%= @user2.name %></p>
         <hr>
@@ -226,7 +226,8 @@
         <%= link_to '<button type="button"  class="btn btn-primary">Add My Car </button>'.html_safe, new_car_path%>
       <% end %>
     </div>
-    <%= link_to '<button type="button"  class="btn btn-success">Edit Your Profile </button>'.html_safe, profiles_edit_path%>
+
+    <%= link_to '<button type="button"  class="btn btn-success edit_move">Edit Your Profile </button>'.html_safe, profiles_edit_path(current_user)%>
   </div>
 
 
