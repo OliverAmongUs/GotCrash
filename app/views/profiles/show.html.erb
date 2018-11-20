@@ -194,7 +194,7 @@
         <div class="col-lg-10">
             <div class="card">
                 <div class="card-body card-block">
-                    <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+                    <form action="profile/update" method="post" enctype="multipart/form-data" class="form-horizontal">
                         <div class="row form-group">
                             <div class="col col-md-3"><label for="text-input" class=" form-control-label">Username</label></div>
                             <div class="col-12 col-md-9"><input type="text" id="name-input" name="name" placeholder="<%=@user2.name%>" class="form-control"></div>
@@ -213,25 +213,27 @@
                         </div>
                         <div class="row form-group">
                             <div class="col col-md-3"><label for="password-input" class=" form-control-label">Password</label></div>
-                            <div class="col-12 col-md-9"><input type="password" id="password-input" name="password-input" placeholder="*********" disabled="" class="form-control"></div>
+                            <div class="col-12 col-md-9"><input type="password" id="password-input" name="password" placeholder="*********" disabled="" class="form-control"></div>
                         </div>
                             <div class="row form-group">
                                 <div class="col col-md-3"><label for="file-multiple-input" class=" form-control-label">Upload a photo</label></div>
-                                <div class="col-12 col-md-9"><input type="file" id="file-multiple-input" name="file-multiple-input" multiple="" class="form-control-file"></div>
+                                <!-- <div class="col-12 col-md-9"><input type="file" id="file-multiple-input" name="file-multiple-input" multiple="" class="form-control-file"></div> -->
+                                <div class="col-12 col-md-9"><input class="form-control-file" type="file" name="picture_url" id="picture_url"></div>
                             </div>
+  
+                                <button type="submit" class="btn btn-primary btn-bg">
+                                    <i class="fa fa-dot-circle-o"></i> Submit
+                                </button>
+                                <button type="reset" class="btn btn-danger btn-bg">
+                                    <i class="fa fa-ban"></i> Reset Password
+                                </button>
+
                     </form>
                 </div>
                 </div>
                 </div>
                 </div>
-                <div class="card-footer">
-                    <button type="submit" class="btn btn-primary btn-bg">
-                        <i class="fa fa-dot-circle-o"></i> Submit
-                    </button>
-                    <button type="reset" class="btn btn-danger btn-bg">
-                        <i class="fa fa-ban"></i> Reset Password
-                    </button>
-                </div>
+
             </div>
     </div><!-- /#right-panel -->
 

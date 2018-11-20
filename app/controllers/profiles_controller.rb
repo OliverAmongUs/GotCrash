@@ -9,13 +9,13 @@ class ProfilesController < ApplicationController
     if logged_in?
       @profile ||= current_user
       @user2 = @profile
-
-
     else
       redirect_to login_path
     end
-
-
   end
 
+  def update
+    puts "123"
+    # current_user.update()
+  end
 end
