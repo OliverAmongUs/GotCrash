@@ -15,9 +15,9 @@
         <td>Bid # <%= bid.id %></td>
         <td>Created at: <%= bid.created_at %></td>
         <td>Updated at: <%= bid.updated_at %></td>
-        <td><%= link_to 'Show', fixer_bid_path(current_user,bid) %></td>
         <td><%= link_to 'Edit', edit_fixer_bid_path(current_user,bid) %></td>
-        <td><%= link_to 'Destroy', fixer_bid_path(current_user,bid), method: :delete, data: {confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Finish Bid', fixer_bid_path(current_user,bid), method: :delete, data: {confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Conversation', fixer_bid_messages_path(current_user,bid) %></td>
       </tr>
     <% end %>
   </tbody>

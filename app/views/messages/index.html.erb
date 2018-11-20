@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<% if @over_ten %>
+ <%= link_to "Show Previous", "?m=all" %>
+<% end %>
+
+<div class=”ui segment”>
+ <% @messages.each do |message| %>
+  <% if message.body %>
+   <% user = User.find(message.user_id) %>
+   <div class=”header”><strong><%= user.name %></strong> <%= message.created_at %></div>
+   <%= message.body %>
+  <% end %>
+<% end %>
+</div>
+<%= form_for [Fixer.find(@bid.fixer_id), @bid, @message], html: {class: "ui reply form"} do |f| %>
+ <div class=”field”>
+   <%= f.text_area :body, class: "form-control" %>
+ </div>
+ <%= f.text_field :user_id, value: current_user.id, type: "hidden" %>
+ <div>
+   <%= f.submit "Add Reply" %>
+ </div>
+
+<% end %>

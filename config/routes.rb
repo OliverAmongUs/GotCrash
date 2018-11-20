@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :messages
   get 'cars/edit'
   get 'cars/index'
   get 'cars/new'
@@ -23,7 +24,9 @@ Rails.application.routes.draw do
   resources :reports
 
   resources :fixers do
-    resources :bids
+    resources :bids do
+        resources :messages
+      end
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get 'choosereport', to: 'bids#choosereport'
