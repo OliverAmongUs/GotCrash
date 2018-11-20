@@ -1,19 +1,54 @@
 <% provide(:title, "Log in") %>
-<h1>Log in</h1>
+<link rel="apple-touch-icon" href="apple-icon.png">
+<link rel="shortcut icon" href="favicon.ico">
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <%= form_for(:session, url: login_path) do |f| %>
+<%= stylesheet_link_tag "admin.css" %>
+<%= javascript_include_tag "admin.js" %>
 
-      <%= f.label :email %>
-      <%= f.email_field :email, class: 'form-control' %>
 
-      <%= f.label :password %>
-      <%= f.password_field :password, class: 'form-control' %>
 
-      <%= f.submit "Log in", class: "btn btn-primary" %>
-    <% end %>
+<body class="bg-dark">
+    <div class="sufee-login d-flex align-content-center flex-wrap">
+        <div class="container">
+            <div class="login-content">
+                <div class="login-logo">
+                    <a href="/">
+                      <span>GotCrash</span>
+                    </a>
+                </div>
+                <div class="login-form">
+                  <%= form_for(:session, url: login_path) do |f| %>
 
-    <p>New user? <%= link_to "Sign up now!", signup_path %></p>
-  </div>
-</div>
+                      <div class="form-group">
+                        <label>Email address</label>
+                        <input name="session[email]" type="email" class="form-control" placeholder="Email">
+                      </div>
+                      <div class="form-group">
+                          <label>Password</label>
+                          <input name="session[password]" type="password" class="form-control" placeholder="Password">
+                      </div>
+                      <div class="checkbox">
+                          <label>
+                            <input type="checkbox"> Remember Me
+                          </label>
+                          <label class="pull-right">
+                            <a href="#">Forgotten Password?</a>
+                          </label>
+                      </div>
+                          <button type="submit" class="btn btn-success btn-flat m-b-30 m-t-30">Sign in</button>
+                          <div class="social-login-content">
+                              <div class="social-button">
+                                  <button type="button" class="btn social facebook btn-flat btn-addon mb-3"><i class="ti-facebook"></i>Sign in with facebook</button>
+                                  <button type="button" class="btn social twitter btn-flat btn-addon mt-2"><i class="ti-twitter"></i>Sign in with twitter</button>
+                              </div>
+                          </div>
+                          <div class="register-link m-t-15 text-center">
+                              <p>Don't have account ? <a href="/signup"> Sign Up Here</a></p>
+                          </div>
+                  <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
