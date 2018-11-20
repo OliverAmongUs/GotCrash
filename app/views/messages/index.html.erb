@@ -13,7 +13,7 @@
   <% end %>
 <% end %>
 </div>
-<%= form_for [Fixer.find(@bid.fixer_id), @bid, @message], html: {class: "ui reply form"} do |f| %>
+<%= form_for [@bid, @message], html: {class: "ui reply form"} do |f| %>
  <div class=”field”>
    <%= f.text_area :body, class: "form-control" %>
  </div>

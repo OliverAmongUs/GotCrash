@@ -7,7 +7,7 @@ class MessagesController < ApplicationController
   # GET /messages
   # GET /messages.json
   def index
-
+    
     @messages = @bid.messages
     if @messages.length > 10
       @over_ten = true
@@ -33,7 +33,7 @@ class MessagesController < ApplicationController
   def create
     @message = @bid.messages.new(message_params)
     if @message.save
-      redirect_to fixer_bid_messages_path(@bid)
+      redirect_to bid_messages_path(@bid)
     end
   end
 
