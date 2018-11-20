@@ -5,6 +5,7 @@ class ProfilesController < ApplicationController
   end
 
   def show
+    @cars = current_user.cars
     if logged_in?
       @profile ||= current_user
       @user2 = @profile

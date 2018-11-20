@@ -1,0 +1,58 @@
+<html>
+  <head>
+    <title>New Car Information</title>
+  </head>
+
+  <body>
+
+
+<%= form_with(model: @car) do |form| %>
+
+<%= @car.errors.any? %>
+  <%= render 'shared/error_messages' %>
+
+  <div class="field">
+    <%= form.label :vin, class: "col-sm-2 col-form-label"%>
+    <%= form.text_field :vin, class: "col-sm-2 form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :make, class: "col-sm-2 col-form-label" %>
+    <%= form.text_field :make, class: "col-sm-2 form-control" %>
+  </div>
+
+
+  <div class="field">
+    <%= form.label :model, class: "col-sm-2 col-form-label" %>
+    <%= form.text_field :model, class: "col-sm-2 form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :color, class: "col-sm-2 col-form-label" %>
+    <%= form.text_field :color, class: "col-sm-2 form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :year, class: "col-sm-2 col-form-label" %>
+    <%= form.text_field :year, class: "col-sm-2 form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :licence, class: "col-sm-2 col-form-label" %>
+    <%= form.text_field :licence, class: "col-sm-2 form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label "Car Picture:" %>
+    <%= form.file_field :picture_url, class: "col-sm-3 form-control" %>
+    <%= form.hidden_field :picture_url_cache %>
+  </div>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+</body>
+<%= link_to '<button type="button"  class="btn btn-success">Back </button>'.html_safe, profiles_path%>
+</html>
