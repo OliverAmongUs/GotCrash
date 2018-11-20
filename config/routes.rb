@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   resources :messages
+
   get 'cars/edit'
   get 'cars/index'
   get 'cars/new'
