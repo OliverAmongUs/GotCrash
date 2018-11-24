@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   resources :messages
+
   get 'cars/edit'
   get 'cars/index'
   get 'cars/new'
@@ -16,7 +17,7 @@ Rails.application.routes.draw do
   get '/profiles', to: 'profiles#show'
   post '/profiles', to: 'profiles#show'
   post 'profile/update', to: 'profile#update'
-  
+
   get 'sessions/new'
   resources :users
   resources :owners, controller: :users, type: "Owner"
@@ -42,7 +43,4 @@ Rails.application.routes.draw do
   post   '/login',   to: 'sessions#create'
   get '/logout',  to: 'sessions#destroy'
 
-  get '/report/new', to: 'reports#new'
-  post '/report/create', to: 'reports#create'
-  get '/report/show', to: 'reports#show'
 end
