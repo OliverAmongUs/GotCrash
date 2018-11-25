@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2018_11_20_012756) do
-=======
-ActiveRecord::Schema.define(version: 2018_11_15_063009) do
->>>>>>> c7702887c17d6ca4a7a4fd04ac675ff9fe1d322f
 
   create_table "bids", force: :cascade do |t|
     t.integer "fixer_id"
@@ -44,7 +40,8 @@ ActiveRecord::Schema.define(version: 2018_11_15_063009) do
   create_table "messages", force: :cascade do |t|
     t.string "body"
     t.integer "user_id"
-    t.integer "conversation_id"
+    t.integer "bid_id"
+    t.string "picture_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
