@@ -33,7 +33,8 @@ class BidsController < ApplicationController
 
     respond_to do |format|
       if @bid.save
-        format.html { redirect_to fixer_bid_path(current_user,@bid), notice: 'Bid was successfully created.' }
+        format.html { redirect_to fixer_bid_messages_path(current_user.id,@bid.id), notice: 'Bid was successfully created.' }
+        #format.html { redirect_to fixer_bid_path(current_user,@bid), notice: 'Bid was successfully created.' }
         format.json { render :show, status: :created, location: fixer_bid_path(current_user,@bid) }
       else
         format.html { render :new }
@@ -59,6 +60,7 @@ class BidsController < ApplicationController
   # DELETE /bids/
   # DELETE /bids/
   def destroy
+    @bid.messages.destroy
     @bid.destroy
     respond_to do |format|
       format.html { redirect_to fixer_bids_path(current_user), notice: 'Bid was successfully destroyed.' }

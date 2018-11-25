@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :messages
+
   get 'cars/edit'
   get 'cars/index'
   get 'cars/new'
@@ -14,6 +16,7 @@ Rails.application.routes.draw do
   get '/profiles_edit', to: 'profiles#edit'
   get '/profiles', to: 'profiles#show'
   post '/profiles', to: 'profiles#show'
+  post 'profile/update', to: 'profile#update'
 
   get 'sessions/new'
   resources :users
@@ -22,15 +25,15 @@ Rails.application.routes.draw do
   resources :reports
 
   resources :fixers do
-      resources :bids do
-          resources :messages
-        end
-    end
+    resources :bids do
+        resources :messages
+      end
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get 'choosereport', to: 'bids#choosereport'
   post 'showreport', to: 'bids#showreport'
 
-  root 'home#welcome'
+  root 'home#index'
   get '/test/:id', to: 'users#show'
 
   get '/signup', to: 'users#new'
@@ -40,7 +43,4 @@ Rails.application.routes.draw do
   post   '/login',   to: 'sessions#create'
   get '/logout',  to: 'sessions#destroy'
 
-  get '/report/new', to: 'reports#new'
-  post '/report/create', to: 'reports#create'
-  get '/report/show', to: 'reports#show'
 end

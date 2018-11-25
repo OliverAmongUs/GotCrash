@@ -1,0 +1,24 @@
+/*
+ *= require bootstrap
+ *= require font-awesome.min
+ *= require admin/themify-icons
+ *= require admin/flag-icon.min
+ *= require admin/cs-skin-elastic
+ *= require admin/style
+ */
+.bg-dark{
+  background-color: #343a40;
+}
+
+
+.edit_move {
+  margin-left: 10px;
+}
+
+.edit_move2 {
+  margin-left: 5px;
+}
+
+.form_part {
+  padding:5px 10px 5px 10px ;
+}

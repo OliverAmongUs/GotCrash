@@ -1,4 +1,78 @@
-<h1>New User</h1>
-<%= render 'form', user: @user %>
+<html>
+<%= stylesheet_link_tag "admin.css" %>
+<%= javascript_include_tag "admin.js" %>
+<body class="bg-dark">
 
-<%= link_to 'List of Users for admin purposes', users_path %>
+
+    <div class="sufee-login d-flex align-content-center flex-wrap">
+        <div class="container">
+            <div class="login-content">
+              <div class="login-logo">
+                  <a href="/">
+                    <span>GotCrash</span>
+                  </a>
+              </div>
+                <div class="login-form">
+                  <%= form_with(model: @user, local: true) do |form| %>
+                    <% if @user.errors.any? %>
+                      <div id="error_explanation">
+                        <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+                        <ul>
+                        <% @user.errors.full_messages.each do |message| %>
+                          <li><%= message %></li>
+                        <% end %>
+                        </ul>
+                      </div>
+                    <% end %>
+                    <div class="form-group">
+                        <label>User Name</label>
+                        <input type="text" name="user[name]" class="form-control" placeholder="User Name">
+                    </div>
+                    <div class="form-group">
+                        <label>Email address</label>
+                        <input type="email" name="user[email]" class="form-control" placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                        <label>Phone number</label>
+                        <input type="text" name="user[phone]" class="form-control" placeholder="Phone">
+                    </div>
+                    <div class="form-group">
+                        <label>Address</label>
+                        <input type="text" name="user[address]" class="form-control" placeholder="Address">
+                    </div>
+                    <div class="form-group">
+                        <label>Type</label>
+                        <select name="user[type]" class="form-control-sm form-control">
+                            <option value="Owner">Owner</option>
+                            <option value="Fixer">Fixer</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" name="user[password]" class="form-control" placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                        <label>Password Confirmation</label>
+                        <input type="password" name="user[password_confirmation]" class="form-control" placeholder="Password">
+                    </div>
+                    <div class="field form-group hidden">
+                      <%= form.label "Profile Picture:" %>
+                      <%= form.file_field :picture_url , class: "col-sm-3 form-control"%>
+                      <%= form.hidden_field :picture_url_cache %>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox"> Agree the terms and policy
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">Register</button>
+                    <div class="register-link m-t-15 text-center">
+                        <p>Already have account ? <a href="login"> Sign in</a></p>
+                    </div>
+                  <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+  </html>

@@ -1,58 +1,58 @@
 <html>
-  <head>
-    <title>New Car Information</title>
-  </head>
+<head>
+<link rel="apple-touch-icon" href="apple-icon.png">
+<link rel="shortcut icon" href="favicon.ico">
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 
-  <body>
+<%= stylesheet_link_tag "admin.css" %>
+<%= javascript_include_tag "admin.js" %>
+</head>
+<body>
+  <%= form_with(model: @car) do |form| %>
 
+    <%= render 'shared/error_messages' %>
 
-<%= form_with(model: @car) do |form| %>
+    <div class="field">
+      <%= form.label :vin, class: "col-sm-2 col-form-label" %>
+      <%= form.text_field :vin, class: "col-sm-2 form-control" %>
+    </div>
 
-<%= @car.errors.any? %>
-  <%= render 'shared/error_messages' %>
-
-  <div class="field">
-    <%= form.label :vin, class: "col-sm-2 col-form-label"%>
-    <%= form.text_field :vin, class: "col-sm-2 form-control" %>
-  </div>
-
-  <div class="field">
-    <%= form.label :make, class: "col-sm-2 col-form-label" %>
-    <%= form.text_field :make, class: "col-sm-2 form-control" %>
-  </div>
-
-
-  <div class="field">
-    <%= form.label :model, class: "col-sm-2 col-form-label" %>
-    <%= form.text_field :model, class: "col-sm-2 form-control" %>
-  </div>
-
-  <div class="field">
-    <%= form.label :color, class: "col-sm-2 col-form-label" %>
-    <%= form.text_field :color, class: "col-sm-2 form-control" %>
-  </div>
-
-  <div class="field">
-    <%= form.label :year, class: "col-sm-2 col-form-label" %>
-    <%= form.text_field :year, class: "col-sm-2 form-control" %>
-  </div>
-
-  <div class="field">
-    <%= form.label :licence, class: "col-sm-2 col-form-label" %>
-    <%= form.text_field :licence, class: "col-sm-2 form-control" %>
-  </div>
-
-  <div class="field">
-    <%= form.label "Car Picture:" %>
-    <%= form.file_field :picture_url, class: "col-sm-3 form-control" %>
-    <%= form.hidden_field :picture_url_cache %>
-  </div>
+    <div class="field">
+      <%= form.label :make, class: "col-sm-2 col-form-label" %>
+      <%= form.text_field :make, class: "col-sm-2 form-control" %>
+    </div>
 
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+    <div class="field">
+      <%= form.label :model, class: "col-sm-2 col-form-label" %>
+      <%= form.text_field :model, class: "col-sm-2 form-control" %>
+    </div>
+
+    <div class="field">
+      <%= form.label :color, class: "col-sm-2 col-form-label" %>
+      <%= form.text_field :color, class: "col-sm-2 form-control" %>
+    </div>
+
+    <div class="field">
+      <%= form.label :year, class: "col-sm-2 col-form-label" %>
+      <%= form.text_field :year, class: "col-sm-2 form-control" %>
+    </div>
+
+    <div class="field">
+      <%= form.label :licence, class: "col-sm-2 col-form-label" %>
+      <%= form.text_field :licence, class: "col-sm-2 form-control" %>
+    </div>
+
+    <div class="field">
+      <%= form.label "Car Picture:" %>
+      <%= form.file_field :picture_url, class: "col-sm-2 col-form-label"  %>
+      <%= form.hidden_field :picture_url_cache %>
+    </div>
+
+
+    <%= form.submit "Update", class: "btn btn-primary", style: "margin-top:300px" %>
+
+
+  <% end %>
+  <%= link_to '<button type="button"  class="btn btn-success">Back </button>'.html_safe, profiles_path%>
 </body>
-<%= link_to '<button type="button"  class="btn btn-success">Back </button>'.html_safe, profiles_path%>
-</html>
