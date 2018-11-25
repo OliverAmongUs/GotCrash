@@ -68,7 +68,8 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 }
 
 function codeAddress() {
-    var address = document.getElementById('address').value;
+  console.log("here");
+    var address = document.getElementById('reportaddress').value;
     geocoder.geocode( { 'address': address}, function(results, status) {
       if (status == 'OK') {
         map.setCenter(results[0].geometry.location);
@@ -114,5 +115,5 @@ function showreportinfo(id) {
 
 $(document).on('turbolinks:load', initMap);
 $(document).ready(function () {
-    $("#address").change(codeAddress);
+    $("#reportaddress").change(codeAddress);
 });
