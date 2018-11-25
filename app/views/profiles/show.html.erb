@@ -22,22 +22,22 @@
                     <li class="active">
                         <a href="/profiles"> <i class="menu-icon fa fa-dashboard"></i>My Profile </a>
                     </li>
-                    <%if current_user.type=="Owner"%>
+                    <% if current_user.type=="Owner"%>
                     <li>
                         <a href="/cars"> <i class="menu-icon fa fa-dashboard"></i>My Cars </a>
                     </li>
-                    <%end%>
+                    <% end %>
                     <h3 class="menu-title">Services</h3><!-- /.menu-title -->
-                    <%if current_user.type=="Owner"%>
+                    <% if current_user.type=="Owner"%>
                     <li>
                         <a href="/reports"> <i class="menu-icon ti-email"></i>Reports </a>
                     </li>
-                    <%elsif current_user.type=="Fixer"%>
+                    <% elsif current_user.type=="Fixer"%>
                     <li>
                         <a href="<%=fixer_bids_path(current_user)%>"> <i class="menu-icon ti-email"></i>Bids </a>
 
                     </li>
-                    <%end%>
+                    <% end %>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </nav>
@@ -98,7 +98,7 @@
                               <div class="dropdown-menu" aria-labelledby="message">
                                   <p class="red">You have 4 Mails</p>
                                   <a class="dropdown-item media bg-flat-color-1" href="#">
-                                  <span class="photo media-left"><img alt="avatar" src="images/avatar/1.jpg"></span>
+                                  <span class="photo media-left"><img alt="avatar" src="/images/avatar/1.jpg"></span>
                                   <span class="message media-body">
                                       <span class="name float-left">Jonathan Smith</span>
                                       <span class="time float-right">Just now</span>
@@ -106,7 +106,7 @@
                                   </span>
                               </a>
                                   <a class="dropdown-item media bg-flat-color-4" href="#">
-                                  <span class="photo media-left"><img alt="avatar" src="images/avatar/2.jpg"></span>
+                                  <span class="photo media-left"><img alt="avatar" src="/images/avatar/2.jpg"></span>
                                   <span class="message media-body">
                                       <span class="name float-left">Jack Sanders</span>
                                       <span class="time float-right">5 minutes ago</span>
@@ -114,7 +114,7 @@
                                   </span>
                               </a>
                                   <a class="dropdown-item media bg-flat-color-5" href="#">
-                                  <span class="photo media-left"><img alt="avatar" src="images/avatar/3.jpg"></span>
+                                  <span class="photo media-left"><img alt="avatar" src="/images/avatar/3.jpg"></span>
                                   <span class="message media-body">
                                       <span class="name float-left">Cheryl Wheeler</span>
                                       <span class="time float-right">10 minutes ago</span>
@@ -122,7 +122,7 @@
                                   </span>
                               </a>
                                   <a class="dropdown-item media bg-flat-color-3" href="#">
-                                  <span class="photo media-left"><img alt="avatar" src="images/avatar/4.jpg"></span>
+                                  <span class="photo media-left"><img alt="avatar" src="/images/avatar/4.jpg"></span>
                                   <span class="message media-body">
                                       <span class="name float-left">Rachel Santos</span>
                                       <span class="time float-right">15 minutes ago</span>
@@ -137,7 +137,7 @@
                   <div class="col-sm-5">
                       <div class="user-area dropdown float-right">
                           <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              <img class="user-avatar rounded-circle" src="images/admin.jpg" alt="User Avatar">
+                              <img class="user-avatar rounded-circle" src="/images/admin.jpg" alt="User Avatar">
                           </a>
 
                           <div class="user-menu dropdown-menu">
@@ -232,7 +232,7 @@
       <% if @user2.type == "Owner"%>
         <%= link_to '<button type="button"  class="btn btn-primary">My Cars </button>'.html_safe, cars_path%>
         <!-- Cars need to be shown here -->
-        <%= link_to '<button type="button"  class="btn btn-primary">Add My Car </button>'.html_safe, new_car_path%>
+        <%= link_to '<button type="button"  class="btn btn-primary edit_move2">Add My Car </button>'.html_safe, new_car_path%>
       <% end %>
     </div>
 

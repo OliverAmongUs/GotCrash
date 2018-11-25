@@ -19,8 +19,7 @@
 
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active">
-
+                    <li>
                         <a href="/profiles"> <i class="menu-icon fa fa-dashboard"></i>My Profile </a>
                     </li>
                     <h3 class="menu-title">Services</h3><!-- /.menu-title -->
@@ -29,7 +28,7 @@
                         <a href="/reports"> <i class="menu-icon ti-email"></i>Reports </a>
                     </li>
                     <%elsif current_user.type=="Fixer"%>
-                    <li>
+                    <li class="active">
                         <a href="<%=fixer_bids_path(current_user)%>"> <i class="menu-icon ti-email"></i>Bids </a>
 
                     </li>
@@ -200,17 +199,16 @@
         </div>
         <div class="content mt-3">
             <div class="animated fadeIn">
-                <div class="row">
-        <div class="col-lg-10">
+            <div class="row">
+            <div class="col-lg-11">
             <div class="card">
 
-              <p id="notice"><%= notice %></p>
-
-            <h1>Bids</h1>
-
-            <table>
+            <table class="table table-striped">
               <thead>
                 <tr>
+                  <th>Bid</th>
+                  <th>Create Time</th>
+                  <th>Update Time</th>
                   <th colspan="3"></th>
                 </tr>
               </thead>
@@ -218,9 +216,9 @@
               <tbody>
                 <% @bids.each do |bid| %>
                   <tr>
-                    <td>Bid # <%= bid.id %></td>
-                    <td>Created at: <%= bid.created_at %></td>
-                    <td>Updated at: <%= bid.updated_at %></td>
+                    <td><%= bid.id %></td>
+                    <td><%= bid.created_at %></td>
+                    <td><%= bid.updated_at %></td>
                     <td><%= link_to 'Edit', edit_fixer_bid_path(current_user,bid) %></td>
                     <td><%= link_to 'Finish Bid', fixer_bid_path(current_user,bid), method: :delete, data: {confirm: 'Are you sure?' } %></td>
                     <td><%= link_to 'Conversation', fixer_bid_messages_path(current_user,bid) %></td>
@@ -228,14 +226,13 @@
                 <% end %>
               </tbody>
             </table>
-
-            </br>
-
-            <%= link_to 'New Bid', choosereport_path %>
-            </br>
-            <%= link_to 'Back', fixer_path(current_user) %>
-
             </div>
+            </div>
+            </div>
+            </div>
+            <%= link_to 'Create a new bid', choosereport_path, class:"btn btn-primary" %>
+
+        </div>
     </div><!-- /#right-panel -->
 
 </html>
