@@ -248,9 +248,9 @@
                   <tbody>
                     <% @bids.each do |bid| %>
                       <tr>
-                        <td>Bid # <%= bid.id %></td>
                         <td>Description: <%= bid.description %></td>
-                        <td>By fixer #<%= bid.fixer_id %></td>
+                        <td>By Auto shop <%= bid.fixer_id %></td>
+                        <td><%= link_to 'Add Review', reviews_new_path(fixerID: bid.fixer_id, reportID: bid.report_id) %></td>
                         <td><%= link_to 'Conversation', fixer_bid_messages_path(bid.fixer_id,bid.id) %></td>
                       </tr>
                     <% end %>

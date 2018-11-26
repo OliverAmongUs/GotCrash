@@ -103,7 +103,7 @@
                               <div class="dropdown-menu" aria-labelledby="message">
                                   <p class="red">You have 4 Mails</p>
                                   <a class="dropdown-item media bg-flat-color-1" href="#">
-                                  <span class="photo media-left"><img alt="avatar" src="/images/avatar/1.jpg"></span>
+                                  <span class="photo media-left"><%= image_tag current_user.picture_url_url.to_s %></span>
                                   <span class="message media-body">
                                       <span class="name float-left">Jonathan Smith</span>
                                       <span class="time float-right">Just now</span>
@@ -215,7 +215,7 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-5">
-        <%= image_tag @user2.picture_url_url.to_s, style:"height:300px;" %>
+        <%= image_tag current_user.picture_url_url.to_s, style:"height:300px;" %>
       </div>
       <div class="col-lg-7">
         <h3 class="padding_label">

@@ -30,6 +30,10 @@ Rails.application.routes.draw do
   resources :fixers, controller: :users, type: "Fixer"
   resources :reports
 
+  resources :bids
+
+
+
   resources :fixers do
     resources :bids do
         resources :messages

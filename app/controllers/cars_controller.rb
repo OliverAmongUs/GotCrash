@@ -31,7 +31,7 @@ class CarsController < ApplicationController
 
   def create
     @car = Car.new(car_params)
-    # byebug
+
     @car.owner_id = current_user.id
     if @car.save
       flash[:success] = 'create new car successfully'
