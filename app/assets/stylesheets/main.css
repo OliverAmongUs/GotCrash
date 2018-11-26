@@ -730,7 +730,7 @@ MEDIA QUERIES TABLET
         padding: 0;
         border-bottom: 10px solid #fff;
     }
-}
+
     /*========================
     Social Connect
     =========================*/
@@ -760,8 +760,8 @@ MEDIA QUERIES TABLET
         width: 325px;
     }
 
-} /*END OF MEDIA QUERY*/
-
+ /*END OF MEDIA QUERY*/
+}
 /*========================
 MEDIA QUERIE DESKTOP
 =========================*/
