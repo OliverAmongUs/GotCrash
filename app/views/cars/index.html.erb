@@ -4,8 +4,9 @@
 <link rel="shortcut icon" href="favicon.ico">
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 
-<%= stylesheet_link_tag "admin.css" %>
 <%= javascript_include_tag "admin.js" %>
+<%= stylesheet_link_tag "admin.css" %>
+
 </head>
 
 <body>
@@ -128,7 +129,7 @@
                   <div class="col-sm-5">
                       <div class="user-area dropdown float-right">
                           <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              <img class="user-avatar rounded-circle" src="images/admin.jpg" alt="User Avatar">
+                              <img class="user-avatar rounded-circle" src="/images/admin.jpg" alt="User Avatar">
                           </a>
 
                           <div class="user-menu dropdown-menu">
@@ -217,7 +218,6 @@
                         <td><%= car.year %></td>
                         <td><%= car.vin %></td>
                         <td><%= car.licence %></td>
-                        <td><%= link_to 'Show', car %></td>
                         <td><%= link_to 'Edit', edit_car_path(car) %></td>
                         <td><%= link_to 'Destroy', car, method: :delete, data: { confirm: 'Are you sure?' } %></td>
                       </tr>
@@ -231,5 +231,4 @@
               </div>
             </div>
     </div><!-- /#right-panel -->
-
 </html>

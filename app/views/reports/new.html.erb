@@ -195,32 +195,30 @@
         </div>
         <div class="content mt-3">
             <div class="animated fadeIn">
-                <div class="row">
-
+            <div class="col-lg-10">
             <div class="card">
-
-              <div class='container'>
+            <div class="card-body card-block">
 
                 <%= form_with model: @report do |f| %>
-                  <div class="field">
+                  <div class="field form-group row form_part">
                     <%= f.label :car_licence, 'Choose your car:' %>
-                    <%= f.select :car_id, @cars.collect { |c| [ c.licence, c.id ] } %>
+                    <%= f.select(:car_id, @cars.collect { |c| [ c.licence, c.id ] }, {}, { :class => "col-sm-1 form-control" })%>
                   </div>
-                  <div class="field">
+                  <div class="field form-group row form_part">
                     <%= f.label :description, 'Description:' %>
-                    <%= f.text_field :description %>
+                    <%= f.text_field :description, class: "col-sm-2 form-control" %>
                   </div>
-                  <div class="field">
+                  <div class="field form-group row form_part">
                     <%= f.label :privacy, 'If public:' %>
-                    <%= f.select(:privacy, options_for_select([['Public', 0], ['Private', 1]])) %>
+                    <%= f.select(:privacy, [["Public", 0],["Private", 1]], {}, { :class => "col-sm-1 form-control" }) %>
                   </div>
-                  <div class="field">
+                  <div class="field form-group row form_part">
                     <%= f.file_field :picture_url %>
                     <%= f.hidden_field :picture_url_cache %>
                   </div>
-                  <div class="field">
+                  <div class="field form-group row form_part">
                     <%= f.label :address, 'Address:' %>
-                    <%= f.text_field :address ,id:'address'%>
+                    <%= f.text_field :address, id:'address', class: "col-sm-2 form-control"%>
                     Use my current Location <input type="checkbox" id="useCurrLocation" onclick="checkbox()">
                   </div>
                   <div class="field">
@@ -229,19 +227,23 @@
                   <div class="field">
                     <%= f.hidden_field :latitude, id: 'latitude' %>
                   </div>
-                  <%= f.submit %>
+                  <div class="mapouter">
+                  <div class="map" id="ownermap"></div>
+                  </div>
+                  <div id="confirmLoc" style="display: none">
+                    Please confirm if this is the location for your report!
+                  <p><button onclick="confirmLocation()">Confirm</button></p>
+                    If not, please try again and make sure you enter the city name or the zipcode.
+                  </div>
+                  <%= f.submit "Submit", class: "btn btn-primary", style: "margin-top:10px"%>
+
                 <% end %>
                 </div>
-                <br>
-                <div class="mapouter">
-                <div class="map" id="ownermap"></div>
-                </div>
-                <div id="confirmLoc" style="display: none">
-                  Please confirm if this is the location for your report!
-                <p><button onclick="confirmLocation()">Confirm</button></p>
-                  If not, please try again and make sure you enter the city name or the zipcode.
-                </div>
 
+
+            </div>
+            </div>
+            </div>
             </div>
     </div><!-- /#right-panel -->
 

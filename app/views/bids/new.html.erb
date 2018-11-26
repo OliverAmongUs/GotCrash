@@ -19,12 +19,12 @@
 
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active">
+                    <li>
                         <a href="/profiles"> <i class="menu-icon fa fa-dashboard"></i>My Profile </a>
                     </li>
 
                     <h3 class="menu-title">Services</h3><!-- /.menu-title -->
-                    <li>
+                    <li class="active">
                         <a href="<%=fixer_bids_path(current_user)%>"> <i class="menu-icon ti-email"></i>Bids </a>
                     </li>
                 </ul>
@@ -170,7 +170,7 @@
             <div class="col-sm-4">
                 <div class="page-header float-left">
                     <div class="page-title">
-                        <h1>My Profile</h1>
+                        <h1>New Bid</h1>
                     </div>
                 </div>
             </div>
@@ -180,7 +180,8 @@
                     <div class="page-title">
                         <ol class="breadcrumb text-right">
                             <li><a href="/">GotCrash</a></li>
-                            <li class="active">My Profile</li>
+                            <li><a href="<%=fixer_bids_path(current_user)%>">My Bids</a></li>
+                            <li class="active">New</li>
                         </ol>
                     </div>
                 </div>
@@ -194,6 +195,7 @@
 
               <div class="container" style = "padding-top:20px">
 <h1>New Bid</h1>
+
 <%= render 'form', bid: @bid %>
 
 <%= link_to 'Back', fixer_bids_path(current_user) %>

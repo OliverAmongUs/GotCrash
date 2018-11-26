@@ -4,18 +4,26 @@
  <%= link_to "Show Previous", "?m=all" %>
 <% end %>
 
-<div class=”ui segment”>
+<div >
  <% @messages.each do |message| %>
   <% if message.body %>
    <% user = User.find(message.user_id) %>
    <div class=”header”><strong><%= user.name %></strong> <%= message.created_at %></div>
    <%= message.body %>
   <% end %>
+  <% if message.picture_url%>
+   <%= image_tag message.picture_url_url.to_s %>
+  <% end %>
 <% end %>
 </div>
-<%= form_for [Fixer.find(@bid.fixer_id), @bid, @message], html: {class: "ui reply form"} do |f| %>
+<%= form_for [@fixer,@bid, @message], html: {class: "ui reply form"} do |f| %>
  <div class=”field”>
    <%= f.text_area :body, class: "form-control" %>
+ </div>
+ <div class="field form-group">
+   <%= f.label "Add a File:" %>
+   <%= f.file_field :picture_url , class: "col-sm-3 form-control"%>
+   <%= f.hidden_field :picture_url_cache %>
  </div>
  <%= f.text_field :user_id, value: current_user.id, type: "hidden" %>
  <div>

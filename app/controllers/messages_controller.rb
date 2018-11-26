@@ -2,6 +2,7 @@ class MessagesController < ApplicationController
   before_action :set_message, only: [:show, :edit, :update, :destroy]
   before_action do
    @bid = Bid.find(params[:bid_id])
+   @fixer = User.find(@bid.fixer_id)
   end
 
   # GET /messages
@@ -33,7 +34,7 @@ class MessagesController < ApplicationController
   def create
     @message = @bid.messages.new(message_params)
     if @message.save
-      redirect_to fixer_bid_messages_path(@bid)
+      redirect_to fixer_bid_messages_path(@fixer, @bid)
     end
   end
 
@@ -65,6 +66,6 @@ class MessagesController < ApplicationController
 
     # Only allow the white list through.
     def message_params
-      params.require(:message).permit(:body, :user_id)
+      params.require(:message).permit(:body, :user_id, :picture_url, :picture_url_cache)
     end
 end
