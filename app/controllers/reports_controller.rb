@@ -18,8 +18,7 @@ class ReportsController < ApplicationController
     @bids = Bid.where(report_id: params[:id]).to_a
   end
 
-  def create
-
+  def create    
     @report = Report.new(model_params)
     #@report = Report.new({:car_id => 1})
     #puts "current user is: #{current_user[:id]}"
