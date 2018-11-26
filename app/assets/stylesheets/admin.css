@@ -19,6 +19,26 @@
   margin-left: 5px;
 }
 
+.edit_move3 {
+  margin-left: 190px;
+}
+
+.edit_move_right1 {
+  margin-right: 5px;
+}
+
 .form_part {
   padding:5px 10px 5px 10px ;
+}
+
+.padding_label {
+  padding: 10px;
+}
+
+.margintop_btn {
+  margin-top: 30px;
+}
+
+.right {
+  float: right;
 }

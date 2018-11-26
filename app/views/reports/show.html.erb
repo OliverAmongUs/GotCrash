@@ -192,42 +192,53 @@
         <div class="content mt-3">
             <div class="animated fadeIn">
             <div class="row">
+            <div class="col-lg-9">
             <div class="card">
-              <div class="container" style="padding-top:20px">
-                <p>
-                  <strong>Car:</strong>
-                  <%= Car.find(@report.car_id).licence %>
-                </p>
+              <div class="card-body card-block">
+                <div class="col-lg-5" >
+                  <%= image_tag @report.picture_url_url.to_s, style:"height:230px;"%>
+                </div>
+                <div class="col-lg-7">
+                  <h3 class="padding_label">
+                    <strong>Car:</strong>
+                    <%= Car.find(@report.car_id).licence %>
+                  </h3>
+                  <hr>
+                  <h3 class="padding_label">
+                    <strong>Privacy:</strong>
+                    <% if @report.privacy = 0 %> Public
+                    <% else %> Private <% end %>
+                  </h3>
+                  <hr>
+                  <h3 class="padding_label">
+                    <strong>Completed:</strong>
+                    <% if @report.completed = 0 %> No
+                    <% else %> Yes <% end %>
+                  </h3>
 
-                <p>
-                  <strong>Address:</strong>
-                  <%= @report.address %>
-                </p>
+                </div>
 
-                <p>
-                  <strong>Description:</strong>
-                  <%= @report.description %>
-                </p>
+                <div class="col-lg-12" >
+                  <hr>
+                  <h3 class="padding_label">
+                    <strong>Address:</strong>
+                    <%= @report.address %>
+                  </h3>
+                  <hr>
+                  <h3 class="padding_label">
+                    <strong>Description:</strong>
+                    <%= @report.description %>
+                  </h3>
+                  <hr>
+                </div>
 
-                <p>
-                  <strong>Privacy:</strong>
-                  <% if @report.privacy = 0 %> Public
-                  <% else %> Private <% end %>
-                </p>
-
-                <p>
-                  <strong>Completed:</strong>
-                  <% if @report.completed = 0 %> No
-                  <% else %> Yes <% end %>
-                </p>
-
-                <%= image_tag @report.picture_url_url.to_s, style: "width:300px; height:250px" %>
-
-                <p>
+                <div class="col-lg-12" >
+                <h3 class="padding_label">
                   <strong>Bids received:</strong>
-                </p>
+                </h3>
 
-                <table>
+
+                <table class="table-striped">
                   <thead>
                     <tr>
                       <th colspan="3"></th>
@@ -245,14 +256,15 @@
                     <% end %>
                   </tbody>
                 </table>
-
-
-                <div style="display:block">
-                <%= link_to 'Edit', edit_report_path(@report) %> |
-                <%= link_to 'Back', reports_path %> |
-
-                <%= link_to 'Log Out', logout_path %>
                 </div>
+
+                <div class="col-lg-6 margintop_btn">
+                  <%= link_to 'Edit report', edit_report_path(@report), class: "btn btn-danger  edit_move2" %>
+                </div>
+                <div class="col-lg-2 col-lg-offset-4 margintop_btn">
+                  <%= link_to 'Back', reports_path, class: "btn btn-primary", style: "width:100px"  %>
+                </div>
+
               </div>
             </div>
           </div>

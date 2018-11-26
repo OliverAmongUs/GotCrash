@@ -204,27 +204,34 @@
             <div class="card">
 
               <div class="container" style = "padding-top:20px">
-    <h2><%= @user2.type %> Personal Information</h2>
-    <hr>
-  </div>
+                <h2>Hi, <%= @user2.name %></h2>
+                <hr>
+              </div>
   <div class="container">
     <div class="row">
-      <div class="col-sm-3">
-        <%= image_tag @user2.picture_url_url.to_s %>
+      <div class="col-lg-5">
+        <%= image_tag @user2.picture_url_url.to_s, style:"height:300px;" %>
       </div>
-      <div class="col-sm-7">
-        <h4 style="display:inline">Name:</h4>
-        <p><%= @user2.name %></p>
+      <div class="col-lg-7">
+        <h3 class="padding_label">
+          <strong>Name:</strong>
+          <%= @user2.name %>
+        </h3>
         <hr>
-        <h4 style="display:inline">Email:</h4>
-        <p><%= @user2.email %></p>
+        <h3 class="padding_label">
+          <strong>Email:</strong>
+          <%= @user2.email %>
+        </h3>
         <hr>
-        <h4 style="display:inline">Address:</h4>
-        <p><%= @user2.address %></p>
+        <h3 class="padding_label">
+          <strong>Address:</strong>
+          <%= @user2.address %>
+        </h3>
         <hr>
-        <h4 style="display:inline">Phone:</h4>
-        <p><%= @user2.phone %></p>
-        <hr>
+        <h3 class="padding_label">
+          <strong>Phone:</strong>
+          <%= @user2.phone %>
+        </h3>
       </div>
     </div>
     <hr>
@@ -232,7 +239,7 @@
       <% if @user2.type == "Owner"%>
         <%= link_to '<button type="button"  class="btn btn-primary">My Cars </button>'.html_safe, cars_path%>
         <!-- Cars need to be shown here -->
-        <%= link_to '<button type="button"  class="btn btn-primary">Add A Car </button>'.html_safe, new_car_path%>
+        <%= link_to '<button type="button"  class="btn btn-primary edit_move2">Add A Car </button>'.html_safe, new_car_path%>
       <% end %>
     </div>
 
