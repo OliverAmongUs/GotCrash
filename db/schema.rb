@@ -41,7 +41,6 @@ ActiveRecord::Schema.define(version: 2018_11_25_215649) do
     t.string "body"
     t.integer "user_id"
     t.integer "bid_id"
-    t.string "picture_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

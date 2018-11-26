@@ -200,7 +200,7 @@ INTRO CONTAINER
     padding: 0;
     min-width: 100%;
     height: 100%;
-    background: url('Crash.jpg') no-repeat center center;
+    background: url('/Crash.jpg') no-repeat center center;
     background-size: cover;
     text-align: center;
     background-position: center;
@@ -730,7 +730,7 @@ MEDIA QUERIES TABLET
         padding: 0;
         border-bottom: 10px solid #fff;
     }
-}
+
     /*========================
     Social Connect
     =========================*/
@@ -760,8 +760,8 @@ MEDIA QUERIES TABLET
         width: 325px;
     }
 
-} /*END OF MEDIA QUERY*/
-
+ /*END OF MEDIA QUERY*/
+}
 /*========================
 MEDIA QUERIE DESKTOP
 =========================*/
