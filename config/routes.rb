@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  get 'reviews/new'
+  get 'reviews/show'
+  get 'reviews/index'
+
+  resources :reviews
+
   resources :messages
 
   get 'cars/edit'

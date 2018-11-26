@@ -1,4 +1,4 @@
 class Review < ApplicationRecord
-  belongs_to :bid
+  belongs_to :report
   belongs_to :fixer
 end
