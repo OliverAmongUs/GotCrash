@@ -70,7 +70,7 @@
                   </div>
                   <div class="field form-group row form_part">
                     <%= f.label :address, 'Address:' %>
-                    <%= f.text_field :address, id:'address', class: "col-sm-2 form-control"%>
+                    <%= f.text_field :address, id:'reportaddress', class: "col-sm-2 form-control"%>
                     Use my current Location <input type="checkbox" id="useCurrLocation" onclick="checkbox()">
                   </div>
                   <div class="field">
@@ -82,20 +82,18 @@
                   <div class="mapouter">
                   <div class="map" id="ownermap"></div>
                   </div>
-                  <div id="confirmLoc" style="display: none">
-                    Please confirm if this is the location for your report!
-                  <p><button onclick="confirmLocation()">Confirm</button></p>
-                    If not, please try again and make sure you enter the city name or the zipcode.
-                  </div>
                   <%= f.submit "Submit", class: "btn btn-primary", style: "margin-top:10px"%>
 
                 <% end %>
                 </div>
-
-
             </div>
             </div>
             </div>
+            </div>
+            <div id="confirmLoc" style="display: none">
+              Please confirm if this is the location for your report!
+            <p><button onclick="confirmLocation()" type="button">Confirm</button></p>
+              If not, please try again and make sure you enter the city name or the zipcode.
             </div>
     </div><!-- /#right-panel -->
 </body>

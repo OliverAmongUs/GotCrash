@@ -48,10 +48,10 @@ function geolocation(label){
 function confirmLocation(){
   document.getElementById("longitude").value = infoWindow.getPosition().lng();
   document.getElementById("latitude").value = infoWindow.getPosition().lat();
-  if (document.getElementById("address").value === ""){
+  if (document.getElementById("reportaddress").value === ""){
     geocoder.geocode( { 'location': infoWindow.getPosition()}, function(results, status) {
       if (status == 'OK') {
-        document.getElementById("address").value = results[0].formatted_address;
+        document.getElementById("reportaddress").value = results[0].formatted_address;
       } else {
         alert('Geocode was not successful for the following reason: ' + status);
       }
@@ -68,7 +68,7 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 }
 
 function codeAddress() {
-    var address = document.getElementById('address').value;
+    var address = document.getElementById('reportaddress').value;
     geocoder.geocode( { 'address': address}, function(results, status) {
       if (status == 'OK') {
         map.setCenter(results[0].geometry.location);
@@ -114,5 +114,5 @@ function showreportinfo(id) {
 
 $(document).on('turbolinks:load', initMap);
 $(document).ready(function () {
-    $("#address").change(codeAddress);
+    $("#reportaddress").change(codeAddress);
 });
