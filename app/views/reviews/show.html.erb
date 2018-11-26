@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>This review is for Report ID</strong>
+  <%= @review.report_id%>
+</p>
+
+<p>
+  <strong>This is a review for Auto Shoper</strong>
+  <%= @curFixer.name %>
+</p>
+
+<p>
+  <strong>Rating is</strong>
+  <%= @review.rating %>
+</p>
+
+<p>
+  <strong>reviews</strong>
+  <%= @review.description %>
+</p>
+
+
+<%= link_to 'Back', reviews_index_path %> |
