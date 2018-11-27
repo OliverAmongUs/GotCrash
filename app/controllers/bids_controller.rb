@@ -70,6 +70,7 @@ class BidsController < ApplicationController
 
   def choosereport
     @reports = Report.all
+    gon.fixer_address = current_user.address
   end
 
   def showreport
