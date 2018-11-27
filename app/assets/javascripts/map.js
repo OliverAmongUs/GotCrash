@@ -1,4 +1,5 @@
 var map, infoWindow;
+var reportInfoWindow;
 
 function initMap(){
   var maps = document.getElementsByClassName("map");
@@ -13,6 +14,7 @@ function initMap(){
     if (mapId==="fixermap"){
       geocoder1 = new google.maps.Geocoder();
       initFixerAddress();
+      reportInfoWindow = new google.maps.InfoWindow;
     } else {
       geocoder2 = new google.maps.Geocoder();
     }
@@ -108,18 +110,21 @@ function displayReport(latitude,longitude,id){
   var marker = new google.maps.Marker({position: pos, map: map});
 
    marker.addListener('click', function() {
-     showreportinfo(id);
+     showreportinfo(id,pos);
    });
 
 }
 
-function showreportinfo(id) {
-            $.ajax({
-              method: 'Post',
-              url: 'showreport',
-              data: { report_id: id},
-            });
-        };
+function showreportinfo(id,pos) {
+  $.ajax({
+    method: 'Post',
+    url: 'showreport',
+    data: { report_id: id},
+  });
+  reportInfoWindow.setContent(document.getElementById("showreport").innerHTML);
+  reportInfoWindow.setPosition(pos);
+  reportInfoWindow.open(map);
+}
 
 $(document).on('turbolinks:load', initMap);
 $(document).ready(function () {
