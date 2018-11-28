@@ -39,9 +39,9 @@ class ReviewsController < ApplicationController
     @review.fixer_id = $aaa
     @review.report_id = $bbb
 
-    if User.find(@review.fixer_id).type != 'fixer'
-      break
-    end
+    # if User.find(@review.fixer_id).type != 'fixer'
+    #   break
+    # end
 
 
     if @review.save
@@ -56,20 +56,6 @@ class ReviewsController < ApplicationController
 
 
 
-  # def update
-  #   respond_to do |format|
-  #     @review = Car.find(params[:id])
-  #     if @car.update(car_params)
-  #       format.html { redirect_to cars_path, notice: 'Car was successfully updated.' }
-  #       format.json { render :show, status: :ok, location: @car }
-  #     else
-  #       format.html { redirect_to edit_car_path }
-  #       format.json { render json: @car.errors, status: :unprocessable_entity }
-  #     end
-  #   end
-  # end
-  #
-  #
   private
 
 
