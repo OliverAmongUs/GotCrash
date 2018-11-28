@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
-   $aaa
-   $bbb
+   $fixerID
+   $reportID
   def new
     @review = Review.new
 
@@ -9,8 +9,8 @@ class ReviewsController < ApplicationController
     @review.fixer_id = params[:fixerID]
     @review.report_id = params[:reportID]
 
-    $aaa = params[:fixerID]
-    $bbb = params[:reportID]
+    $fixerID = params[:fixerID]
+    $reportID = params[:reportID]
 
     @curFixer = User.find(params[:fixerID])
 
@@ -22,13 +22,15 @@ class ReviewsController < ApplicationController
     if current_user.type == 'fixer'
       @curFixer = current_user
     else
-      @curFixer = User.find($aaa)
+      @curFixer = User.find($fixerID)
     end
 
 
   end
 
   def index
+
+
     @reviews = current_user.reviews
   end
 
@@ -36,8 +38,8 @@ class ReviewsController < ApplicationController
   def create
 
     @review = Review.new(review_params)
-    @review.fixer_id = $aaa
-    @review.report_id = $bbb
+    @review.fixer_id = $fixerID
+    @review.report_id = $reportID
 
     # if User.find(@review.fixer_id).type != 'fixer'
     #   break

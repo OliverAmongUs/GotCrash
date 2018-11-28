@@ -20,5 +20,10 @@
   <%= @review.description %>
 </p>
 
+<% if current_user.type == 'Owner'%>
 
-<%= link_to 'Back', reviews_index_path %> |
+  <%= link_to 'Back', report_path %> |
+<% else %>
+
+  <%= link_to 'Back', reviews_index_path %> |
+<% end %>
