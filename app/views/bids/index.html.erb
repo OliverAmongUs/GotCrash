@@ -47,6 +47,7 @@
             <div class="col-lg-11">
             <div class="card">
 
+
             <table class="table table-striped">
               <thead>
                 <tr>
@@ -63,14 +64,17 @@
                     <td><%= bid.id %></td>
                     <td><%= bid.created_at %></td>
                     <td><%= bid.updated_at %></td>
-                    <td><%= link_to 'Edit', edit_fixer_bid_path(current_user,bid) %></td>
-                    <td><%= link_to 'Edit', edit_fixer_bid_path(current_user,bid) %></td>
+                    <td><%= link_to 'Show', fixer_bid_path(current_user,bid) %></td>
+
                     <td><%= link_to 'Finish Bid', fixer_bid_path(current_user,bid), method: :delete, data: {confirm: 'Are you sure?' } %></td>
+
                     <td><%= link_to 'Conversation', fixer_bid_messages_path(current_user,bid) %></td>
                   </tr>
                 <% end %>
               </tbody>
             </table>
+
+
             </div>
             </div>
             </div>

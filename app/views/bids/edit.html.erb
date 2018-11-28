@@ -1,6 +1,60 @@
+<html>
+<head>
+<link rel="apple-touch-icon" href="apple-icon.png">
+<link rel="shortcut icon" href="favicon.ico">
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+
+<%= stylesheet_link_tag "admin.css" %>
+<%= javascript_include_tag "admin.js" %>
+</head>
+
+<body>
+    <!-- Left Panel -->
+    <%= render "layouts/left_panel" %>
+    <!-- Left Panel -->
+
+    <!-- Right Panel -->
+
+    <div id="right-panel" class="right-panel">
+
+        <!-- Header-->
+        <%= render "layouts/header" %>
+        <!-- Header-->
+
+        <div class="breadcrumbs">
+            <div class="col-sm-4">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1>Bid #<%=@bid.id%></h1>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-8">
+                <div class="page-header float-right">
+                    <div class="page-title">
+                        <ol class="breadcrumb text-right">
+                            <li><a href="/">GotCrash</a></li>
+                            <li><a href="/reports">My Reports</a></li>
+                            <li class="active">#<%=@bid.id%></li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
 <h1>Editing Bid</h1>
 
 <%= render 'formedit', bid: @bid %>
 
 <%= link_to 'Show', fixer_bid_path(current_user,@bid) %> |
 <%= link_to 'Back', fixer_bids_path(current_user) %>
+
+
+<script type="text/javascript">
+  $(function(){
+    $(".navbar-nav>li").eq(2).addClass("active");
+  });
+</script>
+</html>
