@@ -19,7 +19,7 @@ class ReviewsController < ApplicationController
   def show
     @review = Review.find(params[:id])
 
-    if current_user.type == 'fixer'
+    if current_user.type == 'Fixer'
       @curFixer = current_user
     else
       @curFixer = User.find($fixerID)

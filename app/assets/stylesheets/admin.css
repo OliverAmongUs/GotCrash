@@ -23,8 +23,20 @@
   margin-left: 190px;
 }
 
+.edit_move4 {
+  margin-left: -20px;
+}
+
+.edit_move5 {
+  margin-left: -30px;
+}
+
 .edit_move_right1 {
   margin-right: 5px;
+}
+
+.edit_move_right2 {
+  margin-right: -50px;
 }
 
 .form_part {
@@ -45,4 +57,8 @@
 
 .rounded-circle {
   border-radius: 50%!important;
+}
+
+.move-left {
+  left: 0;
 }

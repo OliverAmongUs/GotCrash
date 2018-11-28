@@ -50,47 +50,45 @@
             <div class="col-lg-11">
             <div class="card">
 
-        <div class="content mt-3">
-            <div class="animated fadeIn">
-                <div class="row">
-        <div class="col-lg-10">
-            <div class="card">
-
-              <p id="notice"><%= notice %></p>
-
-              <p>
-                <strong>Report id:</strong>
-                <%= @bid.report_id %>
-              </p>
-
-              <p>
-                <strong>Description:</strong>
-                <%= @bid.description %>
-              </p>
-
-              <p>
-                <strong>Cost</strong>
-                <%= @bid.cost %>
-              </p>
-
-              <p>
-                <strong>Did the user ignore it?</strong>
-
-                <% if @bid.ignored == 0 %>
-                  No
-                <% else  %>
-                  Yes
-                  <% end %>
-              </p>
 
 
-
-
-
+              <div class="col-lg-7">
+                <h3 class="padding_label">
+                  <strong>Report id:</strong>
+                </h3>
+                <p>
+                  <%= @bid.report_id %>
+                </p>
+                <hr>
+                <h3 class="padding_label">
+                  <strong>Description:</strong
+                </h3>
+                <p>
+                  <%= @bid.description %>
+                </p>
+                <hr>
+                <h3 class="padding_label">
+                  <strong>Cost</strong>
+                </h3>
+                <p>
+                  <%= @bid.cost %>
+                </p>
+                <hr>
+                <h3 class="padding_label">
+                  <strong>Did the user ignore it?</strong>
+                </h3>
+                <p>
+                  <% if @bid.ignored == 0 %>
+                    No
+                    <% else  %>
+                    Yes
+                    <% end %>
+                </p>
+              </div>
             </div>
 
             <div class="col-lg-6 margintop_btn">
-              <%= link_to 'Edit report', edit_fixer_bid_path(current_user, @bid), class: "btn btn-danger  edit_move2" %>
+              <%= link_to 'Edit bid', edit_fixer_bid_path(current_user, @bid), class: "btn btn-danger  edit_move2" %>
             </div>
             <div class="col-lg-2 col-lg-offset-4 margintop_btn">
 
@@ -102,12 +100,6 @@
       </div>
     </div>
 
-  </div>
-  </div>
-  </div>
-  </div>
-
-</div>
 
 
 </div><!-- /#right-panel -->
