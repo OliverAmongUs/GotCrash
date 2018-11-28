@@ -1,4 +1,5 @@
 var map, infoWindow;
+var reportInfoWindow;
 
 function initMap(){
   var maps = document.getElementsByClassName("map");
@@ -9,15 +10,31 @@ function initMap(){
       zoom: 15
     });
     infoWindow = new google.maps.InfoWindow;
+    geocoder = new google.maps.Geocoder();
     if (mapId==="fixermap"){
-      geolocation(0);
+      geocoder1 = new google.maps.Geocoder();
+      initFixerAddress();
+      reportInfoWindow = new google.maps.InfoWindow;
     } else {
-      geocoder = new google.maps.Geocoder();
+      geocoder2 = new google.maps.Geocoder();
     }
   }
 }
 
-function geolocation(label){
+function initFixerAddress(){
+  var fixeraddress = gon.fixer_address;
+  geocoder1.geocode( { 'address': fixeraddress}, function(results, status) {
+    if (status == 'OK') {
+      map.setCenter(results[0].geometry.location);
+      infoWindow.setPosition(results[0].geometry.location);
+      infoWindow.setContent('Your shop is here.');
+      infoWindow.open(map);
+    } else {
+      alert('Geocode was not successful for the following reason: ' + status);
+    }
+  });
+}
+function geolocation(){
   // Try HTML5 geolocation.
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
@@ -26,14 +43,8 @@ function geolocation(label){
         lng: position.coords.longitude
       };
       infoWindow.setPosition(pos);
-      if (label===0){
-        infoWindow.setContent('You are here.');
-      } else {
-        infoWindow.setContent(document.getElementById("confirmLoc"));
-        document.getElementById("confirmLoc").style = "display: block";
-
-      }
-
+      infoWindow.setContent(document.getElementById("confirmLoc"));
+      document.getElementById("confirmLoc").style = "display: block";
       infoWindow.open(map);
       map.setCenter(pos);
     }, function() {
@@ -69,7 +80,7 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 
 function codeAddress() {
     var address = document.getElementById('reportaddress').value;
-    geocoder.geocode( { 'address': address}, function(results, status) {
+    geocoder2.geocode( { 'address': address}, function(results, status) {
       if (status == 'OK') {
         map.setCenter(results[0].geometry.location);
         infoWindow.setPosition(results[0].geometry.location);
@@ -84,7 +95,7 @@ function codeAddress() {
 
 function checkbox(){
   if (document.getElementById("useCurrLocation").checked == true){
-    geolocation(1);
+    geolocation();
   } else {
     map.setCenter(new google.maps.LatLng(0,0));
   }
@@ -99,18 +110,21 @@ function displayReport(latitude,longitude,id){
   var marker = new google.maps.Marker({position: pos, map: map});
 
    marker.addListener('click', function() {
-     showreportinfo(id);
+     showreportinfo(id,pos);
    });
 
 }
 
-function showreportinfo(id) {
-            $.ajax({
-              method: 'Post',
-              url: 'showreport',
-              data: { report_id: id},
-            });
-        };
+function showreportinfo(id,pos) {
+  $.ajax({
+    method: 'Post',
+    url: 'showreport',
+    data: { report_id: id},
+  });
+  reportInfoWindow.setContent(document.getElementById("showreport").innerHTML);
+  reportInfoWindow.setPosition(pos);
+  reportInfoWindow.open(map);
+}
 
 $(document).on('turbolinks:load', initMap);
 $(document).ready(function () {

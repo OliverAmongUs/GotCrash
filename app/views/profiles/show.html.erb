@@ -14,7 +14,7 @@
 
     <div id="right-panel" class="right-panel">
 
-        <!-- Header-->
+
         <%= render "layouts/header" %>
         <div class="breadcrumbs">
             <div class="col-sm-4">
@@ -49,7 +49,7 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-5">
-        <%= image_tag @user2.picture_url_url.to_s, style:"height:300px;" %>
+        <%= image_tag current_user.picture_url_url.to_s, style:"height:300px;" %>
       </div>
       <div class="col-lg-7">
         <h3 class="padding_label">

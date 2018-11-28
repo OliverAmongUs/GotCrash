@@ -50,3 +50,10 @@ body {
 .card-title {
     margin-bottom: .75rem;
 }
+
+
+#error_explanation {
+  padding: 2px;
+  color: red;
+  display: table;
+}
