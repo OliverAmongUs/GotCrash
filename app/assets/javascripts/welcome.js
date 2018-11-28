@@ -1,2 +1,2 @@
 //= require bootstrap.min
-//= require main
+//= require main_index

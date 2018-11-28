@@ -13,6 +13,9 @@ Rails.application.config.assets.precompile += %w( welcome.js )
 
 Rails.application.config.assets.precompile += %w( admin.css )
 Rails.application.config.assets.precompile += %w( admin.js )
+
+Rails.application.config.assets.precompile += %w( map.css )
+Rails.application.config.assets.precompile += %w( map.js )
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in the app/assets
 # folder are already added.
