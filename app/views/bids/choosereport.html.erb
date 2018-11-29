@@ -3,11 +3,10 @@
 <link rel="apple-touch-icon" href="apple-icon.png">
 <link rel="shortcut icon" href="favicon.ico">
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWBlx4DztlxWz5BxNCOi2dZX3ubSr_Ab4&callback=initMap" async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWBlx4DztlxWz5BxNCOi2dZX3ubSr_Ab4&callback=initMap&libraries=geometry" async defer></script>
 <%= javascript_include_tag "map.js" %>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <%= stylesheet_link_tag "map.css" %>
-
 </head>
 
 <body>
@@ -53,13 +52,18 @@
               <div class="container" style = "padding:20px">
 
 <h2>Reports around you </h2>
-<div><button onclick="loadReports()">See all reports</button> </div>
+<div>
+  Search on:
+  <input type="text" id="filterdesp"></input>
+  <button onclick="loadsomeReports()">See these reports</button>
+  <button onclick="loadReports()">See all reports instead</button>
+</div>
 <div class="mapouter col-sm-10" style="margin-top:20px">
 <div class="map" id="fixermap" ></div>
 
 
 <div id= "showreport" style="display: none"></div>
-<table>
+<table id= "reporttable" style="display:none">
   <thead>
     <tr>
       <th>Report Description</th>

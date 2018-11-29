@@ -1,6 +1,7 @@
 var map, infoWindow;
 var reportInfoWindow;
 var markers = {};
+var fixerlocation = {};
 
 function initMap(){
   var maps = document.getElementsByClassName("map");
@@ -27,6 +28,8 @@ function initFixerAddress(){
   geocoder1.geocode( { 'address': fixeraddress}, function(results, status) {
     if (status == 'OK') {
       map.setCenter(results[0].geometry.location);
+      fixerlocation['lat'] = results[0].geometry.location.lat();
+      fixerlocation['lng'] = results[0].geometry.location.lng();
       infoWindow.setPosition(results[0].geometry.location);
       infoWindow.setContent('Your shop is here.');
       infoWindow.open(map);
@@ -103,6 +106,7 @@ function checkbox(){
 }
 
 function loadReports() {
+  document.getElementById("reporttable").style = "display: block";
   var reports = gon.reports;
   var i;
   for (i = 0; i < reports.length; i++) {
@@ -142,6 +146,11 @@ function showreportinfo(id,pos) {
     url: 'showreport',
     data: { report_id: id},
   });
+
+  var distance = google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(fixerlocation), new google.maps.LatLng(pos));
+  var miles = (distance*0.000621371192).toFixed(2);
+  document.getElementById("distancemile").value = "Description:" +miles;
+  console.log(miles);
   $(document).ajaxStop(function() {
     reportInfoWindow.setContent(document.getElementById("showreport").innerHTML);
     reportInfoWindow.setPosition(pos);
