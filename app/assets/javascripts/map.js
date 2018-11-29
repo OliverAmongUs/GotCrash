@@ -1,5 +1,6 @@
 var map, infoWindow;
 var reportInfoWindow;
+var markers = {};
 
 function initMap(){
   var maps = document.getElementsByClassName("map");
@@ -101,6 +102,19 @@ function checkbox(){
   }
 }
 
+function loadReports() {
+  var reports = gon.reports;
+  var i;
+  for (i = 0; i < reports.length; i++) {
+    var report = reports[i];
+    var lat = report.latitude;
+    var lng = report.longitude ;
+    var id = report.id;
+    displayReport(lat,lng,id);
+  }
+
+}
+
 function displayReport(latitude,longitude,id){
   console.log(id);
   var pos = {
@@ -112,7 +126,13 @@ function displayReport(latitude,longitude,id){
    marker.addListener('click', function() {
      showreportinfo(id,pos);
    });
+   markers[id] = marker;
 
+}
+
+function moveToReport(id){
+  var thismarker = markers[id];
+  map.setCenter(thismarker.position);
 }
 
 function showreportinfo(id,pos) {

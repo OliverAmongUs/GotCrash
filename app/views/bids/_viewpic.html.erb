@@ -7,7 +7,6 @@
       <th>Car model </th>
       <th>Car year </th>
       <th>Report Description</th>
-      <th>Completed? </th>
       <th colspan="1"></th>
     </tr>
   </thead>
@@ -19,11 +18,6 @@
         <td><%= @car.model %></td>
         <td><%= @car.year %></td>
         <td><%= @report.description %></td>
-        <td><% if @report.completed == 0 %>
-        No
-        <% else  %>
-          Yes
-          <% end %></td>
         <td><%= link_to 'Bid it!', {:controller=>"bids", :action=>"new", :fixer_id=>current_user, :report_id => @report.id} %></td>
       </tr>
   </tbody>

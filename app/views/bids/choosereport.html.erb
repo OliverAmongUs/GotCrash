@@ -52,24 +52,29 @@
 
               <div class="container" style = "padding:20px">
 
-<h2>Reports around you</h2>
-
+<h2>Reports around you </h2>
+<div><button onclick="loadReports()">See all reports</button> </div>
 <div class="mapouter col-sm-10" style="margin-top:20px">
 <div class="map" id="fixermap" ></div>
-<% @reports.each do |report| %>
-      <script>
-      $(document).ready(function loadReports() {
 
-              var lat = <%=report.latitude%> ;
-              var lng = <%=report.longitude%> ;
-              var id = <%=report.id%> ;
-              displayReport(lat,lng,id);
 
-      });
-      </script>
-      <% end %>
 <div id= "showreport" style="display: none"></div>
-
+<table>
+  <thead>
+    <tr>
+      <th>Report Description</th>
+      <th colspan="1"></th>
+    </tr>
+    </thead>
+    <tbody >
+        <% @reports.each do |report| %>
+        <tr >
+          <td><%= report.description %></td>
+          <td><%= button_tag "See on Map", :onclick => "moveToReport(#{report.id})"%></td>
+        </tr>
+          <% end %>
+    </tbody>
+</table>
 </div>
 </div><!-- /#right-panel -->
 
