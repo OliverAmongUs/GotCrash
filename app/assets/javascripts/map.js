@@ -133,6 +133,7 @@ function displayReport(latitude,longitude,id){
 function moveToReport(id){
   var thismarker = markers[id];
   map.setCenter(thismarker.position);
+  showreportinfo(id,thismarker.position);
 }
 
 function showreportinfo(id,pos) {
@@ -141,9 +142,12 @@ function showreportinfo(id,pos) {
     url: 'showreport',
     data: { report_id: id},
   });
-  reportInfoWindow.setContent(document.getElementById("showreport").innerHTML);
-  reportInfoWindow.setPosition(pos);
-  reportInfoWindow.open(map);
+  $(document).ajaxStop(function() {
+    reportInfoWindow.setContent(document.getElementById("showreport").innerHTML);
+    reportInfoWindow.setPosition(pos);
+    reportInfoWindow.open(map);
+  });
+
 }
 
 $(document).on('turbolinks:load', initMap);
