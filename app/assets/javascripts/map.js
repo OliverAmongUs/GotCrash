@@ -1,5 +1,7 @@
 var map, infoWindow;
 var reportInfoWindow;
+var markers = {};
+var fixerlocation = {};
 
 function initMap(){
   var maps = document.getElementsByClassName("map");
@@ -26,6 +28,8 @@ function initFixerAddress(){
   geocoder1.geocode( { 'address': fixeraddress}, function(results, status) {
     if (status == 'OK') {
       map.setCenter(results[0].geometry.location);
+      fixerlocation['lat'] = results[0].geometry.location.lat();
+      fixerlocation['lng'] = results[0].geometry.location.lng();
       infoWindow.setPosition(results[0].geometry.location);
       infoWindow.setContent('Your shop is here.');
       infoWindow.open(map);
@@ -101,6 +105,20 @@ function checkbox(){
   }
 }
 
+function loadReports() {
+  document.getElementById("reporttable").style = "display: table";
+  var reports = gon.reports;
+  var i;
+  for (i = 0; i < reports.length; i++) {
+    var report = reports[i];
+    var lat = report.latitude;
+    var lng = report.longitude ;
+    var id = report.id;
+    displayReport(lat,lng,id);
+  }
+
+}
+
 function displayReport(latitude,longitude,id){
   console.log(id);
   var pos = {
@@ -112,18 +130,37 @@ function displayReport(latitude,longitude,id){
    marker.addListener('click', function() {
      showreportinfo(id,pos);
    });
+   markers[id] = marker;
+
+}
+
+function moveToReport(id){
+  var thismarker = markers[id];
+  map.setCenter(thismarker.position);
+  var thisposition = {};
+  thisposition['lat'] = thismarker.position.lat();
+  thisposition['lng'] = thismarker.position.lng();
+  showreportinfo(id,thisposition);
 
 }
 
 function showreportinfo(id,pos) {
+  console.log(pos);
+  var distance = google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(fixerlocation), new google.maps.LatLng(pos));
+  var miles = (distance*0.000621371192).toFixed(2);
   $.ajax({
     method: 'Post',
     url: 'showreport',
-    data: { report_id: id},
+    data: { report_id: id,distance:miles},
   });
-  reportInfoWindow.setContent(document.getElementById("showreport").innerHTML);
-  reportInfoWindow.setPosition(pos);
-  reportInfoWindow.open(map);
+
+  $(document).ajaxStop(function() {
+    reportInfoWindow.setContent(document.getElementById("showreport").innerHTML);
+    reportInfoWindow.setPosition(pos);
+    reportInfoWindow.open(map);
+  });
+  //document.getElementById("distancemile").innerHTML = "Distance: " +miles + " miles";
+
 }
 
 $(document).on('turbolinks:load', initMap);

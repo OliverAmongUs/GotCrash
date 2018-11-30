@@ -1,32 +1,36 @@
-<table>
-  <thead>
-    <tr>
-      <th>Report # </th>
-      <th>Owner # </th>
-      <th>Car make </th>
-      <th>Car model </th>
-      <th>Car year </th>
-      <th>Report Description</th>
-      <th>Completed? </th>
-      <th colspan="1"></th>
-    </tr>
-  </thead>
-  <tbody >
-      <tr >
-        <td><%= @report.id %></td>
-        <td><%= @report.owner_id %></td>
-        <td><%= @car.make %></td>
-        <td><%= @car.model %></td>
-        <td><%= @car.year %></td>
-        <td><%= @report.description %></td>
-        <td><% if @report.completed == 0 %>
-        No
-        <% else  %>
-          Yes
-          <% end %></td>
-        <td><%= link_to 'Bid it!', {:controller=>"bids", :action=>"new", :fixer_id=>current_user, :report_id => @report.id} %></td>
-      </tr>
-  </tbody>
-</table>
+<%= stylesheet_link_tag "admin.css" %>
+<%= javascript_include_tag "admin.js" %>
 
-<p><%= image_tag @report.picture_url_url.to_s %></p>
+<div class="show-report">
+    <div class="col-lg-7">
+      <%= image_tag @report.picture_url_url.to_s, style:"height:203px;width:300px;padding:5px" %>
+    </div>
+    <div class="col-lg-5">
+      <h3 class="padding_label2">
+        <strong>Reporter:</strong>
+        <%= @report.owner_id %>
+      </h3>
+      <h3 class="padding_label2">
+        <strong>Make:</strong>
+        <%= @car.make %>
+      </h3>
+      <h3 class="padding_label2">
+        <strong>Car model:</strong>
+        <%= @car.model %>
+      </h3>
+      <h3 class="padding_label" id="distancemile">
+       Distance: <%= @distance %> miles
+      </h3>
+      <h3 class="padding_label2">
+        <strong>Descrption:</strong>
+      </h3>
+      <h3 class="padding_label2">
+        <%= @report.description %>
+      </h3>
+    </div>
+
+    <div class="col-lg-2">
+      <%= link_to 'Bid it!', {:controller=>"bids", :action=>"new", :fixer_id=>current_user, :report_id => @report.id}, :class => "btn btn-outline-primary" %>
+    </div>
+
+</div>

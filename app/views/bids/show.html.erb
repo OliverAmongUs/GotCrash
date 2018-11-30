@@ -91,8 +91,11 @@
               <%= link_to 'Edit bid', edit_fixer_bid_path(current_user, @bid), class: "btn btn-danger  edit_move2" %>
             </div>
             <div class="col-lg-2 col-lg-offset-4 margintop_btn">
-
+              <% if current_user.type == 'Owner' %>
+              <%= link_to 'Back', report_path(@bid.report_id), class: "btn btn-primary", style: "width:100px"  %>
+              <% else %>
               <%= link_to 'Back', fixer_bids_path, class: "btn btn-primary", style: "width:100px"  %>
+              <% end %>
             </div>
 
           </div>
@@ -106,7 +109,7 @@
 
     <script type="text/javascript">
       $(function(){
-        $(".navbar-nav>li").eq(2).addClass("active");
+        $(".navbar-nav>li").eq(1).addClass("active");
       });
     </script>
 

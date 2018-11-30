@@ -3,11 +3,10 @@
 <link rel="apple-touch-icon" href="apple-icon.png">
 <link rel="shortcut icon" href="favicon.ico">
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWBlx4DztlxWz5BxNCOi2dZX3ubSr_Ab4&callback=initMap" async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWBlx4DztlxWz5BxNCOi2dZX3ubSr_Ab4&callback=initMap&libraries=geometry" async defer></script>
 <%= javascript_include_tag "map.js" %>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <%= stylesheet_link_tag "map.css" %>
-
 </head>
 
 <body>
@@ -51,26 +50,47 @@
             <div class="card">
 
               <div class="container" style = "padding:20px">
-
-<h2>Reports around you</h2>
-
+<div class="search-report">
+<h2>Reports around you </h2>
+<div class="search-line">
+  <h3 style="display:inline">Search on:</h3>
+  <input type="text" id="filterdesp" class= "form-control" style="width:40%;display:inline"></input>
+  <button onclick="loadsomeReports()" class="btn btn-primary">See these reports</button>
+  <button onclick="loadReports()" class="btn btn-primary">See all reports instead</button>
+</div>
+</div>
 <div class="mapouter col-sm-10" style="margin-top:20px">
 <div class="map" id="fixermap" ></div>
-<% @reports.each do |report| %>
-      <script>
-      $(document).ready(function loadReports() {
 
-              var lat = <%=report.latitude%> ;
-              var lng = <%=report.longitude%> ;
-              var id = <%=report.id%> ;
-              displayReport(lat,lng,id);
 
-      });
-      </script>
-      <% end %>
 <div id= "showreport" style="display: none"></div>
-
+<div class="card">
+<table id= "reporttable" class="table table-striped" style="display:none" >
+  <thead>
+    <tr>
+      <th>Description</th>
+      <th>Reporter</th>
+      <th>Time</th>
+      <th colspan="4"></th>
+    </tr>
+    </thead>
+    <tbody >
+        <% @reports.each do |report| %>
+        <tr >
+          <td><%= report.description %></td>
+          <td><%= User.find(report.owner_id).name %></td>
+          <td><%= report.created_at %></td>
+          <td><%= link_to 'See on Map', "javascript:moveToReport(#{report.id})" %></td>
+        </tr>
+        <% end %>
+    </tbody>
+</table>
 </div>
 </div><!-- /#right-panel -->
 
+<script type="text/javascript">
+  $(function(){
+    $(".navbar-nav>li").eq(1).addClass("active");
+  });
+</script>
 </html>

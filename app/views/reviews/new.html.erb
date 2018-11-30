@@ -1,21 +1,109 @@
-<%= form_with model: @review do |form| %>
 
-  <div>
-    <h1>add new review for Auto-shoper</h1>
-    <%= @curFixer.name %>
-  </div>
+<html>
+<head>
+<link rel="apple-touch-icon" href="apple-icon.png">
+<link rel="shortcut icon" href="favicon.ico">
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
-  </div>
+<%= stylesheet_link_tag "admin.css" %>
+<%= javascript_include_tag "admin.js" %>
+</head>
 
-  <div class="field">
-    <%= form.label :rating %>
-    <%= form.number_field :rating %>
-  </div>
+<body>
+    <!-- Left Panel -->
+    <%= render "layouts/left_panel" %>
+    <!-- Left Panel -->
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+    <!-- Right Panel -->
+
+    <div id="right-panel" class="right-panel">
+
+        <!-- Header-->
+        <%= render "layouts/header" %>
+        <!-- Header-->
+
+        <div class="breadcrumbs">
+            <div class="col-sm-4">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1>New Bid</h1>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-8">
+                <div class="page-header float-right">
+                    <div class="page-title">
+                        <ol class="breadcrumb text-right">
+                            <li><a href="/">GotCrash</a></li>
+                            <li><a href="/reports">My Report</a></li>
+                            <li class="active">New Review></li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="content mt-3">
+            <div class="animated fadeIn">
+              <div class="row">
+                <div class="col-lg-11">
+                  <div class="card">
+                    <div class="card-body card-block">
+
+
+
+
+                  <%= form_with(model: @review, local: true,url:reviews_path(@review.id) ) do |form| %>
+                    <% if @review.errors.any? %>
+                      <div id="error_explanation">
+                        <h2><%= pluralize(bid.errors.count, "error") %> prohibited this bid from being saved:</h2>
+
+                        <ul>
+                        <% bid.errors.full_messages.each do |message| %>
+                          <li><%= message %></li>
+                        <% end %>
+                        </ul>
+                      </div>
+                    <% end %>
+
+                    <div class="field form-group row form_part">
+                      <p1>Add new review for Auto-shoper:</p1>
+                      <%= form.label @curFixer.name %>
+                    </div>
+
+                    <div class="field form-group row form_part">
+                      <%= form.label :rating %>
+                      <%= form.number_field :rating, class: "col-sm-2 form-control" %>
+                    </div>
+
+                    <div class="field form-group row form_part">
+                      <%= form.label :description, 'Add Comment:' %>
+                      <%= form.text_area :description, class: "col-sm-2 form-control" %>
+                    </div>
+
+                    <div class="col-lg-6 margintop_btn">
+                      <%= form.submit 'Submit', class: "btn btn-danger edit_move4", style: "width:100px" %>
+                    </div>
+                    <div class="col-lg-1 col-lg-offset-5 margintop_btn">
+                      <%= link_to 'Back', report_path(@review.report_id), class: "btn btn-primary edit_move5", style: "width:100px"  %>
+                    </div>
+                  <% end %>
+
+                  </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div><!-- /#right-panel -->
+
+<script type="text/javascript">
+$(function(){
+$(".navbar-nav>li").eq(2).addClass("active");
+});
+</script>
+
+</html>

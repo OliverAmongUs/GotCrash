@@ -1,29 +1,111 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>This review is for Report ID</strong>
-  <%= @review.report_id%>
-</p>
+<html>
+<head>
+<link rel="apple-touch-icon" href="apple-icon.png">
+<link rel="shortcut icon" href="favicon.ico">
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 
-<p>
-  <strong>This is a review for Auto Shoper</strong>
-  <%= @curFixer.name %>
-</p>
+<%= stylesheet_link_tag "admin.css" %>
+<%= javascript_include_tag "admin.js" %>
+</head>
 
-<p>
-  <strong>Rating is</strong>
-  <%= @review.rating %>
-</p>
+<body>
+    <!-- Left Panel -->
+    <%= render "layouts/left_panel" %>
+    <!-- Left Panel -->
 
-<p>
-  <strong>reviews</strong>
-  <%= @review.description %>
-</p>
+    <!-- Right Panel -->
 
-<% if current_user.type == 'Owner'%>
+    <div id="right-panel" class="right-panel">
 
-  <%= link_to 'Back', report_path %> |
-<% else %>
+        <!-- Header-->
+        <%= render "layouts/header" %>
+        <!-- Header-->
 
-  <%= link_to 'Back', reviews_index_path %> |
-<% end %>
+        <div class="breadcrumbs">
+            <div class="col-sm-4">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1>Review #<%=@review.id%></h1>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-8">
+                <div class="page-header float-right">
+                    <div class="page-title">
+                        <ol class="breadcrumb text-right">
+                            <li><a href="/">GotCrash</a></li>
+                            <li><a href="/reports">Reviews about me</a></li>
+                            <li class="active">#<%=@review.id%></li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="content mt-3">
+            <div class="animated fadeIn">
+            <div class="row">
+            <div class="col-lg-11">
+            <div class="card">
+
+
+
+              <div class="col-lg-7">
+                <h3 class="padding_label">
+                  <strong>This review is for Report ID</strong>
+                </h3>
+                <p>
+                  <%= @review.report_id %>
+                </p>
+                <hr>
+                <h3 class="padding_label">
+                  <strong>This is a review for Auto Shoper:</strong
+                </h3>
+                <p>
+                  <%= User.find(@review.fixer_id).name %>
+                </p>
+                <hr>
+                <h3 class="padding_label">
+                  <strong>Rating:</strong>
+                </h3>
+                <p>
+                  <%= @review.rating %>
+                </p>
+                <hr>
+                <h3 class="padding_label">
+                  <strong>Comment:</strong>
+                </h3>
+                <p>
+                  <%= @review.description %>
+                </p>
+              </div>
+            </div>
+
+
+            <div class="col-lg-6 margintop_btn">
+              <% if current_user.type == 'Owner' %>
+              <%= link_to 'Back', report_path(@review.report_id), class: "btn btn-primary", style: "width:100px"  %>
+              <% else %>
+              <%= link_to 'Back', reviews_index_path, class: "btn btn-primary", style: "width:100px"  %>
+              <% end %>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+</div><!-- /#right-panel -->
+
+    <script type="text/javascript">
+      $(function(){
+        $(".navbar-nav>li").eq(2).addClass("active");
+      });
+    </script>
+
+</html>

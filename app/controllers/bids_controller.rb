@@ -34,7 +34,7 @@ class BidsController < ApplicationController
 
     respond_to do |format|
       if @bid.save
-        format.html { redirect_to fixer_bid_messages_path(current_user.id,@bid.id), notice: 'Bid was successfully created.' }
+        format.html { redirect_to fixer_bid_path(current_user, @bid), notice: 'Bid was successfully created.' }
         #format.html { redirect_to fixer_bid_path(current_user,@bid), notice: 'Bid was successfully created.' }
         format.json { render :show, status: :created, location: fixer_bid_path(current_user,@bid) }
       else
@@ -70,13 +70,15 @@ class BidsController < ApplicationController
   end
 
   def choosereport
-    @reports = Report.all
+    @reports = Report.where(completed:0)
     gon.fixer_address = current_user.address
+    gon.reports = @reports
   end
 
   def showreport
     @report = Report.find(params[:report_id])
     @car = Car.find(@report.car_id)
+    @distance = params[:distance]
     respond_to do |format|
       format.js
     end

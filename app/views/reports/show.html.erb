@@ -92,9 +92,12 @@
                 </h3>
 
 
-                <table class="table-striped">
+                <table class="table table-striped">
                   <thead>
                     <tr>
+                      <th>Description</th>
+                      <th>Auto shop</th>
+                      <th>Price</th>
                       <th colspan="3"></th>
                     </tr>
                   </thead>
@@ -102,10 +105,10 @@
                   <tbody>
                     <% @bids.each do |bid| %>
                       <tr>
-                        <td>Description: <%= bid.description %></td>
-                        <td>By Auto shop <%= bid.fixer_id %></td>
-                        <td>Price: <%= bid.cost %>$</td>
-                        <td>By fixer #<%= bid.fixer_id %></td>
+                        <td><%= bid.description %></td>
+                        <td><%= User.find(bid.fixer_id).name %></td>
+                        <td><%= bid.cost %>$</td>
+                        <td><%= link_to 'Derails', fixer_bid_path(current_user,bid) %></td>
                         <td><%= link_to 'Add Review', reviews_new_path(fixerID: bid.fixer_id, reportID: bid.report_id) %></td>
                         <td><%= link_to 'Conversation', fixer_bid_messages_path(bid.fixer_id,bid.id) %></td>
                       </tr>
