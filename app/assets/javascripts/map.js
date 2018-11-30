@@ -106,7 +106,7 @@ function checkbox(){
 }
 
 function loadReports() {
-  document.getElementById("reporttable").style = "display: block";
+  document.getElementById("reporttable").style = "display: table";
   var reports = gon.reports;
   var i;
   for (i = 0; i < reports.length; i++) {

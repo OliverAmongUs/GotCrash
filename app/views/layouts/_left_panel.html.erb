@@ -15,21 +15,21 @@
                 </li>
                 <% if current_user.type=="Owner"%>
                 <li>
-                    <a href="/cars"> <i class="menu-icon fa fa-dashboard"></i>My Cars </a>
+                    <a href="/cars"> <i class="menu-icon fa fa-inbox"></i>My Cars </a>
                 </li>
                 <% end %>
                 <h3 class="menu-title">Services</h3><!-- /.menu-title -->
                 <% if current_user.type=="Owner"%>
                 <li>
-                    <a href="/reports"> <i class="menu-icon ti-email"></i>Reports </a>
+                    <a href="/reports"> <i class="menu-icon fa fa-book"></i>Reports </a>
                 </li>
                 <% elsif current_user.type=="Fixer"%>
                 <li>
-                    <a href="<%=fixer_bids_path(current_user)%>"> <i class="menu-icon ti-email"></i>Bids </a>
+                    <a href="<%=fixer_bids_path(current_user)%>"> <i class="menu-icon fa fa-gavel"></i>Bids </a>
                 </li>
 
                 <li>
-                    <a href="<%= reviews_index_path %>"> <i class="menu-icon ti-email"></i>Reviews </a>
+                    <a href="<%= reviews_index_path %>"> <i class="menu-icon fa fa-comments"></i>Reviews </a>
 
                 </li>
                 <%end%>
