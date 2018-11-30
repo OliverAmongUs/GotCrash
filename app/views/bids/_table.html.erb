@@ -1,0 +1,19 @@
+  <thead>
+    <tr>
+      <th>Description</th>
+      <th>Reporter</th>
+      <th>Time</th>
+      <th colspan="4"></th>
+    </tr>
+    </thead>
+    <tbody >
+        <% filteredreports.each do |report| %>
+        <tr >
+          <td><%= report.description %></td>
+          <td><%= User.find(report.owner_id).name %></td>
+          <td><%= report.created_at %></td>
+          <td><%= link_to 'See on Map', "javascript:moveToReport(#{report.id})" %></td>
+        </tr>
+        <% end %>
+    </tbody>
+    <%= include_gon %>

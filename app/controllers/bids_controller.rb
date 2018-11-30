@@ -75,6 +75,21 @@ class BidsController < ApplicationController
     gon.reports = @reports
   end
 
+  def filterreport
+    @reports = Report.where(completed:0)
+    gon.reports = @reports
+    if Rails.env.development?
+      @filteredreports = @reports.where("description LIKE ? ","%#{params[:filterdesp].downcase}%")
+    else
+      @filteredreports = @reports.where("description ILIKE ? ","%#{params[:filterdesp].downcase}%")
+    end
+    gon.filteredreports = @filteredreports
+    respond_to do |format|
+      format.js
+    end
+  end
+
+
   def showreport
     @report = Report.find(params[:report_id])
     @car = Car.find(@report.car_id)
