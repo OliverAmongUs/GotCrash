@@ -31,7 +31,9 @@
 /config/master.key
 
 /deployment.env
+/.env
 /codeship.aes
+
 
 /public/uploads/*.jpg
 /public/uploads/*.jpeg
