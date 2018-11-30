@@ -106,7 +106,7 @@ function checkbox(){
 }
 
 function loadReports() {
-  document.getElementById("reporttable").style = "display: block";
+  document.getElementById("reporttable").style = "display: table";
   var reports = gon.reports;
   var i;
   for (i = 0; i < reports.length; i++) {
@@ -149,7 +149,7 @@ function showreportinfo(id,pos) {
 
   var distance = google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(fixerlocation), new google.maps.LatLng(pos));
   var miles = (distance*0.000621371192).toFixed(2);
-  document.getElementById("distancemile").value = "Description:" +miles;
+  // document.getElementById("distancemile").value = "Description:" +miles;
   console.log(miles);
   $(document).ajaxStop(function() {
     reportInfoWindow.setContent(document.getElementById("showreport").innerHTML);
