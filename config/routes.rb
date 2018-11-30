@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get 'reviews/new'
   get 'reviews/show'
   get 'reviews/index'
-
+  post 'reviews/show'
   resources :reviews
 
   resources :messages

@@ -34,6 +34,12 @@ class MessagesController < ApplicationController
   def create
     @message = @bid.messages.new(message_params)
     if @message.save
+      if current_user.type == "Owner"
+        @receiver_number = @bid.fixer.phone
+      else
+        @receiver_number = @bid.owner.phone
+      end
+      send_message(@receiver_number)
       redirect_to fixer_bid_messages_path(@fixer, @bid)
     end
   end
@@ -67,5 +73,19 @@ class MessagesController < ApplicationController
     # Only allow the white list through.
     def message_params
       params.require(:message).permit(:body, :user_id, :picture_url, :picture_url_cache)
+    end
+
+    def send_message(phone)
+      @alert_message = "You have an awaiting message on GotCrash!"
+      @twilio_number = ENV['TWILIO_NUMBER']
+      @client = Twilio::REST::Client.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN']
+
+      message = @client.messages.create(
+        :from => @twilio_number,
+        :to => "+1#{phone}",
+        :body => @alert_message
+        # US phone numbers can make use of an image as well.
+        # :media_url => image_url
+      )
     end
 end

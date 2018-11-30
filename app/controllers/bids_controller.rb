@@ -34,7 +34,7 @@ class BidsController < ApplicationController
 
     respond_to do |format|
       if @bid.save
-        format.html { redirect_to fixer_bid_messages_path(current_user.id,@bid.id), notice: 'Bid was successfully created.' }
+        format.html { redirect_to fixer_bid_path(current_user, @bid), notice: 'Bid was successfully created.' }
         #format.html { redirect_to fixer_bid_path(current_user,@bid), notice: 'Bid was successfully created.' }
         format.json { render :show, status: :created, location: fixer_bid_path(current_user,@bid) }
       else
