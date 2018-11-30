@@ -78,6 +78,7 @@ class BidsController < ApplicationController
   def showreport
     @report = Report.find(params[:report_id])
     @car = Car.find(@report.car_id)
+    @distance = params[:distance]
     respond_to do |format|
       format.js
     end

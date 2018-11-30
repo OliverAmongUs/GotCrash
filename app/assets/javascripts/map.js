@@ -137,25 +137,29 @@ function displayReport(latitude,longitude,id){
 function moveToReport(id){
   var thismarker = markers[id];
   map.setCenter(thismarker.position);
-  showreportinfo(id,thismarker.position);
+  var thisposition = {};
+  thisposition['lat'] = thismarker.position.lat();
+  thisposition['lng'] = thismarker.position.lng();
+  showreportinfo(id,thisposition);
+
 }
 
 function showreportinfo(id,pos) {
+  console.log(pos);
+  var distance = google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(fixerlocation), new google.maps.LatLng(pos));
+  var miles = (distance*0.000621371192).toFixed(2);
   $.ajax({
     method: 'Post',
     url: 'showreport',
-    data: { report_id: id},
+    data: { report_id: id,distance:miles},
   });
 
-  var distance = google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(fixerlocation), new google.maps.LatLng(pos));
-  var miles = (distance*0.000621371192).toFixed(2);
-  //document.getElementById("distancemile").value = "Description:" +miles;
-  console.log(miles);
   $(document).ajaxStop(function() {
     reportInfoWindow.setContent(document.getElementById("showreport").innerHTML);
     reportInfoWindow.setPosition(pos);
     reportInfoWindow.open(map);
   });
+  //document.getElementById("distancemile").innerHTML = "Distance: " +miles + " miles";
 
 }
 
