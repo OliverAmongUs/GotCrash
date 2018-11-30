@@ -108,6 +108,7 @@
                         <td><%= bid.description %></td>
                         <td><%= User.find(bid.fixer_id).name %></td>
                         <td><%= bid.cost %>$</td>
+                        <td><%= link_to 'Derails', fixer_bid_path(current_user,bid) %></td>
                         <td><%= link_to 'Add Review', reviews_new_path(fixerID: bid.fixer_id, reportID: bid.report_id) %></td>
                         <td><%= link_to 'Conversation', fixer_bid_messages_path(bid.fixer_id,bid.id) %></td>
                       </tr>
