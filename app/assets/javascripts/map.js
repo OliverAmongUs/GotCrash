@@ -82,6 +82,7 @@ function confirmLocation(){
       }
     });
   }
+  infoWindow.setContent("Location confirmed!");
 }
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
