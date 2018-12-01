@@ -70,13 +70,13 @@ class BidsController < ApplicationController
   end
 
   def choosereport
-    @reports = Report.where(completed:0)
+    @reports = Report.where(completed:0,privacy:0)
     gon.fixer_address = current_user.address
     gon.reports = @reports
   end
 
   def filterreport
-    @reports = Report.where(completed:0)
+    @reports = Report.where(completed:0,privacy:0)
     gon.reports = @reports
     if Rails.env.development?
       @filteredreports = @reports.where("description LIKE ? ","%#{params[:filterdesp].downcase}%")

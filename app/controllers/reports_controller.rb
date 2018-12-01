@@ -12,6 +12,7 @@ class ReportsController < ApplicationController
 
   def edit
     @report = Report.find(params[:id])
+    @cars = current_user.cars
   end
 
   def show
@@ -40,7 +41,7 @@ class ReportsController < ApplicationController
   def update
     respond_to do |format|
       @report = Report.find(params[:id])
-      if @report.update(model_params2)
+      if @report.update(model_params)
         format.html { redirect_to @report, notice: 'Report was successfully updated.' }
         format.json { render :show, status: :ok, location: @report }
       else
