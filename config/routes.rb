@@ -30,7 +30,7 @@ Rails.application.routes.draw do
   resources :fixers, controller: :users, type: "Fixer"
   resources :reports
 
-
+  post 'reports/:id',to: 'reports#completeReport'
 
 
   resources :fixers do

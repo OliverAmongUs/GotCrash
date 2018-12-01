@@ -75,6 +75,17 @@
                 </p>
                 <hr>
                 <h3 class="padding_label">
+                  <strong>Did the user mark it?</strong>
+                </h3>
+                <p>
+                  <% if @bid.marked == 0 %>
+                    No
+                    <% else  %>
+                    Yes
+                    <% end %>
+                </p>
+                <hr>
+                <h3 class="padding_label">
                   <strong>Did the user ignore it?</strong>
                 </h3>
                 <p>
