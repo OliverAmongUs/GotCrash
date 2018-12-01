@@ -52,10 +52,7 @@
     <%= f.hidden_field :latitude, id: 'latitude' %>
   </div>
   <div class="mapouter">
-  <div class="map" id="ownermap">
-    Error loading map, click to retry.
-    <button onclick="initMap()">Retry</button>
-  </div>
+  <div class="map" id="ownermap"></div>
   </div>
   <%= f.submit "Submit", class: "btn btn-primary", style: "margin-top:10px"%>
 
