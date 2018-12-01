@@ -151,30 +151,34 @@ function loadsomeReports(){
       var id = report.id;
       displayReport(lat,lng,id);
     }
+    reports = null;
   });
 
-  console.log("add " + Object.keys(markers).length);
+
 }
 
 function displayReport(latitude,longitude,id){
-  var pos = {
-    lat: latitude,
-    lng: longitude
-  };
-  var reporticon = {
-    url: "https://cdn4.iconfinder.com/data/icons/car-maintenance-and-service-3/48/garage-location-car-sale-gps-map-marker-2-512.png", // url
-    scaledSize: new google.maps.Size(40, 40), // size
-  };
-  var marker = new google.maps.Marker({
-    position: pos,
-    map: map,
-    icon: reporticon
-  });
-  markers[id] = marker;
-   marker.addListener('click', function() {
-     showreportinfo(id,pos);
-   });
-
+  if (markers[id]!=null){
+    markers[id].setVisible(true);
+  } else {
+    var pos = {
+      lat: latitude,
+      lng: longitude
+    };
+    var reporticon = {
+      url: "https://cdn4.iconfinder.com/data/icons/car-maintenance-and-service-3/48/garage-location-car-sale-gps-map-marker-2-512.png", // url
+      scaledSize: new google.maps.Size(40, 40), // size
+    };
+    var marker = new google.maps.Marker({
+      position: pos,
+      map: map,
+      icon: reporticon
+    });
+    markers[id] = marker;
+     marker.addListener('click', function() {
+       showreportinfo(id,pos);
+     });
+  }
 
 }
 
@@ -208,10 +212,8 @@ function showreportinfo(id,pos) {
 
 function clearreportmarkers(){
   Object.keys(markers).forEach(function (key) {
-    markers[key].setMap(null);
-    delete markers[key];
+    markers[key].setVisible(false);
   })
-  console.log("clear " + Object.keys(markers).length);
 }
 
 $(document).on('turbolinks:load', initMap);
