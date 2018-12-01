@@ -222,8 +222,3 @@ function clearreportmarkers(){
     markers[key].setVisible(false);
   })
 }
-
-$(document).on('turbolinks:load', initMap);
-// $(document).ready(function () {
-//      $("#reportaddress").oninput(codeAddress);
-//  });
