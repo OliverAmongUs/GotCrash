@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  fixer_id: 1
+  AutoPart_id: 1
+
+two:
+  fixer_id: 1
+  AutoPart_id: 1

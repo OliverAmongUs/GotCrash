@@ -9,9 +9,9 @@ class CarsController < ApplicationController
     if params[:vin] != '' && !params[:vin].nil?
       @car.vin = params[:vin]
       carData = VehicleAPI.new(params[:vin])
-      @car.make = carData.getMake
-      @car.model = carData.getModel
-      @car.year = carData.getYear
+      @car.make, @car.model, @car.year, @car.vehicle_type, @car.body_class, @car.doors, @car.gross_vehicle_weight_rating,
+      @car.transmission_style, @car.engine_number_of_cylinders, @car.engine_power, @car.fuel_type = carData.getDetail
+
     end
   end
 
@@ -77,7 +77,8 @@ class CarsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def car_params
       if(params.has_key?(:car))
-        params.require(:car).permit(:make, :model, :year, :color, :vin, :licence, :picture_url, :picture_url_cache)
+        params.require(:car).permit(:make, :model, :year, :color, :vin, :licence, :picture_url, :picture_url_cache,
+        :vehicle_type, :body_class, :doors, :gross_vehicle_weight_rating, :transmission_style, :engine_number_of_cylinders, :engine_power, :fuel_type)
       end
 
     end
@@ -102,28 +103,63 @@ class VehicleAPI
     @request_hash = JSON.parse(request)
   end
 
-  def getMake
+
+  def getDetail
     @request_hash["Results"].each do |line|
       if line["Variable"] == "Make"
-        return line["Value"]
+        @Make = line["Value"]
       end
-    end
-  end
 
-  def getModel
-    @request_hash["Results"].each do |line|
       if line["Variable"] == "Model"
-        return line["Value"]
+        @Model = line["Value"]
       end
+
+      if line["Variable"] == "Model Year"
+        @ModelYear = line["Value"]
+      end
+
+      if line["Variable"] == "Vehicle Type"
+        @Vehicle_Type = line["Value"]
+      end
+
+      if line["Variable"] == "Body Class"
+        @Body_Class = line["Value"]
+      end
+
+      if line["Variable"] == "Doors"
+        @Doors = line["Value"]
+      end
+
+      if line["Variable"] == "Gross Vehicle Weight Rating"
+        @Gross_Vehicle_Weight_Rating = line["Value"]
+      end
+
+      if line["Variable"] == "Transmission Style"
+        @Transmission_Style = line["Value"]
+      end
+
+      if line["Variable"] == "Engine Number of Cylinders"
+        @Engine_Number_of_Cylinders = line["Value"]
+      end
+
+      if line["Variable"] == "Engine Power (KW)"
+        @Engine_Power = line["Value"]
+      end
+
+      if line["Variable"] == "Fuel Type - Primary"
+        @Fuel_Type = line["Value"]
+      end
+
+
     end
+      return @Make, @Model, @ModelYear, @Vehicle_Type, @Body_Class, @Doors,
+      @Gross_Vehicle_Weight_Rating, @Transmission_Style, @Engine_Number_of_Cylinders, @Engine_Power, @Fuel_Type
+
   end
 
-  def getYear
-    @request_hash["Results"].each do |line|
-      if line["Variable"] == "Model Year"
-        return line["Value"]
-      end
-    end
-  end
+
+# Vehicle Type, Body Class, Doors, Gross Vehicle Weight Rating, Transmission Style, Engine Number of Cylinders,
+# Engine Power (KW), Fuel Type - Primary
+
 
 end

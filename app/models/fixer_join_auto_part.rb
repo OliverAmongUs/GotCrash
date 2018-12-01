@@ -1,0 +1,2 @@
+class FixerJoinAutoPart < ApplicationRecord
+end

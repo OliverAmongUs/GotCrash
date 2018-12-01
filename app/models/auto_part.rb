@@ -1,0 +1,2 @@
+class AutoPart < ApplicationRecord
+end
