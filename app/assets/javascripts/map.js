@@ -18,7 +18,7 @@ function initMap(){
       initFixerAddress();
       reportInfoWindow = new google.maps.InfoWindow;
     } else {
-      geocoder2 = new google.maps.Geocoder();
+      codeAddress();
     }
   }
 }
@@ -93,17 +93,24 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 }
 
 function codeAddress() {
-    var address = document.getElementById('reportaddress').value;
-    geocoder2.geocode( { 'address': address}, function(results, status) {
-      if (status == 'OK') {
-        map.setCenter(results[0].geometry.location);
-        infoWindow.setPosition(results[0].geometry.location);
-        infoWindow.setContent(document.getElementById("confirmLoc"));
-        document.getElementById("confirmLoc").style = "display: block";
-        infoWindow.open(map);
-      } else {
-        alert('Geocode was not successful for the following reason: ' + status);
+    var address = document.getElementById('reportaddress');
+    var autocomplete = new google.maps.places.Autocomplete(address);
+    autocomplete.bindTo('bounds', map);
+    autocomplete.setFields(
+            ['address_components','geometry']);
+    autocomplete.addListener('place_changed', function() {
+      var place = autocomplete.getPlace();
+      if (!place.geometry) {
+            alert("No details available for input: '" + place.name + "'");
+            return;
       }
+      if (place.geometry.viewport) {
+            map.setCenter(place.geometry.location);
+            infoWindow.setPosition(place.geometry.location);
+            infoWindow.setContent(document.getElementById("confirmLoc"));
+            document.getElementById("confirmLoc").style = "display: block";
+            infoWindow.open(map);
+          }
     });
   }
 
@@ -128,7 +135,6 @@ function loadReports() {
     var id = report.id;
     displayReport(lat,lng,id);
   }
-  console.log("add " + Object.keys(markers).length);
 }
 
 function loadsomeReports(){
@@ -217,6 +223,6 @@ function clearreportmarkers(){
 }
 
 $(document).on('turbolinks:load', initMap);
-$(document).ready(function () {
-    $("#reportaddress").change(codeAddress);
-});
+// $(document).ready(function () {
+//      $("#reportaddress").oninput(codeAddress);
+//  });
