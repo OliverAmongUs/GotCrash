@@ -5,7 +5,6 @@ class CarsController < ApplicationController
       format.js
     end
     @car = Car.new
-    # byebug
     if params[:vin] != '' && !params[:vin].nil?
       @car.vin = params[:vin]
       carData = VehicleAPI.new(params[:vin])
