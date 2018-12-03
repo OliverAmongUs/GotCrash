@@ -8,28 +8,47 @@ class ReportsController < ApplicationController
   def new
     @report = Report.new
     @cars = current_user.cars
+    @APs = AutoPart.all
+    # byebug
   end
 
   def edit
     @report = Report.find(params[:id])
     @cars = current_user.cars
+    @APs = AutoPart.all
   end
 
   def show
+    # byebug
+
+
     set_report
+
+    # @a = params[:Bumper]
     @bids = Bid.where(report_id: params[:id]).to_a
+    # @a = AutoPart.find(params[:Bumper][:id])
+    # o = ReportJoinAutoPart.new(:report_id => params[:id], :AutoPart_id => '2')
+    # o.save
+    # byebug
   end
 
+
   def create
+
     @report = Report.new(model_params)
-    #@report = Report.new({:car_id => 1})
-    #puts "current user is: #{current_user[:id]}"
+
     @report.completed = 0
     @report.owner_id = current_user[:id]
-    # @report.picture_url = params[:file]
-    #Report.update(:user_id => current_user[:id], :completed => 0)
+
     if @report.save
       flash[:success] = 'Upload a report successfully!'
+      (1..8).each do |a|
+        if params.key?(a.to_s)
+          o = ReportJoinAuto.new(:report_id => @report.id, :auto_part_id => a)
+          byebug
+          o.save
+        end
+      end
       redirect_to @report
     else
       puts "something wrong"
@@ -61,9 +80,11 @@ class ReportsController < ApplicationController
   end
 
   private
+
     def set_report
       @report = Report.find(params[:id])
     end
+
 
     def model_params
       params.require(:report).permit(:car_id, :address, :description, :privacy, :completed, :picture_url, :picture_url_cache, :longitude,:latitude)

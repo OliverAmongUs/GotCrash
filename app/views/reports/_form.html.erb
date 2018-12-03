@@ -1,4 +1,4 @@
-<%= form_with model: @report do |f| %>
+<%= form_with model: @report, local: true do |f| %>
   <div class="field form-group row form_part">
     <%= f.label :car_licence, 'Choose your car:' %>
     <%= f.select(:car_id, @cars.collect { |c| [ c.licence, c.id ] }, {}, { :class => "col-sm-1 form-control" })%>
@@ -35,6 +35,36 @@
 
 
 
+<div class="field form-group row form_part">
+  <%= f.label  'Existing labels:' %>
+  <% rjas = ReportJoinAuto.where(report_id: @report.id) %>
+  <% rjas.each do |rja| %>
+    <br>
+    <%= AutoPart.where(id: rja.auto_part_id).to_a[0].name %>
+  <% end %>
+</div>
+
+
+
+  <div class="field form-group row form_part">
+    <%= f.label  'Add more label:' %>
+    <br/>
+    <% @APs.each do |ap|%>
+      <% if ReportJoinAuto.exists?(report_id: @report.id, auto_part_id: ap.id) == false %>
+        <%= label_tag "#{ap.name}" %>
+        <%= check_box_tag "#{ap.id}" %>
+        <br/>
+      <% end %>
+    <% end%>
+
+
+  </div>
+
+
+
+
+
+
   <div class="field form-group row form_part">
     <%= f.label :picture_url, 'Upload a picture:' %>
     <%= f.file_field :picture_url %>
@@ -54,6 +84,11 @@
   <div class="mapouter">
   <div class="map" id="ownermap"></div>
   </div>
+
+
+
+
+
   <%= f.submit "Submit", class: "btn btn-primary", style: "margin-top:10px"%>
 
 <% end %>

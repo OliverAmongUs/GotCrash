@@ -10,10 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_01_202952) do
+ActiveRecord::Schema.define(version: 2018_12_03_060404) do
 
   create_table "auto_parts", force: :cascade do |t|
-    t.string "type"
+    t.string "field"
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -52,9 +52,9 @@ ActiveRecord::Schema.define(version: 2018_12_01_202952) do
     t.string "fuel_type"
   end
 
-  create_table "fixer_join_auto_parts", force: :cascade do |t|
+  create_table "fixer_join_autos", force: :cascade do |t|
     t.integer "fixer_id"
-    t.integer "AutoPart_id"
+    t.integer "auto_part_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -68,9 +68,9 @@ ActiveRecord::Schema.define(version: 2018_12_01_202952) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "report_join_auto_parts", force: :cascade do |t|
+  create_table "report_join_autos", force: :cascade do |t|
     t.integer "report_id"
-    t.integer "AutoPart_id"
+    t.integer "auto_part_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
