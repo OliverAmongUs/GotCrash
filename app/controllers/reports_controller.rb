@@ -19,17 +19,8 @@ class ReportsController < ApplicationController
   end
 
   def show
-    # byebug
-
-
     set_report
-
-    # @a = params[:Bumper]
     @bids = Bid.where(report_id: params[:id]).to_a
-    # @a = AutoPart.find(params[:Bumper][:id])
-    # o = ReportJoinAutoPart.new(:report_id => params[:id], :AutoPart_id => '2')
-    # o.save
-    # byebug
   end
 
 
@@ -45,7 +36,6 @@ class ReportsController < ApplicationController
       (1..8).each do |a|
         if params.key?(a.to_s)
           o = ReportJoinAuto.new(:report_id => @report.id, :auto_part_id => a)
-          byebug
           o.save
         end
       end
