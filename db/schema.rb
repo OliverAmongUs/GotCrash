@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_25_215649) do
+ActiveRecord::Schema.define(version: 2018_12_01_202952) do
+
+  create_table "auto_parts", force: :cascade do |t|
+    t.string "type"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "bids", force: :cascade do |t|
     t.integer "fixer_id"
@@ -35,6 +42,21 @@ ActiveRecord::Schema.define(version: 2018_11_25_215649) do
     t.datetime "updated_at", null: false
     t.string "licence"
     t.string "picture_url"
+    t.string "vehicle_type"
+    t.string "body_class"
+    t.integer "doors"
+    t.string "gross_vehicle_weight_rating"
+    t.string "transmission_style"
+    t.string "engine_number_of_cylinders"
+    t.string "engine_power"
+    t.string "fuel_type"
+  end
+
+  create_table "fixer_join_auto_parts", force: :cascade do |t|
+    t.integer "fixer_id"
+    t.integer "AutoPart_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "messages", force: :cascade do |t|
@@ -42,6 +64,13 @@ ActiveRecord::Schema.define(version: 2018_11_25_215649) do
     t.integer "user_id"
     t.integer "bid_id"
     t.string "picture_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "report_join_auto_parts", force: :cascade do |t|
+    t.integer "report_id"
+    t.integer "AutoPart_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -12,6 +12,7 @@ class ReportsController < ApplicationController
 
   def edit
     @report = Report.find(params[:id])
+    @cars = current_user.cars
   end
 
   def show
@@ -40,7 +41,7 @@ class ReportsController < ApplicationController
   def update
     respond_to do |format|
       @report = Report.find(params[:id])
-      if @report.update(model_params2)
+      if @report.update(model_params)
         format.html { redirect_to @report, notice: 'Report was successfully updated.' }
         format.json { render :show, status: :ok, location: @report }
       else
@@ -57,6 +58,22 @@ class ReportsController < ApplicationController
       format.html { redirect_to reports_url, notice: 'Report was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def completeReport
+    @allbids = params[:bids]
+    @chosen = params[:chosen]
+    @report = Report.find(params[:reportID])
+
+    @allbids.each do |bid|
+      if bid != @chosen
+        Bid.find(bid).update(ignored: 1)
+      else
+        Bid.find(bid).update(marked: 1)
+      end
+    end
+    @report.update(completed: 1)
+    redirect_to '/reports'
   end
 
   private

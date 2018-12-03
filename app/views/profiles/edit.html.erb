@@ -69,12 +69,12 @@
                   <%= form.text_field :email, class: "col-sm-2 form-control"%>
                 </div>
                 <div class="field form-group row form_part">
-                  <%= form.label "Address:"%>
+                  <%= form.label "Address: (street address & zipcode)"%>
                   <%= form.text_field :address, class: "col-sm-2 form-control"%>
                 </div>
                 <div class="field form-group row form_part">
-                  <%= form.label "Phone Number:"%>
-                  <%= form.text_field :phone, class: "col-sm-2 form-control"%>
+                  <%= form.label "Phone Number: Format 1234567890"%>
+                  <%= form.text_field :phone, class: "col-sm-2 form-control", pattern: "[0-9]{10}" %>
                 </div>
                 <div class="field form-group row form_part">
                   <%= form.label "Type of Account:"%>

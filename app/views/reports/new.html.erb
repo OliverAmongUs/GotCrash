@@ -1,16 +1,17 @@
-<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
-<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
 <html>
 <head>
+  <%= javascript_include_tag "map.js" %>
 <link rel="apple-touch-icon" href="apple-icon.png">
 <link rel="shortcut icon" href="favicon.ico">
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWBlx4DztlxWz5BxNCOi2dZX3ubSr_Ab4&callback=initMap" async defer></script>
-<%= javascript_include_tag "map.js" %>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<%= stylesheet_link_tag "map.css" %>
 
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWBlx4DztlxWz5BxNCOi2dZX3ubSr_Ab4&callback=initMap&libraries=geometry,places" async defer></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+<%= stylesheet_link_tag "map.css" %>
 </head>
 
 <body>
@@ -52,64 +53,7 @@
             <div class="card">
             <div class="card-body card-block">
 
-                <%= form_with model: @report do |f| %>
-                  <div class="field form-group row form_part">
-                    <%= f.label :car_licence, 'Choose your car:' %>
-                    <%= f.select(:car_id, @cars.collect { |c| [ c.licence, c.id ] }, {}, { :class => "col-sm-1 form-control" })%>
-                  </div>
-                  <div class="field form-group row form_part">
-                    <%= f.label :description, 'Description:' %>
-                    <%= f.text_field :description, class: "col-sm-2 form-control" %>
-                  </div>
-                  <div class="field form-group row form_part">
-                    <%= f.label :privacy, 'If public:' %>
-                    <div>
-                      <%= f.check_box :privacy, :data => { :toggle => 'toggle-two', :on => "Private",
-                      :off => 'Public', :size => 'normal', :style => 'ios'} %>
-                      </div>
-                    </div>
-
-
-
-                    <div>
-                      <script>
-                        $(function() {
-                          $('#toggle-two').bootstrapToggle({
-                            on: 1,
-                            off: 0
-                          });
-                        })
-                      </script>
-                    </div>
-
-                  <style>
-                    .toggle.ios, .toggle-on.ios, .toggle-off.ios { border-radius: 20px; }
-                    .toggle.ios .toggle-handle { border-radius: 20px; }
-                  </style>
-
-
-
-                  <div class="field form-group row form_part">
-                    <%= f.file_field :picture_url %>
-                    <%= f.hidden_field :picture_url_cache %>
-                  </div>
-                  <div class="field form-group row form_part">
-                    <%= f.label :address, 'Address:' %>
-                    <%= f.text_field :address, id:'reportaddress', class: "col-sm-2 form-control"%>
-                    Use my current Location <input type="checkbox" id="useCurrLocation" onclick="checkbox()">
-                  </div>
-                  <div class="field">
-                    <%= f.hidden_field :longitude, id: 'longitude' %>
-                  </div>
-                  <div class="field">
-                    <%= f.hidden_field :latitude, id: 'latitude' %>
-                  </div>
-                  <div class="mapouter">
-                  <div class="map" id="ownermap"></div>
-                  </div>
-                  <%= f.submit "Submit", class: "btn btn-primary", style: "margin-top:10px"%>
-
-                <% end %>
+                  <%= render "reports/form" %>
                 </div>
             </div>
             </div>

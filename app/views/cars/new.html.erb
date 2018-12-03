@@ -86,14 +86,6 @@
                     </div>
                   </div>
 
-                  <div class="row form-group form_part">
-                    <div class="col-md-2">
-                      <%= form.label :color, "Color:" %>
-                    </div>
-                    <div class="col-md-9">
-                      <%= form.text_field :color, class: "form-control" %>
-                    </div>
-                  </div>
 
                   <div class="row form-group form_part">
                     <div class="col-md-2">
@@ -103,6 +95,94 @@
                       <%= form.text_field :year, class: "form-control" %>
                     </div>
                   </div>
+
+
+                  <div class="row form-group form_part">
+                    <div class="col-md-2">
+                      <%= form.label :vehicle_type, "Type of Vehicle:" %>
+                    </div>
+                    <div class="col-md-9">
+                      <%= form.text_field :vehicle_type, class: "form-control" %>
+                    </div>
+                  </div>
+
+
+                  <div class="row form-group form_part">
+                    <div class="col-md-2">
+                      <%= form.label :body_class, "Auto Body Class:" %>
+                    </div>
+                    <div class="col-md-9">
+                      <%= form.text_field :body_class, class: "form-control" %>
+                    </div>
+                  </div>
+
+
+                  <div class="row form-group form_part">
+                    <div class="col-md-2">
+                      <%= form.label :doors, "Number of doors:" %>
+                    </div>
+                    <div class="col-md-9">
+                      <%= form.text_field :doors, class: "form-control" %>
+                    </div>
+                  </div>
+
+
+                  <div class="row form-group form_part">
+                    <div class="col-md-2">
+                      <%= form.label :gross_vehicle_weight_rating, "Weight of your car:" %>
+                    </div>
+                    <div class="col-md-9">
+                      <%= form.text_field :gross_vehicle_weight_rating, class: "form-control" %>
+                    </div>
+                  </div>
+
+
+                  <div class="row form-group form_part">
+                    <div class="col-md-2">
+                      <%= form.label :transmission_style, "Transmission Style:" %>
+                    </div>
+                    <div class="col-md-9">
+                      <%= form.text_field :transmission_style, class: "form-control" %>
+                    </div>
+                  </div>
+
+
+                  <div class="row form-group form_part">
+                    <div class="col-md-2">
+                      <%= form.label :engine_number_of_cylinders, "Number of Cylinders in Engine:" %>
+                    </div>
+                    <div class="col-md-9">
+                      <%= form.text_field :engine_number_of_cylinders, class: "form-control" %>
+                    </div>
+                  </div>
+
+
+                  <div class="row form-group form_part">
+                    <div class="col-md-2">
+                      <%= form.label :engine_power, "House Power (KW):" %>
+                    </div>
+                    <div class="col-md-9">
+                      <%= form.text_field :engine_power, class: "form-control" %>
+                    </div>
+                  </div>
+
+                  <div class="row form-group form_part">
+                    <div class="col-md-2">
+                      <%= form.label :fuel_type, "Fuel Type:" %>
+                    </div>
+                    <div class="col-md-9">
+                      <%= form.text_field :fuel_type, class: "form-control" %>
+                    </div>
+                  </div>
+
+                <div class="row form-group form_part">
+                  <div class="col-md-2">
+                    <%= form.label :color, "Color:" %>
+                  </div>
+                  <div class="col-md-9">
+                    <%= form.text_field :color, class: "form-control" %>
+                  </div>
+                </div>
 
                   <div class="row form-group form_part">
                     <div class="col-md-2">
@@ -121,19 +201,19 @@
                       <%= form.file_field :picture_url %>
                       <%= form.hidden_field :picture_url_cache %>
                     </div>
-
                   </div>
 
                   <%= form.submit "Submit", class: "btn btn-primary edit_move2" %>
                 <% end %>
-                <% end %>
+              <% end %>
 
                 </div>
               </div>
             </div>
           </div>
         </div>
-        </div>
+      </div>
+
     </div><!-- /#right-panel -->
 </body>
 

@@ -54,6 +54,8 @@
                   <th>Bid</th>
                   <th>Create Time</th>
                   <th>Update Time</th>
+                  <th>Marked?</th>
+                  <th>Ignored?</th>
                   <th colspan="3"></th>
                 </tr>
               </thead>
@@ -64,6 +66,16 @@
                     <td><%= bid.id %></td>
                     <td><%= bid.created_at %></td>
                     <td><%= bid.updated_at %></td>
+                    <td><% if bid.marked == 0 %>
+                      No
+                      <% else  %>
+                      Yes
+                      <% end %></td>
+                    <td><% if bid.ignored == 0 %>
+                      No
+                      <% else  %>
+                      Yes
+                      <% end %></td>
                     <td><%= link_to 'Show', fixer_bid_path(current_user,bid) %></td>
 
                     <td><%= link_to 'Finish Bid', fixer_bid_path(current_user,bid), method: :delete, data: {confirm: 'Are you sure?' } %></td>

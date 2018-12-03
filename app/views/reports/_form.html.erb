@@ -1,26 +1,62 @@
-<%= form_with(model: report, local: true) do |form| %>
+<%= form_with model: @report do |f| %>
+  <div class="field form-group row form_part">
+    <%= f.label :car_licence, 'Choose your car:' %>
+    <%= f.select(:car_id, @cars.collect { |c| [ c.licence, c.id ] }, {}, { :class => "col-sm-1 form-control" })%>
+  </div>
+  <div class="field form-group row form_part">
+    <%= f.label :description, 'Description:' %>
+    <%= f.text_field :description, class: "col-sm-2 form-control" %>
+  </div>
+  <div class="field form-group row form_part">
+    <%= f.label :privacy, 'If public:' %>
+    <div>
+      <%= f.check_box :privacy, :data => { :toggle => 'toggle-two', :on => "Private",
+      :off => 'Public', :size => 'normal', :style => 'ios'} %>
+      </div>
+    </div>
 
+
+
+    <div>
+      <script>
+        $(function() {
+          $('#toggle-two').bootstrapToggle({
+            on: 1,
+            off: 0
+          });
+        })
+      </script>
+    </div>
+
+  <style>
+    .toggle.ios, .toggle-on.ios, .toggle-off.ios { border-radius: 20px; }
+    .toggle.ios .toggle-handle { border-radius: 20px; }
+  </style>
+
+
+
+  <div class="field form-group row form_part">
+    <%= f.label :picture_url, 'Upload a picture:' %>
+    <%= f.file_field :picture_url %>
+    <%= f.hidden_field :picture_url_cache %>
+  </div>
+  <div class="field form-group row form_part">
+    <%= f.label :address, 'Address:' %>
+    <%= f.text_field :address, id:'reportaddress', class: "col-sm-2 form-control"%>
+    Use my current Location <input type="checkbox" id="useCurrLocation" onclick="checkbox()">
+  </div>
   <div class="field">
-    <%= form.label :address %>
-    <%= form.text_field :address %>
+    <%= f.hidden_field :longitude, id: 'longitude' %>
   </div>
-
   <div class="field">
-    <%= form.label :description %>
-    <%= form.text_field :description %>
+    <%= f.hidden_field :latitude, id: 'latitude' %>
   </div>
+  <div class="mapouter">
+  <div class="map" id="ownermap">
+    Error loading map, click to retry.
+<button onclick="initMap()">Retry</button>
+  </div>
+  </div>
+  <%= f.submit "Submit", class: "btn btn-primary", style: "margin-top:10px"%>
 
-  <div class="field">
-    <%= form.label :privacy %>
-    <%= form.select(:privacy,[["Private", 1],["Public", 0]])%>
-  </div>
-
-  <div class="field">
-    <%= form.label :completed %>
-    <%= form.select(:completed,[["Yes", 1],["No", 0]])%>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
 <% end %>

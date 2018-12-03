@@ -1,11 +1,17 @@
-<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
-<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
 
 <html>
 <head>
 <link rel="apple-touch-icon" href="apple-icon.png">
 <link rel="shortcut icon" href="favicon.ico">
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+<%= javascript_include_tag "map.js" %>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWBlx4DztlxWz5BxNCOi2dZX3ubSr_Ab4&callback=initMap&libraries=geometry,places" async defer></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<%= stylesheet_link_tag "map.css" %>
+
+<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
 <%= stylesheet_link_tag "admin.css" %>
 <%= javascript_include_tag "admin.js" %>
@@ -51,62 +57,17 @@
             <div class="card">
 
               <div class="card-body card-block">
-                <%= form_with(model: @report, local: true) do |form| %>
-
-                  <div class="field form-group row form_part">
-                    <%= form.label :address %>
-                    <%= form.text_field :address, class: "col-sm-2 form-control" %>
-                  </div>
-
-                  <div class="field form-group row form_part">
-                    <%= form.label :description %>
-                    <%= form.text_field :description, class: "col-sm-2 form-control" %>
-                  </div>
-
-                  <div class="field form-group row form_part">
-                    <%= form.label :privacy %>
-                    <div>
-                      <%= form.check_box :privacy, :data => { :toggle => 'toggle-two', :on => "Private",
-                      :off => 'Public', :size => 'normal', :style => 'ios'} %>
-                      </div>
-                    </div>
-
-
-
-                    <div>
-                      <script>
-                        $(function() {
-                          $('#toggle-two').bootstrapToggle({
-                            on: 1,
-                            off: 0
-                          });
-                        })
-                      </script>
-                    </div>
-
-                  <style>
-                    .toggle.ios, .toggle-on.ios, .toggle-off.ios { border-radius: 20px; }
-                    .toggle.ios .toggle-handle { border-radius: 20px; }
-                  </style>
-
-
-
-
-                  <div class="field form-group row form_part">
-                    <%= form.label :completed %>
-                    <%= form.select(:completed,[["Yes", 1],["No", 0]], {}, class: "col-sm-2 form-control")%>
-                  </div>
-
-                  <div class="actions">
-                    <%= form.submit "Submit", class: "btn btn-primary", style: "margin-top:10px" %>
-                  </div>
-                <% end %>
-
+                <%= render "reports/form" %>
               </div>
             </div>
             </div>
             </div>
             </div>
+        </div>
+        <div id="confirmLoc" style="display: none">
+          Please confirm if this is the location for your report!
+        <p><button onclick="confirmLocation()" type="button">Confirm</button></p>
+          If not, please try again and make sure you enter the city name or the zipcode.
         </div>
     </div><!-- /#right-panel -->
   </body>

@@ -4,7 +4,7 @@ class BidsController < ApplicationController
   # GET /bids
   # GET /bids.json
   def index
-    @bids = Bid.all
+    @bids = current_user.bids
   end
 
   # GET /bids/1
@@ -70,10 +70,25 @@ class BidsController < ApplicationController
   end
 
   def choosereport
-    @reports = Report.where(completed:0)
+    @reports = Report.where(completed:0,privacy:0)
     gon.fixer_address = current_user.address
     gon.reports = @reports
   end
+
+  def filterreport
+    @reports = Report.where(completed:0,privacy:0)
+    gon.reports = @reports
+    if Rails.env.development?
+      @filteredreports = @reports.where("description LIKE ? ","%#{params[:filterdesp].downcase}%")
+    else
+      @filteredreports = @reports.where("description ILIKE ? ","%#{params[:filterdesp].downcase}%")
+    end
+    gon.filteredreports = @filteredreports
+    respond_to do |format|
+      format.js
+    end
+  end
+
 
   def showreport
     @report = Report.find(params[:report_id])

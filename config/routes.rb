@@ -30,6 +30,12 @@ Rails.application.routes.draw do
   resources :fixers, controller: :users, type: "Fixer"
   resources :reports
 
+<<<<<<< HEAD
+=======
+  post 'reports/:id',to: 'reports#completeReport'
+
+
+>>>>>>> bc834ef30d8b80e9848bbde41ce82e75569756c9
   resources :fixers do
     resources :bids do
         resources :messages
@@ -37,6 +43,7 @@ Rails.application.routes.draw do
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get 'choosereport', to: 'bids#choosereport'
+  post 'filterreport', to: 'bids#filterreport'
   post 'showreport', to: 'bids#showreport'
 
   root 'home#index'

@@ -18,7 +18,7 @@ function initMap(){
       initFixerAddress();
       reportInfoWindow = new google.maps.InfoWindow;
     } else {
-      geocoder2 = new google.maps.Geocoder();
+      codeAddress();
     }
   }
 }
@@ -30,9 +30,19 @@ function initFixerAddress(){
       map.setCenter(results[0].geometry.location);
       fixerlocation['lat'] = results[0].geometry.location.lat();
       fixerlocation['lng'] = results[0].geometry.location.lng();
-      infoWindow.setPosition(results[0].geometry.location);
-      infoWindow.setContent('Your shop is here.');
-      infoWindow.open(map);
+      var fixicon = {
+        url: "/fixicon.png", // url
+        scaledSize: new google.maps.Size(50, 50), // size
+    };
+
+        var fxiMarker = new google.maps.Marker({
+          position: {lat: results[0].geometry.location.lat(), lng: results[0].geometry.location.lng()},
+          map: map,
+          icon: fixicon
+        });
+      //infoWindow.setPosition(results[0].geometry.location);
+      //infoWindow.setContent('Your shop is here.');
+      //infoWindow.open(map);
     } else {
       alert('Geocode was not successful for the following reason: ' + status);
     }
@@ -72,6 +82,7 @@ function confirmLocation(){
       }
     });
   }
+  infoWindow.setContent("Location confirmed!");
 }
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
@@ -83,17 +94,24 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 }
 
 function codeAddress() {
-    var address = document.getElementById('reportaddress').value;
-    geocoder2.geocode( { 'address': address}, function(results, status) {
-      if (status == 'OK') {
-        map.setCenter(results[0].geometry.location);
-        infoWindow.setPosition(results[0].geometry.location);
-        infoWindow.setContent(document.getElementById("confirmLoc"));
-        document.getElementById("confirmLoc").style = "display: block";
-        infoWindow.open(map);
-      } else {
-        alert('Geocode was not successful for the following reason: ' + status);
+    var address = document.getElementById('reportaddress');
+    var autocomplete = new google.maps.places.Autocomplete(address);
+    autocomplete.bindTo('bounds', map);
+    autocomplete.setFields(
+            ['address_components','geometry']);
+    autocomplete.addListener('place_changed', function() {
+      var place = autocomplete.getPlace();
+      if (!place.geometry) {
+            alert("No details available for input: '" + place.name + "'");
+            return;
       }
+      if (place.geometry.viewport) {
+            map.setCenter(place.geometry.location);
+            infoWindow.setPosition(place.geometry.location);
+            infoWindow.setContent(document.getElementById("confirmLoc"));
+            document.getElementById("confirmLoc").style = "display: block";
+            infoWindow.open(map);
+          }
     });
   }
 
@@ -106,6 +124,8 @@ function checkbox(){
 }
 
 function loadReports() {
+  clearreportmarkers();
+  document.getElementById("filtertable").style = "display: none";
   document.getElementById("reporttable").style = "display: table";
   var reports = gon.reports;
   var i;
@@ -116,21 +136,56 @@ function loadReports() {
     var id = report.id;
     displayReport(lat,lng,id);
   }
+}
+
+function loadsomeReports(){
+  clearreportmarkers();
+  document.getElementById("reporttable").style = "display: none";
+  var filterdesp = document.getElementById("filterdesp").value;
+  $.ajax({
+    method: 'Post',
+    url: 'filterreport',
+    data: { filterdesp:filterdesp }
+  });
+  $(document).ajaxStop(function() {
+    document.getElementById("filtertable").style = "display: table";
+    var reports = gon.filteredreports;
+    var i;
+    for (i = 0; i < reports.length; i++) {
+      var report = reports[i];
+      var lat = report.latitude;
+      var lng = report.longitude ;
+      var id = report.id;
+      displayReport(lat,lng,id);
+    }
+    reports = null;
+  });
+
 
 }
 
 function displayReport(latitude,longitude,id){
-  console.log(id);
-  var pos = {
-    lat: latitude,
-    lng: longitude
-  };
-  var marker = new google.maps.Marker({position: pos, map: map});
-
-   marker.addListener('click', function() {
-     showreportinfo(id,pos);
-   });
-   markers[id] = marker;
+  if (markers[id]!=null){
+    markers[id].setVisible(true);
+  } else {
+    var pos = {
+      lat: latitude,
+      lng: longitude
+    };
+    var reporticon = {
+      url: "https://cdn4.iconfinder.com/data/icons/car-maintenance-and-service-3/48/garage-location-car-sale-gps-map-marker-2-512.png", // url
+      scaledSize: new google.maps.Size(40, 40), // size
+    };
+    var marker = new google.maps.Marker({
+      position: pos,
+      map: map,
+      icon: reporticon
+    });
+    markers[id] = marker;
+     marker.addListener('click', function() {
+       showreportinfo(id,pos);
+     });
+  }
 
 }
 
@@ -145,7 +200,6 @@ function moveToReport(id){
 }
 
 function showreportinfo(id,pos) {
-  console.log(pos);
   var distance = google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(fixerlocation), new google.maps.LatLng(pos));
   var miles = (distance*0.000621371192).toFixed(2);
   $.ajax({
@@ -163,7 +217,8 @@ function showreportinfo(id,pos) {
 
 }
 
-$(document).on('turbolinks:load', initMap);
-$(document).ready(function () {
-    $("#reportaddress").change(codeAddress);
-});
+function clearreportmarkers(){
+  Object.keys(markers).forEach(function (key) {
+    markers[key].setVisible(false);
+  })
+}
