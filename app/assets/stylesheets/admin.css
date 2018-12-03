@@ -51,6 +51,10 @@
   padding: 8px;
 }
 
+.padding_content {
+  padding: 10px 10px 0 10px;
+}
+
 .margintop_btn {
   margin-top: 30px;
 }
@@ -92,4 +96,16 @@
 
 .search-line {
   padding-top: 20px;
+}
+
+.grey {
+  color:#878787;
+}
+
+.right {
+  float:right;
+}
+
+.text-area {
+  resize: none;
 }

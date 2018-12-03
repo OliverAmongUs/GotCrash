@@ -47,57 +47,40 @@
         <div class="content mt-3">
             <div class="animated fadeIn">
             <div class="row">
-            <div class="col-lg-11">
+            <div class="col-lg-10">
             <div class="card">
-
-
-
-              <div class="col-lg-7">
+            <div class="card-body card-block">
+              <div class="col-lg-12">
                 <h3 class="padding_label">
-                  <strong>Report id:</strong>
+                  Report id:<span class="grey right"><%= @bid.report_id %></span>
                 </h3>
-                <p>
-                  <%= @bid.report_id %>
-                </p>
                 <hr>
                 <h3 class="padding_label">
-                  <strong>Description:</strong
+                  Description:<span class="grey right"><%= @bid.description %></span>
                 </h3>
-                <p>
-                  <%= @bid.description %>
-                </p>
                 <hr>
                 <h3 class="padding_label">
-                  <strong>Cost</strong>
+                  Cost:<span class="grey right">$ <%= @bid.cost %></span>
                 </h3>
-                <p>
-                  <%= @bid.cost %>
-                </p>
                 <hr>
                 <h3 class="padding_label">
-                  <strong>Did the user ignore it?</strong>
+                  Did the user ignore it?<span class="grey right"><% if @bid.ignored == 0 %> No <% else %> Yes <% end %></span>
                 </h3>
-                <p>
-                  <% if @bid.ignored == 0 %>
-                    No
-                    <% else  %>
-                    Yes
-                    <% end %>
-                </p>
+                <hr>
+              </div>
+
+              <div class="col-lg-4">
+                <%= link_to 'Edit bid', edit_fixer_bid_path(current_user, @bid), class: "btn btn-danger", style: "width:106px" %>
+              </div>
+              <div class="col-lg-4 col-lg-offset-4">
+                <% if current_user.type == 'Owner' %>
+                <%= link_to 'Back', report_path(@bid.report_id), class: "btn btn-primary", style: "width:100px"  %>
+                <% else %>
+                <%= link_to 'Back', fixer_bids_path, class: "btn btn-primary", style: "width:100px; margin-left:160px"  %>
+                <% end %>
               </div>
             </div>
-
-            <div class="col-lg-6 margintop_btn">
-              <%= link_to 'Edit bid', edit_fixer_bid_path(current_user, @bid), class: "btn btn-danger  edit_move2" %>
             </div>
-            <div class="col-lg-2 col-lg-offset-4 margintop_btn">
-              <% if current_user.type == 'Owner' %>
-              <%= link_to 'Back', report_path(@bid.report_id), class: "btn btn-primary", style: "width:100px"  %>
-              <% else %>
-              <%= link_to 'Back', fixer_bids_path, class: "btn btn-primary", style: "width:100px"  %>
-              <% end %>
-            </div>
-
           </div>
         </div>
       </div>

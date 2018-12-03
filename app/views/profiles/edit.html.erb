@@ -74,12 +74,16 @@
                 </div>
                 <div class="field form-group row form_part">
                   <%= form.label "Phone Number: Format 1234567890"%>
-                  <%= form.text_field :phone, class: "col-sm-2 form-control" %>
-                  <!-- <input class="col-sm-2 form-control" type="text" value="123-456-7890" name="owner[phone]" id="owner_phone" pattern="[0-9]{10}"required> -->
+
+                  <%= form.text_field :phone, class: "col-sm-2 form-control", pattern: "[0-9]{10}" %>
                 </div>
                 <div class="field form-group row form_part">
                   <%= form.label "Type of Account:"%>
                   <%= form.select(:type,[["Owner", "Owner"],["Fixer", "Fixer"]],{}, { :class => "col-sm-1 form-control" })%>
+                  <input type="checkbox" id="check_owner" name="check" checked>
+                  <label for="check_owner">Owner</label>
+                  <input type="checkbox" id="check_fixer" name="check" checked>
+                  <label for="check_fixer">Fixer</label>
                 </div>
                 <div class="field form-group row form_part">
                   <%= form.label "Password:" %>

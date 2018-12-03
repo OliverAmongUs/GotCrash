@@ -79,6 +79,22 @@ class ReportsController < ApplicationController
     end
   end
 
+  def completeReport
+    @allbids = params[:bids]
+    @chosen = params[:chosen]
+    @report = Report.find(params[:reportID])
+
+    @allbids.each do |bid|
+      if bid != @chosen
+        Bid.find(bid).update(ignored: 1)
+      else
+        Bid.find(bid).update(marked: 1)
+      end
+    end
+    @report.update(completed: 1)
+    redirect_to '/reports'
+  end
+
   private
 
     def set_report

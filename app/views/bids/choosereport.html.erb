@@ -62,7 +62,10 @@
 </div>
 </div>
 <div class="mapouter col-sm-10" style="margin-top:20px">
-<div class="map" id="fixermap" ></div>
+<div class="map" id="fixermap" >
+  Error loading map, click to retry.
+<button onclick="initMap()">Retry</button>
+</div>
 
 
 <div id= "showreport" style="display: none"></div>
@@ -95,12 +98,6 @@
 <script type="text/javascript">
   $(function(){
     $(".navbar-nav>li").eq(1).addClass("active");
-  });
-
-  $(document).ready(function(){
-   if (document.getElementById("fixermap").value === ""){
-     initMap();
-   }
   });
 </script>
 </html>
