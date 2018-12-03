@@ -84,6 +84,14 @@
                     <%= @report.description %>
                   </h3>
                   <hr>
+                  <h3 class="padding_label">
+                    <strong>Label:</strong>
+                    <% rjas = ReportJoinAuto.where(report_id: @report.id) %>
+                    <% rjas.each do |rja| %>
+                      <br>
+                      <%= AutoPart.where(id: rja.auto_part_id).to_a[0].name %>
+                    <% end %>
+                  </h3>
                 </div>
 
                 <div class="col-lg-12" >

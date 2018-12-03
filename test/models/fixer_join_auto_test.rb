@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class FixerJoinAutoPartTest < ActiveSupport::TestCase
+class FixerJoinAutoTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

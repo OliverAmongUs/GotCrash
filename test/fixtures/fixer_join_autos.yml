@@ -2,8 +2,8 @@
 
 one:
   fixer_id: 1
-  AutoPart_id: 1
+  auto_part_id: 1
 
 two:
   fixer_id: 1
-  AutoPart_id: 1
+  auto_part_id: 1
