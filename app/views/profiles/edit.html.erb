@@ -78,12 +78,17 @@
                 </div>
                 <div class="field form-group row form_part">
                   <%= form.label "Type of Account:"%>
-                  <%= form.select(:type,[["Owner", "Owner"],["Fixer", "Fixer"]],{}, { :class => "col-sm-1 form-control" })%>
-                  <input type="checkbox" id="check_owner" name="check" checked>
+                  <!--  <%= form.select(:type,[["Owner", "Owner"],["Fixer", "Fixer"]],{}, { :class => "col-sm-1 form-control" })%>-->
+                  <!-- <input type="checkbox" id="check_owner" name="check" onclick="check(this)">
                   <label for="check_owner">Owner</label>
-                  <input type="checkbox" id="check_fixer" name="check" checked>
-                  <label for="check_fixer">Fixer</label>
+                  <input type="checkbox" id="check_fixer" name="check" onclick="check(this)"">
+                  <label for="check_fixer">Fixer</label> -->
+                  <%= form.check_box :type, {name:"type"}, "Owner", "Fixer" %>
+                  <%= form.label "Owner"%>
+                  <%= form.check_box :type, {name:"type"}, "Fixer", "Owner" %>
+                  <%= form.label "Fixer"%>
                 </div>
+
                 <div class="field form-group row form_part">
                   <%= form.label "Password:" %>
                   <%= form.text_field :password, class: "col-sm-2 form-control ", type: "password"%>
@@ -111,6 +116,13 @@
 <script type="text/javascript">
   $(function(){
     $(".navbar-nav>li").eq(0).addClass("active");
+
+    $(name='check').on('change',check());
   });
+
+  function check() {
+      $('input:checkbox').attr('checked', false);//清空所有复选框
+      $(this).attr('checked', true);//给当前对象赋值
+  }
 </script>
 </html>
