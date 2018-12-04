@@ -1,3 +1,3 @@
-[{"field":"AutoBody", "elements":["Lights", "Doors", "Windows",""]},
-{"field":"Doors", "elements":["Front Right Outer door handle","Rear Right Side Window motor"]},
-{"field":"Windows", "elements":["Front Right Side Door Glass", "Sunroof Rail"]}]
+[{"field":"AutoProblems", "elements":["Lights Broken", "Doors Damage", "Windows Broken","Electrical Malfuncation",
+  "Audio/video Devices Problem", "Cameras Malfunction", "Ignition Problem", "Battery Dead", "Sensors Problem",
+  "Car seat Problem", "Braking Problem", "Engine Problem", "Flat Tire", "Oil Change"]}]

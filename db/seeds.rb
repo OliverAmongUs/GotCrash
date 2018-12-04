@@ -24,5 +24,7 @@ auto_hash.each do |line|
 end
 
 
-
-AutoPart.import columns_auto, autoArray
+if AutoPart.count == 0
+  puts "import raw data"
+  AutoPart.import columns_auto, autoArray
+end

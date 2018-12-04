@@ -41,6 +41,7 @@
   <% rjas.each do |rja| %>
     <br>
     <%= AutoPart.where(id: rja.auto_part_id).to_a[0].name %>
+    <%= link_to 'Destroy', report_join_auto_path(rjaID: rja.id), method: :delete, data: { confirm: 'Are you sure?' } %>
   <% end %>
 </div>
 
@@ -50,9 +51,12 @@
     <%= f.label  'Add more label:' %>
     <br/>
     <% @APs.each do |ap|%>
+
+
       <% if ReportJoinAuto.exists?(report_id: @report.id, auto_part_id: ap.id) == false %>
         <%= label_tag "#{ap.name}" %>
         <%= check_box_tag "#{ap.id}" %>
+
         <br/>
       <% end %>
     <% end%>

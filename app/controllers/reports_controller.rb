@@ -33,7 +33,7 @@ class ReportsController < ApplicationController
 
     if @report.save
       flash[:success] = 'Upload a report successfully!'
-      (1..8).each do |a|
+      (1..14).each do |a|
         if params.key?(a.to_s)
           o = ReportJoinAuto.new(:report_id => @report.id, :auto_part_id => a)
           o.save
@@ -51,6 +51,12 @@ class ReportsController < ApplicationController
     respond_to do |format|
       @report = Report.find(params[:id])
       if @report.update(model_params)
+        (1..14).each do |a|
+          if params.key?(a.to_s)
+            o = ReportJoinAuto.new(:report_id => @report.id, :auto_part_id => a)
+            o.save
+          end
+        end
         format.html { redirect_to @report, notice: 'Report was successfully updated.' }
         format.json { render :show, status: :ok, location: @report }
       else
@@ -68,6 +74,7 @@ class ReportsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
 
   def completeReport
     @allbids = params[:bids]
