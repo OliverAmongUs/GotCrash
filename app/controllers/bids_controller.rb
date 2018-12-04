@@ -100,7 +100,7 @@ class BidsController < ApplicationController
   end
 
   def search_bid
-    puts params
+    # puts params
     @bids = current_user.bids
     if params["value"]!= ""
       if params["value"] == "0"

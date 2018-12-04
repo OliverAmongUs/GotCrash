@@ -16,8 +16,6 @@
                   <%= form_with(model: @user, local: true) do |form| %>
                     <% if @user.errors.any? %>
                       <div id="error_explanation">
-                        <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
-
                         <ul>
                         <% @user.errors.full_messages.each do |message| %>
                           <li><%= message %></li>
@@ -42,10 +40,10 @@
                         <input type="text" name="user[address]" class="form-control" placeholder="Address">
                     </div>
                     <div class="form-group">
-                        <label>Type</label>
+                        <label>Who are you</label>
                         <select name="user[type]" class="form-control-sm form-control">
-                            <option value="Owner">Owner</option>
-                            <option value="Fixer">Fixer</option>
+                            <option value="Owner">I am a car owner</option>
+                            <option value="Fixer">I am a car fixer</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -61,9 +59,9 @@
                       <%= form.file_field :picture_url , class: "col-sm-3 form-control"%>
                       <%= form.hidden_field :picture_url_cache %>
                     </div>
-                    <div class="checkbox">
+                    <div class="checkbox" >
                         <label>
-                            <input type="checkbox"> Agree the terms and policy
+                            <%= form.check_box :terms_of_service %> Agree the terms and policy
                         </label>
                     </div>
                     <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">Register</button>

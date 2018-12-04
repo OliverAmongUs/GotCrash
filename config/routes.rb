@@ -36,7 +36,7 @@ Rails.application.routes.draw do
 
 
   post 'reports/:id',to: 'reports#completeReport'
-
+  post 'search_report', to: 'reports#search_report'
   resources :fixers do
     resources :bids do
         resources :messages
