@@ -42,7 +42,7 @@ Rails.application.routes.draw do
   get 'choosereport', to: 'bids#choosereport'
   post 'filterreport', to: 'bids#filterreport'
   post 'showreport', to: 'bids#showreport'
-
+  post 'search_bid', to: 'bids#search_bid'
   root 'home#index'
   get '/test/:id', to: 'users#show'
 

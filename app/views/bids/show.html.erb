@@ -74,9 +74,9 @@
               </div>
               <div class="col-lg-4 col-lg-offset-4">
                 <% if current_user.type == 'Owner' %>
-                <%= link_to 'Back', report_path(@bid.report_id), class: "btn btn-primary", style: "width:100px"  %>
+                <%= link_to 'Back', report_path(@bid.report_id), class: "btn btn-primary btn-back" %>
                 <% else %>
-                <%= link_to 'Back', fixer_bids_path, class: "btn btn-primary", style: "width:100px; margin-left:160px"  %>
+                <%= link_to 'Back', fixer_bids_path, class: "btn btn-primary btn-back" %>
                 <% end %>
               </div>
             </div>

@@ -19,9 +19,14 @@
         <div class="breadcrumbs">
             <div class="col-sm-4">
                 <div class="page-header float-left">
-                    <div class="page-title">
-                        <h1>My Bids</h1>
-                    </div>
+                    <!-- <div class="page-title"> -->
+                        <h1 style="display: inline-block;">My Bids</h1>
+                        <select name="select" id="select" class="form-control select" onchange="changeTable(this.options[this.options.selectedIndex].value)">
+                            <option value="0">All</option>
+                            <option value="1">Marked</option>
+                            <option value="2">Ignored</option>
+                        </select>
+                    <!-- </div> -->
                 </div>
             </div>
 
@@ -45,48 +50,8 @@
             <div class="animated fadeIn">
             <div class="row">
             <div class="col-lg-11">
-            <div class="card">
-
-
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th>Bid</th>
-                  <th>Create Time</th>
-                  <th>Update Time</th>
-                  <th>Marked?</th>
-                  <th>Ignored?</th>
-                  <th colspan="3"></th>
-                </tr>
-              </thead>
-
-              <tbody>
-                <% @bids.each do |bid| %>
-                  <tr>
-                    <td><%= bid.id %></td>
-                    <td><%= bid.created_at %></td>
-                    <td><%= bid.updated_at %></td>
-                    <td><% if bid.marked == 0 %>
-                      No
-                      <% else  %>
-                      Yes
-                      <% end %></td>
-                    <td><% if bid.ignored == 0 %>
-                      No
-                      <% else  %>
-                      Yes
-                      <% end %></td>
-                    <td><%= link_to 'Show', fixer_bid_path(current_user,bid) %></td>
-
-                    <td><%= link_to 'Finish Bid', fixer_bid_path(current_user,bid), method: :delete, data: {confirm: 'Are you sure?' } %></td>
-
-                    <td><%= link_to 'Conversation', fixer_bid_messages_path(current_user,bid) %></td>
-                  </tr>
-                <% end %>
-              </tbody>
-            </table>
-
-
+            <div class="card" id="bid_table">
+              <%= render partial: 'bidTable', locals: {bids: @bids} %>
             </div>
             </div>
             </div>
@@ -99,5 +64,14 @@
       $(function(){
         $(".navbar-nav>li").eq(1).addClass("active");
       });
+
+      function changeTable(value) {
+        // alert(value);
+          $.ajax({
+            method: 'Post',
+            url: '/search_bid',
+            data: { value: value},
+          });
+      };
     </script>
 </html>

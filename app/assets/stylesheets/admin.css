@@ -109,3 +109,14 @@
 .text-area {
   resize: none;
 }
+
+.select {
+  display:inline-block;
+  width:120px;
+  height:25px;
+}
+
+.btn-back {
+  width:100px;
+  margin-left:160px;
+}

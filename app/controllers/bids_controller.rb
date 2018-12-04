@@ -99,6 +99,24 @@ class BidsController < ApplicationController
     end
   end
 
+  def search_bid
+    puts params
+    @bids = current_user.bids
+    if params["value"]!= ""
+      if params["value"] == "0"
+        @bids = current_user.bids
+      elsif params["value"] == "1"
+        @bids = current_user.bids.where(marked: 1)
+      elsif params["value"] == "2"
+        @bids = current_user.bids.where(ignored: 1)
+      end
+    end
+    respond_to do |format|
+      format.js
+    end
+  end
+
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
