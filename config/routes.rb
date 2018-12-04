@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'report_join_auto/new'
+  delete 'report_join_auto', to: 'report_join_auto#destroy'
+
+
   get 'reviews/new'
   get 'reviews/show'
   get 'reviews/index'
