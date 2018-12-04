@@ -55,10 +55,30 @@
 <div class="search-report">
 <h2>Reports around you </h2>
 <div class="search-line">
-  <h3 style="display:inline">Search on:</h3>
-  <input type="text" id="filterdesp" class= "form-control" style="width:40%;display:inline"></input>
+  <h3 style="display:inline">Choose a label:</h3>
+  <select id="reportlabel" class= "form-control" style="width:20%;display:inline">
+    <option value=0></option>
+    <option value=1>Lights Broken</option>
+    <option value=2>Doors Damage</option>
+    <option value=3>Windows Broken</option>
+    <option value=4>Electrical Malfunction</option>
+    <option value=5>Audio/video Devices Problem</option>
+    <option value=6>Cameras Malfunction</option>
+    <option value=7>Ignition Problem</option>
+    <option value=8>Battery Dead</option>
+    <option value=9>Sensors Problem</option>
+    <option value=10>Car seat Problem</option>
+    <option value=11>Braking Problem</option>
+    <option value=12>Engine Problem</option>
+    <option value=13>Flat Tire</option>
+    <option value=14>Oil Change</option>
+  </select>
+  <br>
+  <h3 style="display:inline">Search on description:</h3>
+  <input type="text" id="filterdesp" class= "form-control" style="width:30%;display:inline"></input>
   <button onclick="loadsomeReports()" class="btn btn-primary">See these reports</button>
   <button onclick="loadReports()" class="btn btn-primary">See all reports instead</button>
+  <h3 id="numreportfound" style="color:red;"></h3>
 </div>
 </div>
 <div class="mapouter col-sm-10" style="margin-top:20px">

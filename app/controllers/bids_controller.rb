@@ -78,6 +78,10 @@ class BidsController < ApplicationController
   def filterreport
     @reports = Report.where(completed:0,privacy:0)
     gon.reports = @reports
+    if (params[:reportlabel]!=0)
+      @reports = AutoPart.find(params[:reportlabel]).reports
+      @reports = @reports.where(completed:0,privacy:0)
+    end
     if Rails.env.development?
       @filteredreports = @reports.where("description LIKE ? ","%#{params[:filterdesp].downcase}%")
     else

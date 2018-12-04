@@ -128,6 +128,7 @@ function loadReports() {
   document.getElementById("filtertable").style = "display: none";
   document.getElementById("reporttable").style = "display: table";
   var reports = gon.reports;
+  document.getElementById("numreportfound").innerHTML = reports.length+ " reports found!";
   var i;
   for (i = 0; i < reports.length; i++) {
     var report = reports[i];
@@ -136,20 +137,24 @@ function loadReports() {
     var id = report.id;
     displayReport(lat,lng,id);
   }
+  document.getElementById("filterdesp").value = "";
+  document.getElementById("reportlabel").value = 0;
 }
 
 function loadsomeReports(){
   clearreportmarkers();
   document.getElementById("reporttable").style = "display: none";
   var filterdesp = document.getElementById("filterdesp").value;
+  var label = document.getElementById("reportlabel").value;
   $.ajax({
     method: 'Post',
     url: 'filterreport',
-    data: { filterdesp:filterdesp }
+    data: { filterdesp:filterdesp,reportlabel:label}
   });
   $(document).ajaxStop(function() {
     document.getElementById("filtertable").style = "display: table";
     var reports = gon.filteredreports;
+    document.getElementById("numreportfound").innerHTML = reports.length+ " reports found!";
     var i;
     for (i = 0; i < reports.length; i++) {
       var report = reports[i];
