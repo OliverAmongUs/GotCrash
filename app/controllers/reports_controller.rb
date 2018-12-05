@@ -89,7 +89,104 @@ class ReportsController < ApplicationController
       end
     end
     @report.update(completed: 1)
-    redirect_to '/reports'
+
+    @bidID = Bid.find(@chosen).fixer_id
+    ReportJoinAuto.where(report_id: @report.id).each do |rja|
+      fja = FixerJoinAuto.new(auto_part_id: rja.auto_part_id, fixer_id: @bidID)
+      fja.save
+    end
+
+    redirect_to @report
+  end
+
+  def search_report
+
+    @reports= current_user.reports
+    if params["value"]!= ""
+      if params["value"] == "0"
+        @reports = current_user.reports
+      elsif params["value"] == "1"
+        @reports = current_user.reports.where(completed: 1)
+      elsif params["value"] == "2"
+        @reports = current_user.reports.where(completed: 0)
+      end
+    end
+    puts @reports
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def search_report
+
+    @reports= current_user.reports
+    if params["value"]!= ""
+      if params["value"] == "0"
+        @reports = current_user.reports
+      elsif params["value"] == "1"
+        @reports = current_user.reports.where(completed: 1)
+      elsif params["value"] == "2"
+        @reports = current_user.reports.where(completed: 0)
+      end
+    end
+    puts @reports
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def search_report
+
+    @reports= current_user.reports
+    if params["value"]!= ""
+      if params["value"] == "0"
+        @reports = current_user.reports
+      elsif params["value"] == "1"
+        @reports = current_user.reports.where(completed: 1)
+      elsif params["value"] == "2"
+        @reports = current_user.reports.where(completed: 0)
+      end
+    end
+    puts @reports
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def search_report
+
+    @reports= current_user.reports
+    if params["value"]!= ""
+      if params["value"] == "0"
+        @reports = current_user.reports
+      elsif params["value"] == "1"
+        @reports = current_user.reports.where(completed: 1)
+      elsif params["value"] == "2"
+        @reports = current_user.reports.where(completed: 0)
+      end
+    end
+    puts @reports
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def search_report
+
+    @reports= current_user.reports
+    if params["value"]!= ""
+      if params["value"] == "0"
+        @reports = current_user.reports
+      elsif params["value"] == "1"
+        @reports = current_user.reports.where(completed: 1)
+      elsif params["value"] == "2"
+        @reports = current_user.reports.where(completed: 0)
+      end
+    end
+    puts @reports
+    respond_to do |format|
+      format.js
+    end
   end
 
   def search_report

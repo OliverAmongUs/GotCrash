@@ -48,164 +48,21 @@
             <div class="card">
               <div class="card-body card-block">
                 <!-- <h1>Type in your VIN number below to get your car information</h1> -->
-                <%= form_tag new_car_path, method: :get do%>
+                <%= form_tag new_car_path, method: :get, :remote => true, :id => "vin_searching" do%>
                    <div class="row form-group form_part">
                      <div class="col-md-9">
-                       <%= text_field_tag :vin, params[:vin], placeholder: "Type your vin number here...", class: "col-sm-2 form-control" %>
+                       <%= text_field_tag :vin, params[:vin], placeholder: "Use Vin number to search detail information here", onchange: "search_vin(#{:value})", class: "col-sm-2 form-control" %>
                      </div>
                       <%= submit_tag "Search my VIN", :class => "btn btn-primary col-sm-2" %>
                    </div>
                 <% end %>
 
-                <% if !:vin.nil? %>
-                <%= form_with(model: @car) do |form| %>
-                  <div class="row form-group form_part">
-                    <div class="col-md-2">
-                      <%= form.label :vin, "Vin number:" %>
-                    </div>
-                    <div class="col-md-9">
-                      <%= form.text_field :vin, readonly: true, class: "form-control" %>
-                    </div>
-                  </div>
-
-                  <div class="row form-group form_part">
-                    <div class="col-md-2">
-                      <%= form.label :make, "Make company:" %>
-                    </div>
-                    <div class="col-md-9">
-                      <%= form.text_field :make, readonly: true, class: "form-control" %>
-                    </div>
-                  </div>
-
-                  <div class="row form-group form_part">
-                    <div class="col-md-2">
-                      <%= form.label :model, "Specific model:" %>
-                    </div>
-                    <div class="col-md-9">
-                      <%= form.text_field :model, readonly: true, class: "form-control" %>
-                    </div>
-                  </div>
 
 
-                  <div class="row form-group form_part">
-                    <div class="col-md-2">
-                      <%= form.label :year, "Production year:" %>
-                    </div>
-                    <div class="col-md-9">
-                      <%= form.text_field :year, readonly: true, class: "form-control" %>
-                    </div>
-                  </div>
-
-
-                  <div class="row form-group form_part">
-                    <div class="col-md-2">
-                      <%= form.label :vehicle_type, "Type of Vehicle:" %>
-                    </div>
-                    <div class="col-md-9">
-                      <%= form.text_field :vehicle_type, readonly: true, class: "form-control" %>
-                    </div>
-                  </div>
-
-
-                  <div class="row form-group form_part">
-                    <div class="col-md-2">
-                      <%= form.label :body_class, "Auto Body Class:" %>
-                    </div>
-                    <div class="col-md-9">
-                      <%= form.text_field :body_class, readonly: true, class: "form-control" %>
-                    </div>
-                  </div>
-
-
-                  <div class="row form-group form_part">
-                    <div class="col-md-2">
-                      <%= form.label :doors, "Number of doors:" %>
-                    </div>
-                    <div class="col-md-9">
-                      <%= form.text_field :doors, readonly: true, class: "form-control" %>
-                    </div>
-                  </div>
-
-
-                  <div class="row form-group form_part">
-                    <div class="col-md-2">
-                      <%= form.label :gross_vehicle_weight_rating, "Weight of your car:" %>
-                    </div>
-                    <div class="col-md-9">
-                      <%= form.text_field :gross_vehicle_weight_rating, readonly: true, class: "form-control" %>
-                    </div>
-                  </div>
-
-
-                  <div class="row form-group form_part">
-                    <div class="col-md-2">
-                      <%= form.label :transmission_style, "Transmission Style:" %>
-                    </div>
-                    <div class="col-md-9">
-                      <%= form.text_field :transmission_style, readonly: true, class: "form-control" %>
-                    </div>
-                  </div>
-
-
-                  <div class="row form-group form_part">
-                    <div class="col-md-2">
-                      <%= form.label :engine_number_of_cylinders, "Number of Cylinders in Engine:" %>
-                    </div>
-                    <div class="col-md-9">
-                      <%= form.text_field :engine_number_of_cylinders, readonly: true, class: "form-control" %>
-                    </div>
-                  </div>
-
-
-                  <div class="row form-group form_part">
-                    <div class="col-md-2">
-                      <%= form.label :engine_power, "House Power (KW):" %>
-                    </div>
-                    <div class="col-md-9">
-                      <%= form.text_field :engine_power, readonly: true, class: "form-control" %>
-                    </div>
-                  </div>
-
-                  <div class="row form-group form_part">
-                    <div class="col-md-2">
-                      <%= form.label :fuel_type, "Fuel Type:" %>
-                    </div>
-                    <div class="col-md-9">
-                      <%= form.text_field :fuel_type, readonly: true, class: "form-control" %>
-                    </div>
-                  </div>
-
-                <div class="row form-group form_part">
-                  <div class="col-md-2">
-                    <%= form.label :color, "Color:" %>
-                  </div>
-                  <div class="col-md-9">
-                    <%= form.text_field :color, class: "form-control" %>
-                  </div>
+                <div id = "show_result">
+                <%= render partial: 'search_result'%>
                 </div>
 
-                  <div class="row form-group form_part">
-                    <div class="col-md-2">
-                      <%= form.label :licence, "Car license:" %>
-                    </div>
-                    <div class="col-md-9">
-                      <%= form.text_field :licence, class: "form-control" %>
-                    </div>
-                  </div>
-
-                  <div class="row form-group form_part">
-                    <div class="col-md-2">
-                      <%= form.label "Car Picture:" %>
-                    </div>
-                    <div class="col-md-9">
-                      <%= form.file_field :picture_url %>
-                      <%= form.hidden_field :picture_url_cache %>
-                    </div>
-                  </div>
-
-                  <%= form.submit "Submit", class: "btn btn-primary edit_move2" %>
-                <% end %>
-              <% end %>
 
                 </div>
               </div>
@@ -221,5 +78,20 @@
   $(function(){
     $(".navbar-nav>li").eq(1).addClass("active");
   });
+
+function search_vin(value){
+  // alert(value.length);
+  if (value.length == 17){
+    $.ajax({
+      method: 'Post',
+      url: '/search_vin',
+      data: {vin: value}
+
+    });
+  }
+}
+
+
+
 </script>
 </html>

@@ -115,12 +115,11 @@
                     <tbody>
                       <% @bids.each do |bid| %>
                         <tr>
-                          <td><%= link_to '<button type="button"  class="btn btn-primary">Choose this</button>'.html_safe,report_path(bids: @bids,chosen: bid,reportID: bid.report_id),method: :post%></td>
+                          <td><%= link_to '<button type="button"  class="btn btn-primary">Choose this</button>'.html_safe,report_path(bids: @bids, chosen: bid,reportID: bid.report_id),method: :post%></td>
                           <td><%= bid.description %></td>
                           <td><%= User.find(bid.fixer_id).name %></td>
                           <td><%= bid.cost %>$</td>
                           <td><%= link_to 'Details', fixer_bid_path(current_user,bid) %></td>
-                          <td><%= link_to 'Add Review', reviews_new_path(fixerID: bid.fixer_id, reportID: bid.report_id) %></td>
                           <td><%= link_to 'Conversation', fixer_bid_messages_path(bid.fixer_id,bid.id) %></td>
                         </tr>
                       <% end %>

@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   get 'cars/new'
   get 'cars/show'
 
+  post '/search_vin', to: 'cars#search_vin'
+
   resources :cars
 
   # post '/cars/:id', to: 'car#show'
