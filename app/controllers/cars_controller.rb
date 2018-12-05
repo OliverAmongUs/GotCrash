@@ -1,16 +1,39 @@
 class CarsController < ApplicationController
   def new
-    respond_to do |format|
-      format.html
-      format.js
-    end
+    # puts params
+    @car = Car.new
+    # if params[:vin] != '' && !params[:vin].nil?
+    #   @car.vin = params[:vin]
+    #
+    #
+    #   carData = VehicleAPI.new(params[:vin])
+    #   @car.make, @car.model, @car.year, @car.vehicle_type, @car.body_class, @car.doors, @car.gross_vehicle_weight_rating,
+    #   @car.transmission_style, @car.engine_number_of_cylinders, @car.engine_power, @car.fuel_type = carData.getDetail
+    #
+    # end
+    #
+    # respond_to do |format|
+    #   # format.html
+    #   format.js
+    # end
+  end
+
+  def search_vin
+    puts params
     @car = Car.new
     if params[:vin] != '' && !params[:vin].nil?
       @car.vin = params[:vin]
+
+
       carData = VehicleAPI.new(params[:vin])
       @car.make, @car.model, @car.year, @car.vehicle_type, @car.body_class, @car.doors, @car.gross_vehicle_weight_rating,
       @car.transmission_style, @car.engine_number_of_cylinders, @car.engine_power, @car.fuel_type = carData.getDetail
 
+    end
+    puts("car is: #{@car}")
+    respond_to do |format|
+      # format.html
+      format.js
     end
   end
 

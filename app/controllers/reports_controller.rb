@@ -89,7 +89,13 @@ class ReportsController < ApplicationController
       end
     end
     @report.update(completed: 1)
-    redirect_to '/reports'
+
+
+
+
+
+
+    redirect_to @report
   end
 
   def search_report
