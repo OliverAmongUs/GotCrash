@@ -2,6 +2,7 @@ var map, infoWindow;
 var reportInfoWindow;
 var markers = {};
 var fixerlocation = {};
+var ownerlocation = {};
 
 function initMap(){
   var maps = document.getElementsByClassName("map");
@@ -17,6 +18,9 @@ function initMap(){
       geocoder1 = new google.maps.Geocoder();
       initFixerAddress();
       reportInfoWindow = new google.maps.InfoWindow;
+    } else if (mapId==="shopmap"){
+      geocoder2 = new google.maps.Geocoder();
+      initOwnerAddress();
     } else {
       codeAddress();
     }
@@ -40,14 +44,35 @@ function initFixerAddress(){
           map: map,
           icon: fixicon
         });
-      //infoWindow.setPosition(results[0].geometry.location);
-      //infoWindow.setContent('Your shop is here.');
-      //infoWindow.open(map);
     } else {
       alert('Geocode was not successful for the following reason: ' + status);
     }
   });
 }
+
+function initOwnerAddress(){
+  var owneraddress = gon.owner_address;
+  geocoder2.geocode( { 'address': owneraddress}, function(results, status) {
+    if (status == 'OK') {
+      map.setCenter(results[0].geometry.location);
+      ownerlocation['lat'] = results[0].geometry.location.lat();
+      ownerlocation['lng'] = results[0].geometry.location.lng();
+      var ownericon = {
+        url: "/homeicon.png", // url
+        scaledSize: new google.maps.Size(30, 45), // size
+    };
+
+        var ownerMarker = new google.maps.Marker({
+          position: {lat: results[0].geometry.location.lat(), lng: results[0].geometry.location.lng()},
+          map: map,
+          icon: ownericon
+        });
+    } else {
+      alert('Geocode was not successful for the following reason: ' + status);
+    }
+  });
+}
+
 function geolocation(){
   // Try HTML5 geolocation.
   if (navigator.geolocation) {
@@ -226,4 +251,43 @@ function clearreportmarkers(){
   Object.keys(markers).forEach(function (key) {
     markers[key].setVisible(false);
   })
+}
+
+
+function loadShops() {
+  document.getElementById("shoptable").style = "display: table";
+  var shops = gon.shops;
+  var i;
+  for (i = 0; i < shops.length; i++) {
+    var shop = shops[i];
+    var id = shop.id;
+    geocoder2.geocode( { 'address': shop.address}, function(results, status) {
+      if (status == 'OK') {
+        var lat = results[0].geometry.location.lat();
+        var lng = results[0].geometry.location.lng();
+        displayShop(lat,lng,id);
+      } else {
+        alert('Geocode was not successful for the following reason: ' + status);
+      }
+    });
+  }
+}
+
+
+function displayShop(latitude,longitude,id){
+    var pos = {
+      lat: latitude,
+      lng: longitude
+    };
+    var shopicon = {
+      url: "/fixicon.png", // url
+      scaledSize: new google.maps.Size(50, 50), // size
+    };
+    var marker = new google.maps.Marker({
+      position: pos,
+      map: map,
+      icon: shopicon
+    });
+
+
 }
