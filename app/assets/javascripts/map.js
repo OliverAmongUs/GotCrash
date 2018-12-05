@@ -1,8 +1,10 @@
 var map, infoWindow;
 var reportInfoWindow;
+var shopInfoWindow;
 var markers = {};
 var fixerlocation = {};
 var ownerlocation = {};
+var shopmarkers = {};
 
 function initMap(){
   var maps = document.getElementsByClassName("map");
@@ -21,6 +23,7 @@ function initMap(){
     } else if (mapId==="shopmap"){
       geocoder2 = new google.maps.Geocoder();
       initOwnerAddress();
+      shopInfoWindow = new google.maps.InfoWindow;
     } else {
       codeAddress();
     }
@@ -253,41 +256,124 @@ function clearreportmarkers(){
   })
 }
 
+function clearshopmarkers(){
+  Object.keys(shopmarkers).forEach(function (key) {
+    shopmarkers[key].setVisible(false);
+  })
+}
 
 function loadShops() {
+  clearreportmarkers();
+  document.getElementById("filtershop").style = "display: none";
   document.getElementById("shoptable").style = "display: table";
   var shops = gon.shops;
+  document.getElementById("numshopfound").innerHTML = shops.length+ " shops found!";
   var i;
   for (i = 0; i < shops.length; i++) {
     var shop = shops[i];
     var id = shop.id;
-    geocoder2.geocode( { 'address': shop.address}, function(results, status) {
+    var address = shop.address;
+    displayShop(id,address);
+  }
+  document.getElementById("filtername").value = "";
+  document.getElementById("shoplabel").value = 0;
+}
+
+function loadsomeShops(){
+  clearshopmarkers();
+  document.getElementById("shoptable").style = "display: none";
+  var filtername = document.getElementById("filtername").value;
+  var label = document.getElementById("shoplabel").value;
+  $.ajax({
+    method: 'Post',
+    url: 'filtershop',
+    headers: {
+  'X-Transaction': 'POST Example',
+  'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+  },
+    data: { filtername:filtername,shoplabel:label}
+  });
+  $(document).ajaxStop(function() {
+    document.getElementById("filtershop").style = "display: table";
+    var shops = gon.filteredshops;
+    document.getElementById("numshopfound").innerHTML = shops.length+ " shops found!";
+    var i;
+    for (i = 0; i < shops.length; i++) {
+      var shop = shops[i];
+      var id = shop.id;
+      var address = shop.address;
+      displayShop(id,address);
+    }
+    shops = null;
+  });
+
+
+}
+
+
+function displayShop(id,address){
+  if (shopmarkers[id]!=null){
+    shopmarkers[id].setVisible(true);
+  } else {
+    geocoder2.geocode( { 'address': address}, function(results, status) {
       if (status == 'OK') {
         var lat = results[0].geometry.location.lat();
         var lng = results[0].geometry.location.lng();
-        displayShop(lat,lng,id);
+        var pos = {
+          lat: lat,
+          lng: lng
+        };
+        var shopicon = {
+          url: "/fixicon.png", // url
+          scaledSize: new google.maps.Size(50, 50), // size
+        };
+        var marker = new google.maps.Marker({
+          position: pos,
+          map: map,
+          icon: shopicon
+        });
+        shopmarkers[id] = marker;
+         marker.addListener('click', function() {
+           showshopinfo(id,pos);
+         });
       } else {
         alert('Geocode was not successful for the following reason: ' + status);
       }
     });
   }
+
+
+
 }
 
+function showshopinfo(id,pos) {
+  var distance = google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(ownerlocation), new google.maps.LatLng(pos));
+  var miles = (distance*0.000621371192).toFixed(2);
+  $.ajax({
+    method: 'Post',
+    headers: {
+  'X-Transaction': 'POST Example',
+  'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+  },
+    url: 'showshop',
+    data: { shop_id: id,distance:miles},
+  });
 
-function displayShop(latitude,longitude,id){
-    var pos = {
-      lat: latitude,
-      lng: longitude
-    };
-    var shopicon = {
-      url: "/fixicon.png", // url
-      scaledSize: new google.maps.Size(50, 50), // size
-    };
-    var marker = new google.maps.Marker({
-      position: pos,
-      map: map,
-      icon: shopicon
-    });
+  $(document).ajaxStop(function() {
+    shopInfoWindow.setContent(document.getElementById("showshop").innerHTML);
+    shopInfoWindow.setPosition(pos);
+    shopInfoWindow.open(map);
+  });
+  //document.getElementById("distancemile").innerHTML = "Distance: " +miles + " miles";
 
+}
+
+function moveToShop(id){
+  var thismarker = shopmarkers[id];
+  map.setCenter(thismarker.position);
+  var thisposition = {};
+  thisposition['lat'] = thismarker.position.lat();
+  thisposition['lng'] = thismarker.position.lng();
+  showshopinfo(id,thisposition);
 
 }

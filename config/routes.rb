@@ -47,6 +47,8 @@ Rails.application.routes.draw do
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get 'shopsearch', to: 'shop_search#shopsearch'
+  post 'filtershop', to: 'shop_search#filtershop'
+  post 'showshop', to: 'shop_search#showshop'
 
   get 'choosereport', to: 'bids#choosereport'
   post 'filterreport', to: 'bids#filterreport'

@@ -1,0 +1,25 @@
+<%= stylesheet_link_tag "admin.css" %>
+<%= javascript_include_tag "admin.js" %>
+
+
+
+      <div class="col-lg-7">
+        <%= image_tag @shop.picture_url_url.to_s, style:"height:203px;width:300px;padding:5px" %>
+      </div>
+      <div class="col-lg-5">
+      <h3 class="padding_label2">
+        <strong>Auto Shop name:</strong>
+        <%= @shop.name %>
+      </h3>
+      <h3 class="padding_label2">
+        <strong>Address:</strong>
+        <%= @shop.address %>
+      </h3>
+      <h3 class="padding_label" id="distancemile">
+       Distance: <%= @distance %> miles
+      </h3>
+      <h3 class="padding_label2">
+        <strong>Review: </strong><%= @shop.name %>
+      </h3>
+
+    </div>
