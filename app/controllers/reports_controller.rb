@@ -93,7 +93,6 @@ class ReportsController < ApplicationController
   end
 
   def search_report
-
     @reports= current_user.reports
     if params["value"]!= ""
       if params["value"] == "0"
@@ -104,7 +103,7 @@ class ReportsController < ApplicationController
         @reports = current_user.reports.where(completed: 0)
       end
     end
-    puts @reports
+    # puts @reports
     respond_to do |format|
       format.js
     end
