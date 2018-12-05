@@ -134,6 +134,24 @@ class ReportsController < ApplicationController
     end
   end
 
+  def search_report
+
+    @reports= current_user.reports
+    if params["value"]!= ""
+      if params["value"] == "0"
+        @reports = current_user.reports
+      elsif params["value"] == "1"
+        @reports = current_user.reports.where(completed: 1)
+      elsif params["value"] == "2"
+        @reports = current_user.reports.where(completed: 0)
+      end
+    end
+    puts @reports
+    respond_to do |format|
+      format.js
+    end
+  end
+
   private
 
     def set_report
