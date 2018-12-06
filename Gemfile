@@ -26,6 +26,9 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 gem 'carrierwave'
+
+gem 'rails-assets-sweetalert2', source: 'https://rails-assets.org'
+gem 'sweet-alert2-rails'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 gem 'bcrypt', '~>3.1.7'
