@@ -263,7 +263,7 @@ function clearshopmarkers(){
 }
 
 function loadShops() {
-  clearreportmarkers();
+  clearshopmarkers();
   document.getElementById("filtershop").style = "display: none";
   document.getElementById("shoptable").style = "display: table";
   var shops = gon.shops;
