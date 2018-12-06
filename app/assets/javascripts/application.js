@@ -15,3 +15,8 @@
 //= require jquery_ujs
 //= require activestorage
 //= require turbolinks
+<<<<<<< HEAD
+=======
+//= require cable
+//= require_tree ./channels
+>>>>>>> chat

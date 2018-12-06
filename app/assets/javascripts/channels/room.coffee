@@ -5,17 +5,16 @@ App.room = App.cable.subscriptions.create "RoomChannel",
     # Called when the subscription has been terminated by the server
 
   received: (data) ->
-    #console.log data['content']
-    unless data.body.blank?
-      console.log "DID I GET HERE"
-      $('.form-body').val("")
-      console.log "MADE IT AFTER FORM BODY"
-        #$('.messages').append '<div class="message">' +
-        #  '<div class=”header”><strong>' + data.sender_name + '</strong> ' + data.time + '</div>' +
-        #data.body + '</div>'
-        #$('.messages').scrollTop($('.messages')[0].scrollHeight)
 
-        #$('.messages').append '<div class="new-message">' +
-      #  '<div class="message-user">' + data.sender + ":" + '</div>' +
-      #  '<div class="message-content">' + data.content + '</div>' + '</div>'
-    # Called when there's incoming data on the websocket for this channel
+    unless data.picture.url == null
+      console.log data['picture']
+      #location.reload();
+    console.log "Made it past check"
+    unless data.body.blank?
+      $('.form-body').val("")
+      $('.messages').append '<div class="message">' +
+        '<div class=”header”><strong>' + data.sender_name + '</strong> ' + data.time + '</div>' +
+        data.body + '<a target="_blank" href="' + data.picture + '">View Atatchment:</a></div>'
+        $('.messages').scrollTop($('.messages')[0].scrollHeight)
+
+        #<a target="_blank" href="/uploads/message/37/turbolinks_garbage.png">View Atatchment:</a>

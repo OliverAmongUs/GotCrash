@@ -47,6 +47,7 @@ class MessagesController < ApplicationController
                                    body: message.body,
                                    sender: message.user_id,
                                    sender_name: user.name,
+                                   picture: message.picture_url_url,
                                    time: message.created_at
                                    #message: render_message(message)
       #redirect_to fixer_bid_messages_path(@fixer, @bid)

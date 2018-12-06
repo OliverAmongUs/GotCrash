@@ -20,16 +20,17 @@
     <%= link_to "Show Previous", "?m=all" %>
     <% end %>
 
-    <div class = "messages">
+    <div class="messages">
       <% @messages.each do |message| %>
       <% if message.body %>
       <% user = User.find(message.user_id) %>
       <div class=”header”><strong><%= user.name %></strong> <%= message.created_at %></div>
       <%= message.body %>
       <% end %>
-      <% if message.picture_url%>
-      <%= image_tag message.picture_url_url.to_s %>
-      <% end %>
+        <% if !message.picture_url.blank?%>
+        <br>
+        <%= link_to "View Atatchment:", message.picture_url_url.to_s, target: '_blank' %>
+        <% end %>
       <% end %>
     </div>
     <%= form_for [@fixer,@bid, @message], html: {class: "ui reply form"} do |f| %>
