@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   mount ActionCable.server, at: '/cable'
+  get 'shop_search/search'
   get 'report_join_auto/new'
   delete 'report_join_auto', to: 'report_join_auto#destroy'
 
@@ -45,6 +46,10 @@ Rails.application.routes.draw do
       end
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get 'shopsearch', to: 'shop_search#shopsearch'
+  post 'filtershop', to: 'shop_search#filtershop'
+  post 'showshop', to: 'shop_search#showshop'
+
   get 'choosereport', to: 'bids#choosereport'
   post 'filterreport', to: 'bids#filterreport'
   post 'showreport', to: 'bids#showreport'

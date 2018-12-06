@@ -1,0 +1,16 @@
+<thead>
+  <tr>
+    <th>Auto Shop</th>
+    <th>Review</th>
+  </tr>
+  </thead>
+  <tbody >
+      <% filteredshops.each do |shop| %>
+      <tr >
+        <td><%= shop.name %></td>
+        <td><%= shop.name%></td>
+        <td><%= link_to 'See on Map', "javascript:moveToShop(#{shop.id})" %></td>
+      </tr>
+      <% end %>
+  </tbody>
+  <%= include_gon %>

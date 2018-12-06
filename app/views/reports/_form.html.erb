@@ -51,22 +51,17 @@
     <%= f.label  'Add more label:' %>
     <br/>
     <% @APs.each do |ap|%>
-
-
       <% if ReportJoinAuto.exists?(report_id: @report.id, auto_part_id: ap.id) == false %>
+      <div class="inputGroup">
         <%= label_tag "#{ap.name}" %>
         <%= check_box_tag "#{ap.id}" %>
+      </div>
 
         <br/>
       <% end %>
     <% end%>
 
-
   </div>
-
-
-
-
 
 
   <div class="field form-group row form_part">
