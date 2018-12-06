@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-
+  mount ActionCable.server, at: '/cable'
   get 'report_join_auto/new'
   delete 'report_join_auto', to: 'report_join_auto#destroy'
 
