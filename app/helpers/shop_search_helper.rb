@@ -1,0 +1,2 @@
+module ShopSearchHelper
+end

@@ -33,8 +33,6 @@
     <%= f.label  'Add more problems:' %>
     <br/>
     <% @APs.each do |ap|%>
-
-
       <% if ReportJoinAuto.exists?(report_id: @report.id, auto_part_id: ap.id) == false %>
         <div class="inputGroup checkbox_label">
           <%= check_box_tag "#{ap.id}" %>

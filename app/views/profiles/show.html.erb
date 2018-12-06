@@ -74,6 +74,21 @@
 
     <div class="col-lg-12">
       <hr>
+
+      <% if current_user.type == 'Fixer'%>
+        <div class="field form-group row form_part">
+          <%= label_tag  'Existing labels:' %>
+          <% fja = FixerJoinAuto.where(fixer_id: current_user.id) %>
+          <% fja.each do |fja| %>
+            <br>
+            <%= AutoPart.where(id: fja.auto_part_id).to_a[0].name %>
+          <% end %>
+        </div>
+      <% end %>
+
+
+
+
       <div class="col-lg-4">
         <%= link_to '<button type="button"  class="btn btn-success">Edit Your Profile </button>'.html_safe, profiles_edit_path(current_user)%>
       </div>

@@ -5,8 +5,6 @@ class ProfilesController < ApplicationController
   end
 
   def show
-
-
     if logged_in?
       if current_user.type == "Owner"
         @cars = current_user.cars
