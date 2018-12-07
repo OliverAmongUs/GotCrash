@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_many :notifications
   scope :owners, -> { where(type:"Owner") }
   scope :fixers, -> { where(type:"Fixer") }
   before_save { email.downcase! }

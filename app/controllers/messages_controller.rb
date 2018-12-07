@@ -19,6 +19,11 @@ class MessagesController < ApplicationController
       @messages = @bid.messages
     end
     @message = @bid.messages.new
+    current_user.notifications.each do |notification|
+      if notification.message.bid.id == @bid.id
+        notification.destroy
+      end
+    end
   end
 
   def show
@@ -32,8 +37,6 @@ class MessagesController < ApplicationController
   end
 
   def create
-
-
     message = @bid.messages.build(message_params)
     if message.save
       user = User.find(message.user_id)
@@ -41,6 +44,11 @@ class MessagesController < ApplicationController
         @receiver_number = @bid.fixer.phone
       else
         @receiver_number = @bid.owner.phone
+      end
+      if current_user.id == message.bid.fixer.id
+        Notification.create(user_id: message.bid.report.owner.id, message_id: message.id)
+      else
+        Notification.create(user_id: message.bid.fixer.id, message_id: message.id)
       end
       send_message(@receiver_number)
       ActionCable.server.broadcast 'room_channel',
