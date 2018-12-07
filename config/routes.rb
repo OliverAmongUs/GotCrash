@@ -31,6 +31,9 @@ Rails.application.routes.draw do
   post '/profiles', to: 'profiles#show'
   post 'profile/update', to: 'profile#update'
 
+  get 'profile_display', to: 'profiles#display'
+
+
   get 'sessions/new'
   resources :users
   resources :owners, controller: :users, type: "Owner"

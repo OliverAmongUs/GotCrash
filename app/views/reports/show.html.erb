@@ -106,7 +106,7 @@
                       <tr>
                         <th colspan="1"></th>
                         <th>Description</th>
-                        <th>Auto shop</th>
+                        <th>Auto Shop</th>
                         <th>Price</th>
                         <th colspan="3"></th>
                       </tr>
@@ -117,7 +117,7 @@
                         <tr>
                           <td><%= link_to '<button type="button"  class="btn btn-primary">Choose this</button>'.html_safe,report_path(bids: @bids, chosen: bid,reportID: bid.report_id),method: :post%></td>
                           <td><%= bid.description %></td>
-                          <td><%= User.find(bid.fixer_id).name %></td>
+                          <td><%= link_to User.find(bid.fixer_id).name, profile_display_path(displayID: bid.fixer_id) %></td>
                           <td><%= bid.cost %>$</td>
                           <td><%= link_to 'Details', fixer_bid_path(current_user,bid) %></td>
                           <td><%= link_to 'Conversation', fixer_bid_messages_path(bid.fixer_id,bid.id) %></td>
