@@ -50,9 +50,6 @@ class MessagesController < ApplicationController
       else
         Notification.create(user_id: message.bid.fixer.id, message_id: message.id)
       end
-      puts "NOTIFICATION DATA"
-      puts Notification.last.user_id
-      puts Notification.last.message_id
       send_message(@receiver_number)
       ActionCable.server.broadcast 'room_channel',
                                    body: message.body,
