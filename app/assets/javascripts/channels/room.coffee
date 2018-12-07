@@ -5,16 +5,15 @@ App.room = App.cable.subscriptions.create "RoomChannel",
     # Called when the subscription has been terminated by the server
 
   received: (data) ->
-
-    unless data.picture.url == null
-      console.log data['picture']
-      #location.reload();
-    console.log "Made it past check"
+    unless data.body.blank? && data.picture.url == null
+        $('.messages').append '<div class="message">' +
+          '<div class=”header”><strong>' + data.sender_name + '</strong> ' + data.time + '</div>'
     unless data.body.blank?
       $('.form-body').val("")
-      $('.messages').append '<div class="message">' +
-        '<div class=”header”><strong>' + data.sender_name + '</strong> ' + data.time + '</div>' +
-        data.body + '<a target="_blank" href="' + data.picture + '">View Atatchment:</a></div>'
-        $('.messages').scrollTop($('.messages')[0].scrollHeight)
+      $('.messages').append data.body + '<br>'
+    unless data.picture.url == null
+      $('.messages').append '<a target="_blank" href="' + data.picture + '">View Atatchment:</a></div>'
+    $('.messages').scrollTop($('.messages')[0].scrollHeight)
+    $('#submit').removeAttr("disabled")
 
         #<a target="_blank" href="/uploads/message/37/turbolinks_garbage.png">View Atatchment:</a>

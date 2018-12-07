@@ -40,11 +40,12 @@
     <div class="field form-group">
       <%= f.label "Add a File:" %>
       <%= f.file_field :picture_url , class: "col-sm-3 form-control"%>
-      <%= f.hidden_field :picture_url_cache %>
+      <%= f.hidden_field :picture_url_cache, class: "image-submit" %>
     </div>
     <%= f.text_field :user_id, value: current_user.id, type: "hidden" %>
+    <hr>
     <div>
-      <%= f.submit "Add Reply" %>
+      <%= f.submit "Add Reply", id: "submit" %>
     </div>
 
     <% end %>

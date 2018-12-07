@@ -34,6 +34,10 @@
 /.env
 /codeship.aes
 
-
+/public/uploads/message
+/public/uploads/car
+/public/uploads/fixer
+/public/uploads/owner
+/public/uploads/report
 /public/uploads/*.jpg
 /public/uploads/*.jpeg
