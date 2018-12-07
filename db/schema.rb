@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_03_060404) do
+ActiveRecord::Schema.define(version: 2018_12_07_014951) do
 
   create_table "auto_parts", force: :cascade do |t|
     t.string "field"
@@ -64,6 +64,13 @@ ActiveRecord::Schema.define(version: 2018_12_03_060404) do
     t.integer "user_id"
     t.integer "bid_id"
     t.string "picture_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "message_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
