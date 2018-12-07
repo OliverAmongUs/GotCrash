@@ -32,15 +32,25 @@ class MessagesController < ApplicationController
   end
 
   def create
-    @message = @bid.messages.new(message_params)
-    if @message.save
+
+
+    message = @bid.messages.build(message_params)
+    if message.save
+      user = User.find(message.user_id)
       if current_user.type == "Owner"
         @receiver_number = @bid.fixer.phone
       else
         @receiver_number = @bid.owner.phone
       end
       send_message(@receiver_number)
-      redirect_to fixer_bid_messages_path(@fixer, @bid)
+      ActionCable.server.broadcast 'room_channel',
+                                   body: message.body,
+                                   sender: message.user_id,
+                                   sender_name: user.name,
+                                   picture: message.picture_url_url,
+                                   time: message.created_at
+                                   #message: render_message(message)
+      #redirect_to fixer_bid_messages_path(@fixer, @bid)
     end
   end
 
@@ -87,5 +97,8 @@ class MessagesController < ApplicationController
         # US phone numbers can make use of an image as well.
         # :media_url => image_url
       )
+    end
+    def render_message(message)
+      render(partial: 'newmessage', locals: { message: message })
     end
 end

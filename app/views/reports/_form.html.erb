@@ -8,61 +8,39 @@
     <%= f.text_field :description, class: "col-sm-2 form-control" %>
   </div>
   <div class="field form-group row form_part">
-    <%= f.label :privacy, 'If public:' %>
-    <div>
+    <%= f.label :privacy, 'Whether to allow public:', :style => "display:inline-block" %>
+    <div style="display:inline-block">
       <%= f.check_box :privacy, :data => { :toggle => 'toggle-two', :on => "Private",
       :off => 'Public', :size => 'normal', :style => 'ios'} %>
       </div>
     </div>
 
-
-
-    <div>
-      <script>
-        $(function() {
-          $('#toggle-two').bootstrapToggle({
-            on: 1,
-            off: 0
-          });
-        })
-      </script>
-    </div>
-
-  <style>
-    .toggle.ios, .toggle-on.ios, .toggle-off.ios { border-radius: 20px; }
-    .toggle.ios .toggle-handle { border-radius: 20px; }
-  </style>
-
-
-
 <div class="field form-group row form_part">
-  <%= f.label  'Existing labels:' %>
   <% rjas = ReportJoinAuto.where(report_id: @report.id) %>
-  <% rjas.each do |rja| %>
-    <br>
-    <%= AutoPart.where(id: rja.auto_part_id).to_a[0].name %>
-    <%= link_to 'Destroy', report_join_auto_path(rjaID: rja.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% if rjas.size > 0 %>
+    <%= f.label  'Car problems:' %>
+    <% rjas.each do |rja| %>
+      <br>
+      <%= AutoPart.where(id: rja.auto_part_id).to_a[0].name %>
+      <%= link_to 'Destroy', report_join_auto_path(rjaID: rja.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+    <% end %>
   <% end %>
 </div>
 
 
 
   <div class="field form-group row form_part">
-    <%= f.label  'Add more label:' %>
+    <%= f.label  'Add more problems:' %>
     <br/>
     <% @APs.each do |ap|%>
       <% if ReportJoinAuto.exists?(report_id: @report.id, auto_part_id: ap.id) == false %>
-      <div class="inputGroup">
-        <%= label_tag "#{ap.name}" %>
-        <%= check_box_tag "#{ap.id}" %>
-      </div>
-
-        <br/>
+        <div class="inputGroup checkbox_label">
+          <%= check_box_tag "#{ap.id}" %>
+          <%= label_tag "#{ap.id}", "#{ap.name}" %>
+        </div>
       <% end %>
     <% end%>
-
   </div>
-
 
   <div class="field form-group row form_part">
     <%= f.label :picture_url, 'Upload a picture:' %>

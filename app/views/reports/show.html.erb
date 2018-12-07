@@ -115,13 +115,15 @@
                     <tbody>
                       <% @bids.each do |bid| %>
                         <tr>
-                          <td><%= link_to '<button type="button"  class="btn btn-primary">Choose this</button>'.html_safe,report_path(bids: @bids, chosen: bid,reportID: bid.report_id),method: :post%></td>
+                          <td><%= link_to 'Choose this', report_path(bids: @bids,chosen: bid,reportID: bid.report_id), method: :post, data:{confirm: 'Choose this bid?'}, class:"btn btn-primary"%></td>
+                          <!-- <td><button type="button"  class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"">Choose this</button></td> -->
                           <td><%= bid.description %></td>
                           <td><%= link_to User.find(bid.fixer_id).name, profile_display_path(displayID: bid.fixer_id) %></td>
                           <td><%= bid.cost %>$</td>
                           <td><%= link_to 'Details', fixer_bid_path(current_user,bid) %></td>
                           <td><%= link_to 'Conversation', fixer_bid_messages_path(bid.fixer_id,bid.id) %></td>
                         </tr>
+
                       <% end %>
                     </tbody>
                   </table>
@@ -171,8 +173,8 @@
         </div>
         </div>
 
-
     </div><!-- /#right-panel -->
+
 
   </body>
 
@@ -180,5 +182,6 @@
     $(function(){
       $(".navbar-nav>li").eq(2).addClass("active");
     });
+
   </script>
 </html>

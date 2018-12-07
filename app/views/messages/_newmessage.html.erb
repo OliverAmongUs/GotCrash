@@ -1,0 +1,5 @@
+<div class="message">
+  <% user = User.find(message.user_id) %>
+  <div class=”header”><strong><%= user.name %></strong> <%= message.created_at %></div>
+  <%= message.body %>
+</div>
