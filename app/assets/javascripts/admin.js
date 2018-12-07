@@ -1,5 +1,3 @@
-//= require jquery
-//= require jquery_ujs
 //= require admin/main
 //= require admin/popper.min
 //= require bootstrap.min
@@ -15,10 +13,3 @@ function return0(that){
         that.value=0;
     }
 }
-
-$(function() {
-  $('#toggle-two').bootstrapToggle({
-    on: 1,
-    off: 0
-  });
-})
