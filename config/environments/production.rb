@@ -91,4 +91,8 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  #Action Cable Heroku Compatability
+  config.middleware.use RoomActionCable
+  config.web_socket_server_url = "wss://got-crash.herokuapp.com/"
 end
