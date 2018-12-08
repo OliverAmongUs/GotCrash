@@ -6,5 +6,10 @@ test:
 
 production:
   adapter: redis
-  url: <%= ENV.fetch("REDIS_URL") { "redis://localhost:6379/1" } %>
+  #url: <%= ENV.fetch("REDIS_URL") { "redis://h:pb7429eac5406d0bea72c93f8c38c27a52b31f2e26c8fd016a82c55c3b809e974@ec2-34-234-124-166.compute-1.amazonaws.com:21059" } %>
+  url: redis://h:pb7429eac5406d0bea72c93f8c38c27a52b31f2e26c8fd016a82c55c3b809e974@ec2-34-234-124-166.compute-1.amazonaws.com:21059
+  host: ec2-34-234-124-166.compute-1.amazonaws.com
+  port: 21059
+  password: pb7429eac5406d0bea72c93f8c38c27a52b31f2e26c8fd016a82c55c3b809e974
   channel_prefix: GotCrash_production
+#REDIS_URL:                redis://h:pb7429eac5406d0bea72c93f8c38c27a52b31f2e26c8fd016a82c55c3b809e974@ec2-34-234-124-166.compute-1.amazonaws.com:21059
