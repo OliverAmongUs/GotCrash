@@ -18,6 +18,14 @@ class ProfilesController < ApplicationController
     end
   end
 
+
+  def display
+    @displayUser = User.find(params[:displayID])
+
+  end
+
+
+
   def update
     @profile = current_user
     if @profile.update_attributes(user_params)
