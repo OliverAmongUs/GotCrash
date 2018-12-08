@@ -1,7 +1,7 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
   #Action Cable Heroku Compatability
-  config.middleware.use RoomActionCable
+  config.middleware.use "RoomActionCable"
   config.web_socket_server_url = "wss://got-crash.herokuapp.com/"
 
   # Code is not reloaded between requests.
