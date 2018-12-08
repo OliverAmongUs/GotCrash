@@ -1,12 +1,8 @@
 <html>
 <head>
-<link rel="apple-touch-icon" href="apple-icon.png">
-<link rel="shortcut icon" href="favicon.ico">
-<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
-
-<%= javascript_include_tag "admin.js" %>
-<%= stylesheet_link_tag "admin.css" %>
-
+  <link rel="apple-touch-icon" href="apple-icon.png">
+  <link rel="shortcut icon" href="favicon.ico">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 </head>
 
 <body>
@@ -44,10 +40,10 @@
         <div class="content mt-3">
             <div class="animated fadeIn">
                 <div class="row">
-
+                  <div class="col-lg-12">
             <div class="card">
 
-              <div class="container">
+              <div class="card-body">
                 <table class="table table-striped">
                   <thead>
                     <tr>
@@ -83,6 +79,8 @@
 
               </div>
             </div>
+          </div>
+        </div>
     </div><!-- /#right-panel -->
 </body>
 
@@ -91,4 +89,5 @@
     $(".navbar-nav>li").eq(1).addClass("active");
   });
 </script>
+
 </html>

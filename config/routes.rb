@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  mount ActionCable.server, at: '/cable'
+
   get 'shop_search/search'
   get 'report_join_auto/new'
   delete 'report_join_auto', to: 'report_join_auto#destroy'
@@ -66,5 +66,5 @@ Rails.application.routes.draw do
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
   get '/logout',  to: 'sessions#destroy'
-
+  mount ActionCable.server, at: '/cable'
 end
