@@ -4,9 +4,6 @@
 <link rel="apple-touch-icon" href="apple-icon.png">
 <link rel="shortcut icon" href="favicon.ico">
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
-
-<%= stylesheet_link_tag "admin.css" %>
-<%= javascript_include_tag "admin.js" %>
 </head>
 
 <body>
@@ -51,36 +48,34 @@
             <div class="col-lg-11">
             <div class="card">
 
-
-
-              <div class="col-lg-7">
+                <div class="card-body">
                 <h3 class="padding_label">
                   <strong>This review is for Report ID</strong>
                 </h3>
-                <p>
+                <h3 class="padding_label grey">
                   <%= @review.report_id %>
-                </p>
+                </h3>
                 <hr>
                 <h3 class="padding_label">
                   <strong>This is a review for Auto Shoper:</strong
                 </h3>
-                <p>
+                <h3 class="padding_label grey">
                   <%= User.find(@review.fixer_id).name %>
-                </p>
+                </h3>
                 <hr>
                 <h3 class="padding_label">
                   <strong>Rating:</strong>
                 </h3>
-                <p>
+                <h3 class="padding_label grey">
                   <%= @review.rating %>
-                </p>
+                </h3>
                 <hr>
                 <h3 class="padding_label">
                   <strong>Comment:</strong>
                 </h3>
-                <p>
+                <h3 class="padding_label grey">
                   <%= @review.description %>
-                </p>
+                </h3>
               </div>
             </div>
 
