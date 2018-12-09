@@ -6,7 +6,7 @@ App.room = App.cable.subscriptions.create "RoomChannel",
 
   received: (data) ->
     $('#submit').removeAttr("disabled")
-    $('#' + data.receiver_id).text data.count
+    $('#' + data.receiver_id).text ('' + data.count)
     unless data.body.blank? && data.picture.url == null
         $('.messages').append '<div class="message">' +
           '<div class=”header”><strong>' + data.sender_name + '</strong> ' + data.time + '</div>'
