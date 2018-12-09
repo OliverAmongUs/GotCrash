@@ -40,23 +40,38 @@ class MessagesController < ApplicationController
     message = @bid.messages.build(message_params)
     if message.save
       user = User.find(message.user_id)
-      if current_user.type == "Owner"
+      if current_user.type == "Owner" #sets up and sends to phone number
         @receiver_number = @bid.fixer.phone
+        receiver = @bid.fixer
       else
         @receiver_number = @bid.owner.phone
-      end
-      if current_user.id == message.bid.fixer.id
-        Notification.create(user_id: message.bid.report.owner.id, message_id: message.id)
-      else
-        Notification.create(user_id: message.bid.fixer.id, message_id: message.id)
+        receiver = @bid.owner
       end
       send_message(@receiver_number)
+
+      check = true
+      receiver.notifications.each do |notification| #check if there is a notification for this bid
+        if notification.message.bid.id == @bid.id
+          check = false
+        end
+      end
+      if check == true #Sets up notifications and action cable broadcast
+        if current_user.id == message.bid.fixer.id
+          Notification.create(user_id: message.bid.report.owner.id, message_id: message.id)
+        else
+          Notification.create(user_id: message.bid.fixer.id, message_id: message.id)
+        end
+      end
       ActionCable.server.broadcast 'room_channel',
                                    body: message.body,
                                    sender: message.user_id,
                                    sender_name: user.name,
                                    picture: message.picture_url_url,
-                                   time: message.created_at
+                                   time: message.created_at,
+                                   count: receiver.notifications.count,
+                                   receiver_id: receiver.id,
+                                   fixer_id: @fixer.id,
+                                   bid_id: @bid.id
                                    #message: render_message(message)
       #redirect_to fixer_bid_messages_path(@fixer, @bid)
     end
