@@ -61,7 +61,8 @@ class MessagesController < ApplicationController
                                    picture: message.picture_url_url,
                                    time: message.created_at,
                                    count: current_user.notifications.count,
-                                   receiver_id: receiver.id
+                                   receiver_id: receiver.id,
+                                   sender_id: user.id
                                    #message: render_message(message)
       #redirect_to fixer_bid_messages_path(@fixer, @bid)
     end
