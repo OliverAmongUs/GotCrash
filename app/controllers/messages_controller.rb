@@ -47,6 +47,7 @@ class MessagesController < ApplicationController
         @receiver_number = @bid.owner.phone
         receiver = @bid.owner
       end
+
       #send_message(@receiver_number)
 
       if current_user.id == message.bid.fixer.id #Sets up notifications and action cable broadcast
@@ -60,9 +61,8 @@ class MessagesController < ApplicationController
                                    sender_name: user.name,
                                    picture: message.picture_url_url,
                                    time: message.created_at,
-                                   count: current_user.notifications.count,
-                                   receiver_id: receiver.id,
-                                   sender_id: user.id
+                                   count: receiver.notifications.count,
+                                   receiver_id: receiver.id
                                    #message: render_message(message)
       #redirect_to fixer_bid_messages_path(@fixer, @bid)
     end
