@@ -42,8 +42,10 @@ class MessagesController < ApplicationController
       user = User.find(message.user_id)
       if current_user.type == "Owner" #sets up and sends to phone number
         @receiver_number = @bid.fixer.phone
+        receiver = @bid.fixer.name
       else
         @receiver_number = @bid.owner.phone
+        receiver = @bid.owner.name
       end
       #send_message(@receiver_number)
 
@@ -58,7 +60,8 @@ class MessagesController < ApplicationController
                                    sender_name: user.name,
                                    picture: message.picture_url_url,
                                    time: message.created_at,
-                                   count: current_user.notifications.count
+                                   count: current_user.notifications.count,
+                                   receiver_name: receiver
                                    #message: render_message(message)
       #redirect_to fixer_bid_messages_path(@fixer, @bid)
     end
