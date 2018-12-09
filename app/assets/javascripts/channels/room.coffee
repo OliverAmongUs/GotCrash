@@ -15,7 +15,7 @@ App.room = App.cable.subscriptions.create "RoomChannel",
     unless data.picture.url == null
       $('.messages').append '<a target="_blank" href="' + data.picture + '">View Atatchment:</a></div>'
     #$('.messages').scrollTop($('.messages')[0].scrollHeight)
-    $('.count').append '<div> <p>' + data.count + '</p></div>';
+    $('#' + data.sender_name).append '<div> <p>' + data.count + '</p></div>';
 
 
 
