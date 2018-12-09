@@ -40,23 +40,25 @@ class MessagesController < ApplicationController
     message = @bid.messages.build(message_params)
     if message.save
       user = User.find(message.user_id)
-      if current_user.type == "Owner"
+      if current_user.type == "Owner" #sets up and sends to phone number
         @receiver_number = @bid.fixer.phone
       else
         @receiver_number = @bid.owner.phone
       end
-      if current_user.id == message.bid.fixer.id
+      #send_message(@receiver_number)
+
+      if current_user.id == message.bid.fixer.id #Sets up notifications and action cable broadcast
         Notification.create(user_id: message.bid.report.owner.id, message_id: message.id)
       else
         Notification.create(user_id: message.bid.fixer.id, message_id: message.id)
       end
-      send_message(@receiver_number)
       ActionCable.server.broadcast 'room_channel',
                                    body: message.body,
                                    sender: message.user_id,
                                    sender_name: user.name,
                                    picture: message.picture_url_url,
-                                   time: message.created_at
+                                   time: message.created_at,
+                                   count: current_user.notifications.count
                                    #message: render_message(message)
       #redirect_to fixer_bid_messages_path(@fixer, @bid)
     end

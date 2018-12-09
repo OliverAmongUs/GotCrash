@@ -23,7 +23,7 @@
                           <!-- Notification code here: -->
                           <% count = current_user.notifications.count %>
                           <% if count > 0 %>
-                          <span class="count bg-primary"><%= count %></span>
+                          <span class="count bg-primary" id="<%= current_user.name %>"><%= count %></span>
                           <% end %>
                       </button>
                       <div class="user-menu dropdown-menu" aria-labelledby="message">
