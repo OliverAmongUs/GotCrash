@@ -28,7 +28,10 @@
 
                       </button>
                       <div class="user-menu dropdown-menu" aria-labelledby="message" id="drop<%= current_user.id%>">
-
+                        <% current_user.notifications.each do |notification| %>
+                        <% username = User.find(notification.message.user_id).name %>
+                         <p><%= link_to username + ' has responded to you!', fixer_bid_messages_path(notification.message.bid.fixer_id,notification.message.bid_id) %></p>
+                        <% end %>
                       </div>
                   </div>
               </div>
