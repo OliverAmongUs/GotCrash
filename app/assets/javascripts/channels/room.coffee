@@ -13,8 +13,9 @@ App.room = App.cable.subscriptions.create "RoomChannel",
       $('.messages').append data.body + '<br>'
     unless data.picture.url == null
       $('.messages').append '<a target="_blank" href="' + data.picture + '">View Atatchment:</a></div>'
-    $('.messages').scrollTop($('.messages')[0].scrollHeight)
+    #$('.messages').scrollTop($('.messages')[0].scrollHeight)
+    $('#'+data.sender_name).text(data.count);
     $('#submit').removeAttr("disabled")
-    $('#'+data.receiver_name).text(data.count);
+
 
         #<a target="_blank" href="/uploads/message/37/turbolinks_garbage.png">View Atatchment:</a>
