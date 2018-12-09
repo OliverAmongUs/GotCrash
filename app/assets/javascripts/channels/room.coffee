@@ -7,9 +7,8 @@ App.room = App.cable.subscriptions.create "RoomChannel",
   received: (data) ->
     $('#submit').removeAttr("disabled")
     $('#' + data.receiver_id).text data.count
-    #$('#drop' + data.receiver_id).append '<p> ' + data.sender_name + ' has sent a reply!</p>'
-    $('#drop' + data.receiver_id).append '<a href=https://got-crash.herokuapp.com/fixers/' + data.fixer_id + '/bids/' +
-      data.bid_id + '/messages>' + data.sender_name + ' has sent a reply!</a>'
+    $('#drop' + data.receiver_id).append '<p><a href=https://got-crash.herokuapp.com/fixers/' + data.fixer_id + '/bids/' +
+      data.bid_id + '/messages>' + data.sender_name + ' has sent a reply!</a></p>'
     unless data.body.blank? && data.picture.url == null
         $('.messages').append '<div class="message">' +
           '<div class=”header”><strong>' + data.sender_name + '</strong> ' + data.time + '</div>'
