@@ -5,7 +5,8 @@
       <div class="header-menu">
 
           <div class="col-sm-7">
-              <!-- <a id="menuToggle" class="menutoggle pull-left"><i class="fa fa fa-tasks"></i></a> -->
+              <!-- <a id="menuToggle" class="menutoggle pull-left"><i class="fa fa fa-tasks"></i></a>
+            <a href="http://google.com" class="btn btn-default"> </a>-->
               <div class="header-left">
                   <button class="search-trigger"><i class="fa fa-search"></i></button>
                   <div class="form-inline">
@@ -23,7 +24,7 @@
                           <!-- Notification code here: -->
                           <% count = current_user.notifications.count %>
                           <!-- check if count is greater than 0 first-->
-                          <span class="count bg-primary" id="<%= current_user.name %>"><%= count %></span>
+                          <span class="count bg-primary" id="<%= current_user.id %>"><%= count %></span>
 
                       </button>
                       <div class="user-menu dropdown-menu" aria-labelledby="message">
