@@ -43,10 +43,10 @@ class ReviewsController < ApplicationController
 
     if @review.save
       flash[:success] = 'create new review successfully'
-      updateFixer = User.find(@review.fixer_id)
+      # updateFixer = User.find(@review.fixer_id)
+      # # byebug
+      # numReview = Review.where(:fixer_id @review.fixer_id)
       # byebug
-      numReview = Review.where(:fixer_id @review.fixer_id)
-      byebug
       # updateFixer.average_rating = (updateFixer.average_rating * numReview + @review.rating) / (numReview + 1)
       redirect_to @review
     else
