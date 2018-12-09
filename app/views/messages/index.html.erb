@@ -23,10 +23,11 @@
       <% user = User.find(message.user_id) %>
       <div class=”header”><strong><%= user.name %></strong> <%= message.created_at %></div>
       <%= message.body %>
+      <br>
       <% end %>
         <% if !message.picture_url.blank?%>
-        <br>
         <%= link_to "View Atatchment:", message.picture_url_url.to_s, target: '_blank' %>
+        <br>
         <% end %>
       <% end %>
     </div>

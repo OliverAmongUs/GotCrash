@@ -6,7 +6,7 @@ App.room = App.cable.subscriptions.create "RoomChannel",
 
   received: (data) ->
     $('#submit').removeAttr("disabled")
-    $('#' + data.receiver_id).text 'data.count'
+    $('#' + data.receiver_id).text data.count
     unless data.body.blank? && data.picture.url == null
         $('.messages').append '<div class="message">' +
           '<div class=”header”><strong>' + data.sender_name + '</strong> ' + data.time + '</div>'
@@ -14,7 +14,7 @@ App.room = App.cable.subscriptions.create "RoomChannel",
       $('.form-body').val("")
       $('.messages').append data.body + '<br>'
     unless data.picture.url == null
-      $('.messages').append '<a target="_blank" href="' + data.picture + '">View Atatchment:</a></div>'
+      $('.messages').append '<a target="_blank" href="' + data.picture + '">View Atatchment:</a><br></div>'
     #$('.messages').scrollTop($('.messages')[0].scrollHeight)
 
 
