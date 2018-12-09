@@ -39,7 +39,7 @@ function initFixerAddress(){
       fixerlocation['lng'] = results[0].geometry.location.lng();
       var fixicon = {
         url: "/fixicon.png", // url
-        scaledSize: new google.maps.Size(50, 50), // size
+        scaledSize: new google.maps.Size(45, 45), // size
     };
 
         var fxiMarker = new google.maps.Marker({
@@ -62,7 +62,7 @@ function initOwnerAddress(){
       ownerlocation['lng'] = results[0].geometry.location.lng();
       var ownericon = {
         url: "/homeicon.png", // url
-        scaledSize: new google.maps.Size(30, 45), // size
+        scaledSize: new google.maps.Size(45, 45), // size
     };
 
         var ownerMarker = new google.maps.Marker({
@@ -206,8 +206,8 @@ function displayReport(latitude,longitude,id){
       lng: longitude
     };
     var reporticon = {
-      url: "https://cdn4.iconfinder.com/data/icons/car-maintenance-and-service-3/48/garage-location-car-sale-gps-map-marker-2-512.png", // url
-      scaledSize: new google.maps.Size(40, 40), // size
+      url: "/reporticon.png", // url
+      scaledSize: new google.maps.Size(45, 45), // size
     };
     var marker = new google.maps.Marker({
       position: pos,

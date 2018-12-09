@@ -5,6 +5,10 @@ App.room = App.cable.subscriptions.create "RoomChannel",
     # Called when the subscription has been terminated by the server
 
   received: (data) ->
+    $('#submit').removeAttr("disabled")
+    $('#' + data.receiver_id).text data.count
+    $('#drop' + data.receiver_id).append '<p><a href=https://got-crash.herokuapp.com/fixers/' + data.fixer_id + '/bids/' +
+      data.bid_id + '/messages>' + data.sender_name + ' has sent a reply!</a></p>'
     unless data.body.blank? && data.picture.url == null
         $('.messages').append '<div class="message">' +
           '<div class=”header”><strong>' + data.sender_name + '</strong> ' + data.time + '</div>'
@@ -12,8 +16,7 @@ App.room = App.cable.subscriptions.create "RoomChannel",
       $('.form-body').val("")
       $('.messages').append data.body + '<br>'
     unless data.picture.url == null
-      $('.messages').append '<a target="_blank" href="' + data.picture + '">View Atatchment:</a></div>'
-    $('.messages').scrollTop($('.messages')[0].scrollHeight)
-    $('#submit').removeAttr("disabled")
+      $('.messages').append '<a target="_blank" href="' + data.picture + '">View Atatchment:</a><br></div>'
+    #$('.messages').scrollTop($('.messages')[0].scrollHeight)
 
-        #<a target="_blank" href="/uploads/message/37/turbolinks_garbage.png">View Atatchment:</a>
+    #<a href="https://www.w3schools.com">Visit W3Schools.com!</a>
