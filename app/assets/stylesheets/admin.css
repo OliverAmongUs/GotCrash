@@ -235,3 +235,11 @@
 .rating-stars ul > li.star.selected > i.fa {
   color:#FF912C;
 }
+
+.messages {
+  border-radius:15px;
+  -moz-border-radius:15px; /* Old Firefox */
+  background-color:#f1f2f7;
+  padding: 10px;
+  height: 500px;
+}

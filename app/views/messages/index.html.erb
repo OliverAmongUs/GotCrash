@@ -6,12 +6,42 @@
 </head>
 
 <body>
-    <%= render "layouts/left_panel" %>
-    <div id="right-panel" class="right-panel">
+  <%= render "layouts/left_panel" %>
+  <!-- Right Panel -->
+
+  <div id="right-panel" class="right-panel">
 
 
-        <%= render "layouts/header" %>
-    <p id="notice"><%= notice %></p>
+      <%= render "layouts/header" %>
+      <div class="breadcrumbs">
+          <div class="col-sm-4">
+              <div class="page-header float-left">
+                  <div class="page-title">
+                      <h1>Chat</h1>
+                  </div>
+              </div>
+          </div>
+
+          <div class="col-sm-8">
+              <div class="page-header float-right">
+                  <div class="page-title">
+                      <ol class="breadcrumb text-right">
+                          <li><a href="/">GotCrash</a></li>
+                          <li><a href="/bids">Bids</a></li>
+                          <li class="active">Chat</li>
+                      </ol>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="content mt-3">
+          <div class="animated fadeIn">
+          <div class="row">
+          <div class="col-lg-10">
+          <div class="card">
+          <div class="card-body card-block">
+
+
 
     <% if @over_ten %>
     <%= link_to "Show Previous", "?m=all" %>
@@ -21,16 +51,16 @@
       <% @messages.each do |message| %>
       <% if message.body %>
       <% user = User.find(message.user_id) %>
-      <div class=”header”><strong><%= user.name %></strong> <%= message.created_at %></div>
+      <div class=”header”><strong><%= user.name %></strong> <%= message.created_at.strftime("%F %R") %></div>
       <%= message.body %>
       <br>
       <% end %>
         <% if !message.picture_url.blank?%>
         <%= link_to "View Atatchment:", message.picture_url_url.to_s, target: '_blank' %>
-        <br>
         <% end %>
       <% end %>
     </div>
+    <br>
     <%= form_for [@fixer,@bid, @message], html: {class: "ui reply form"} do |f| %>
     <div class=”field”>
       <%= f.text_area :body, class: "form-control form-body" %>
@@ -45,7 +75,11 @@
     <div>
       <%= f.submit "Add Reply", id: "submit" %>
     </div>
-
     <% end %>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
   </div>
 </body>
