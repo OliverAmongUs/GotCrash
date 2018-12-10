@@ -32,6 +32,10 @@
   <div class="field form-group row form_part">
     <%= f.label  'Add more problems:' %>
     <br/>
+    <div class="inputGroup checkbox_label">
+              <input type="checkbox" name="1" id="200" value="1">
+              <label for="200">Doors Damage</label>
+            </div>
     <% @APs.each do |ap|%>
       <% if ReportJoinAuto.exists?(report_id: @report.id, auto_part_id: ap.id) == false %>
         <div class="inputGroup checkbox_label">
