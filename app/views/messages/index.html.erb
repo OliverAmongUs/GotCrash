@@ -3,6 +3,8 @@
 <link rel="apple-touch-icon" href="apple-icon.png">
 <link rel="shortcut icon" href="favicon.ico">
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.css">
+<script src="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.js"></script>
 </head>
 
 <body>
@@ -17,7 +19,7 @@
           <div class="col-sm-4">
               <div class="page-header float-left">
                   <div class="page-title">
-                      <h1>Chat</h1>
+                      <h1>Conversation</h1>
                   </div>
               </div>
           </div>
@@ -28,7 +30,7 @@
                       <ol class="breadcrumb text-right">
                           <li><a href="/">GotCrash</a></li>
                           <li><a href="/bids">Bids</a></li>
-                          <li class="active">Chat</li>
+                          <li class="active">Conversation</li>
                       </ol>
                   </div>
               </div>
@@ -41,39 +43,48 @@
           <div class="card">
           <div class="card-body card-block">
 
-
-
-    <% if @over_ten %>
-    <%= link_to "Show Previous", "?m=all" %>
-    <% end %>
-
     <div class="messages">
+      <div class="simplebar-content" style="padding: 0px calc(20px) 0px 0px; height: 100%">
       <% @messages.each do |message| %>
-      <% if message.body %>
-      <% user = User.find(message.user_id) %>
-      <div class=”header”><strong><%= user.name %></strong> <%= message.created_at.strftime("%F %R") %></div>
-      <%= message.body %>
-      <br>
+          <% user = User.find(message.user_id) %>
+          <div class="message-header">
+            <%= image_tag user.picture_url_url.to_s, class:"img-circle small-image"%>
+            <div class="message-name">
+              <strong><%= user.name %></strong>
+              <div class="message-time"><%= message.created_at.strftime("%F %R") %></div>
+            </div>
+          </div>
+
+
+          <% if message.body %>
+          <div class="message-body">
+            <%= message.body %>
+          </div>
+          <% end %>
+
+
+          <% if !message.picture_url.blank?%>
+          <div class="message-attachment">
+            <%= link_to "View Atatchment", message.picture_url_url.to_s, target: '_blank' %>
+          </div>
+          <% end %>
+
       <% end %>
-        <% if !message.picture_url.blank?%>
-        <%= link_to "View Atatchment:", message.picture_url_url.to_s, target: '_blank' %>
-        <% end %>
-      <% end %>
+      </div>
     </div>
     <br>
     <%= form_for [@fixer,@bid, @message], html: {class: "ui reply form"} do |f| %>
     <div class=”field”>
       <%= f.text_area :body, class: "form-control form-body" %>
     </div>
-    <div class="field form-group">
-      <%= f.label "Add a File:" %>
-      <%= f.file_field :picture_url , class: "col-sm-3 form-control"%>
-      <%= f.hidden_field :picture_url_cache, class: "image-submit" %>
-    </div>
+    <br>
+    <%= f.label "Add an Atatchment:"%>
+    <%= f.file_field :picture_url%>
+    <%= f.hidden_field :picture_url_cache, class: "image-submit" %>
     <%= f.text_field :user_id, value: current_user.id, type: "hidden" %>
     <hr>
     <div>
-      <%= f.submit "Add Reply", id: "submit" %>
+      <%= f.submit "Add Reply", id: "submit", class:"btn btn-primary" %>
     </div>
     <% end %>
     </div>
@@ -83,3 +94,9 @@
     </div>
   </div>
 </body>
+<script type="text/javascript">
+  $(function(){
+    $(".navbar-nav>li").eq(2).addClass("active");
+  });
+</script>
+</html>

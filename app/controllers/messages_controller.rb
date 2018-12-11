@@ -47,7 +47,7 @@ class MessagesController < ApplicationController
         @receiver_number = @bid.owner.phone
         receiver = @bid.owner
       end
-      send_message(@receiver_number)
+      #send_message(@receiver_number)
 
       check = true
       receiver.notifications.each do |notification| #check if there is a notification for this bid
@@ -67,7 +67,8 @@ class MessagesController < ApplicationController
                                    sender: message.user_id,
                                    sender_name: user.name,
                                    picture: message.picture_url_url,
-                                   time: message.created_at,
+                                   user_picture: current_user.picture_url_url,
+                                   time: message.created_at.strftime("%F %R"),
                                    count: receiver.notifications.count,
                                    receiver_id: receiver.id,
                                    fixer_id: @fixer.id,

@@ -1,5 +1,4 @@
 class ReportsController < ApplicationController
-
   def index
     #@reports = Report.find_by_owner_id(current_user.id)
     @reports = current_user.reports
