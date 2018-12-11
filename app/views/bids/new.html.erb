@@ -54,17 +54,39 @@
                   <%= form_with(model: @bid, local: true,url:fixer_bids_path ) do |form| %>
                     <% if @bid.errors.any? %>
                       <div id="error_explanation">
-                        <h2><%= pluralize(bid.errors.count, "error") %> prohibited this bid from being saved:</h2>
+                        <h2><%= pluralize(@bid.errors.count, "error") %> prohibited this bid from being saved:</h2>
 
                         <ul>
-                        <% bid.errors.full_messages.each do |message| %>
+                        <% @bid.errors.full_messages.each do |message| %>
                           <li><%= message %></li>
                         <% end %>
                         </ul>
                       </div>
                     <% end %>
+                    <p>Report Information</p>
+                    <hr>
+
+                    <div class="field form-group row form_part" >
+                      <%= image_tag @report.picture_url_url.to_s, style:"height:230px;"%>
+                    </div>
+
+
+                    <div class="field form-group row form_part">
+                      <%= label_tag "Address:"  %>
+                      <%= @report.address  %>
+                    </div>
+
+                    <div class="field form-group row form_part">
+                      <%= label_tag "Report Description:"  %>
+                      <%= @report.description %>
+                    </div>
+
+                    <p>Bid Information</p>
+                    <hr>
+
+
                     <div class="field">
-                      <%= form.hidden_field :report_id, :value => @report_id %>
+                      <%= form.hidden_field :report_id, :value => @report.id %>
                     </div>
 
                     <div class="field form-group row form_part">
@@ -73,7 +95,7 @@
                     </div>
 
                     <div class="field form-group row form_part">
-                      <%= form.label :cost %>
+                      <%= form.label "Cost($)" %>
                       <%= form.number_field :cost, class: "col-sm-2 form-control" %>
                     </div>
 
@@ -87,14 +109,11 @@
 
                   </div>
 
-
-
-
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+
           </div><!-- /#right-panel -->
 
 <script type="text/javascript">

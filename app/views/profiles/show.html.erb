@@ -67,6 +67,14 @@
                   <strong>Phone:</strong>
                   <%= @user2.phone %>
                 </h3>
+                <hr>
+                <% if @user2.type == 'Fixer' %>
+
+                  <h3 class="padding_label">
+                    <strong>Average Rating:</strong>
+                    <%= @user2.average_rating %>
+                  </h3>
+                <% end %>
               </div>
 
 
@@ -83,6 +91,7 @@
           <% end %>
         </div>
       <% end %>
+
 
 
 
