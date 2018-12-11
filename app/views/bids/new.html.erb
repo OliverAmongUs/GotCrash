@@ -25,7 +25,7 @@
             <div class="col-sm-4">
                 <div class="page-header float-left">
                     <div class="page-title">
-                        <h1>New Bid</h1>
+                        <h1>New Estimate</h1>
                     </div>
                 </div>
             </div>
@@ -35,8 +35,8 @@
                     <div class="page-title">
                         <ol class="breadcrumb text-right">
                             <li><a href="/">GotCrash</a></li>
-                            <li><a href="/reports">My Bids</a></li>
-                            <li class="active">new bid></li>
+                            <li><a href="/reports">My Estimates</a></li>
+                            <li class="active">New Estimate></li>
                         </ol>
                     </div>
                 </div>
@@ -54,7 +54,7 @@
                   <%= form_with(model: @bid, local: true,url:fixer_bids_path ) do |form| %>
                     <% if @bid.errors.any? %>
                       <div id="error_explanation">
-                        <h2><%= pluralize(@bid.errors.count, "error") %> prohibited this bid from being saved:</h2>
+                        <h2><%= pluralize(@bid.errors.count, "error") %> prohibited this estimate from being saved:</h2>
 
                         <ul>
                         <% @bid.errors.full_messages.each do |message| %>
@@ -63,7 +63,8 @@
                         </ul>
                       </div>
                     <% end %>
-                    <p>Report Information</p>
+
+                    <h3>Report Information</h3>
                     <hr>
 
                     <div class="field form-group row form_part" >
@@ -81,16 +82,12 @@
                       <%= @report.description %>
                     </div>
 
-                    <p>Bid Information</p>
-                    <hr>
-
-
                     <div class="field">
                       <%= form.hidden_field :report_id, :value => @report.id %>
                     </div>
-
+                    <hr>
                     <div class="field form-group row form_part">
-                      <%= form.label :description %>
+                      <%= form.label "Describe your solution:" %>
                       <%= form.text_area :description, class: "col-sm-2 form-control" %>
                     </div>
 

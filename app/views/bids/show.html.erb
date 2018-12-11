@@ -23,7 +23,7 @@
             <div class="col-sm-4">
                 <div class="page-header float-left">
                     <div class="page-title">
-                        <h1>Bid #<%=@bid.id%></h1>
+                        <h1>Estimate #<%=@bid.id%></h1>
                     </div>
                 </div>
             </div>
@@ -33,7 +33,7 @@
                     <div class="page-title">
                         <ol class="breadcrumb text-right">
                             <li><a href="/">GotCrash</a></li>
-                            <li><a href="/reports">My Reports</a></li>
+                            <li><a href="/reports">My Estimates</a></li>
                             <li class="active">#<%=@bid.id%></li>
                         </ol>
                     </div>
@@ -54,21 +54,39 @@
                 </h3>
                 <hr>
                 <h3 class="padding_label">
-                  Description:<span class="grey right"><%= @bid.description %></span>
+                  Report Description:<span class="grey right"><%= @report.description %></span>
+                </h3>
+                <hr>
+                <h3 class="padding_label">
+                  My Description:<span class="grey right"><%= @bid.description %></span>
                 </h3>
                 <hr>
                 <h3 class="padding_label">
                   Cost:<span class="grey right">$ <%= @bid.cost %></span>
                 </h3>
                 <hr>
+                <% if current_user.type == 'Owner' %>
+                <% else %>
                 <h3 class="padding_label">
-                  Did the user ignore it?<span class="grey right"><% if @bid.ignored == 0 %> No <% else %> Yes <% end %></span>
+                  User Status<span class="grey right">
+                    <% if @bid.ignored == 1 %>
+                    Ignored
+                    <% elsif @bid.marked == 1 %>
+                    Chosed You
+                    <% else %>
+                    Haven't decided yet
+                    <% end %>
+                  </span>
                 </h3>
+                  <% end %>
                 <hr>
               </div>
 
               <div class="col-lg-4">
-                <%= link_to 'Edit bid', edit_fixer_bid_path(current_user, @bid), class: "btn btn-danger", style: "width:106px" %>
+                <% if current_user.type == 'Owner' %>
+                <% else %>
+                <%= link_to 'Edit Estimate', edit_fixer_bid_path(current_user, @bid), class: "btn btn-danger", style: "width:106px" %>
+                <% end %>
               </div>
               <div class="col-lg-4 col-lg-offset-4">
                 <% if current_user.type == 'Owner' %>
