@@ -7,16 +7,19 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+
+
+
   # GET /users/1
   # GET /users/1.json
   def show
     set_user
+
   end
 
   # GET /users/new
   def new
     @user = User.new
-    @user.average_rating = 0
   end
 
   # GET /users/1/edit
@@ -28,8 +31,11 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-    @user.average_rating = 0
+
     if @user.save
+      @fUser = ForeignUser.new(user_id: @user.id, average_rating: 0)
+      @fUser.save
+
       flash[:success] = 'Sign up successfully'
       log_in @user
       redirect_to '/profiles'
