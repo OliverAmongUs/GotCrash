@@ -1,3 +1,5 @@
+//= require sweetalert2
+//= require sweet-alert2-rails
 //= require admin/main
 //= require admin/popper.min
 //= require bootstrap.min
