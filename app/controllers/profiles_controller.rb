@@ -9,6 +9,8 @@ class ProfilesController < ApplicationController
       if current_user.type == "Owner"
         @cars = current_user.cars
       else
+
+        @fUser = ForeignUser.where(user_id: current_user.id)[0]
         @cars = nil
       end
       @profile ||= current_user

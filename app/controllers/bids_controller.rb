@@ -50,7 +50,7 @@ class BidsController < ApplicationController
   def update
     respond_to do |format|
       if @bid.update(bid_params)
-        format.html { redirect_to fixer_bid_path(current_user,@bid), notice: 'Bid was successfully updated.' }
+        format.html { redirect_to fixer_bid_path(current_user, @bid), notice: 'Bid was successfully updated.' }
         format.json { render :show, status: :ok, location: fixer_bid_path(current_user,@bid)  }
       else
         format.html { render :edit }

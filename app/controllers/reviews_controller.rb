@@ -1,6 +1,7 @@
 class ReviewsController < ApplicationController
    $fixerID
    $reportID
+
   def new
     @review = Review.new
 
@@ -40,14 +41,17 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @review.fixer_id = $fixerID
     @review.report_id = $reportID
-
     if @review.save
+
       flash[:success] = 'create new review successfully'
-      # updateFixer = User.find(@review.fixer_id)
-      # # byebug
-      # numReview = Review.where(:fixer_id @review.fixer_id)
+      updateFU = ForeignUser.where(user_id: @review.fixer_id)[0]
+      numReview = Review.where(fixer_id: @review.fixer_id).count
+      byebug
+      result = ((numReview - 1) * updateFU.average_rating + @review.rating) / numReview
+      updateFU.update(average_rating: result)
+      # updateFixer.assign_attributes(average_rating: (updateFixer.average_rating * numReview + @review.rating) / numReview)
+      # updateFixer.average_rating = (updateFixer.average_rating * numReview + @review.rating) / numReview
       # byebug
-      # updateFixer.average_rating = (updateFixer.average_rating * numReview + @review.rating) / (numReview + 1)
       redirect_to @review
     else
 
