@@ -27,8 +27,6 @@ gem 'redis', '~> 4.0'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'carrierwave'
 
-gem 'rails-assets-sweetalert2', source: 'https://rails-assets.org'
-gem 'sweet-alert2-rails'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 gem 'bcrypt', '~>3.1.7'
@@ -49,6 +47,8 @@ gem 'json', '2.1.0'
 
 gem 'httparty'
 
+# gem 'rails-assets-sweetalert2', '~> 5.1.1', source: 'https://rails-assets.org'
+# gem 'sweet-alert2-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
