@@ -8,7 +8,7 @@
     <%= f.text_field :description, class: "col-sm-2 form-control" %>
   </div>
   <div class="field form-group row form_part">
-    <%= f.label :privacy, 'Whether to allow public:', :style => "display:inline-block" %>
+    <%= f.label :privacy, 'Public/Private Mode:', :style => "display:inline-block" %>
     <div style="display:inline-block">
       <%= f.check_box :privacy, :data => { :toggle => 'toggle-two', :on => "Private",
       :off => 'Public', :size => 'normal', :style => 'ios'} %>
@@ -30,7 +30,7 @@
 
 
   <div class="field form-group row form_part">
-    <%= f.label  'Add more problems:' %>
+    <%= f.label  'Add label(s) describing your problem:' %>
     <br/>
     <% @APs.each do |ap|%>
       <% if ReportJoinAuto.exists?(report_id: @report.id, auto_part_id: ap.id) == false %>

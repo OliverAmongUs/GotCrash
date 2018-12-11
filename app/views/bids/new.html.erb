@@ -25,7 +25,7 @@
             <div class="col-sm-4">
                 <div class="page-header float-left">
                     <div class="page-title">
-                        <h1>New Bid</h1>
+                        <h1>New Estimate</h1>
                     </div>
                 </div>
             </div>
@@ -35,8 +35,8 @@
                     <div class="page-title">
                         <ol class="breadcrumb text-right">
                             <li><a href="/">GotCrash</a></li>
-                            <li><a href="/reports">My Bids</a></li>
-                            <li class="active">new bid></li>
+                            <li><a href="/reports">My Estimates</a></li>
+                            <li class="active">New Estimate></li>
                         </ol>
                     </div>
                 </div>
@@ -54,26 +54,45 @@
                   <%= form_with(model: @bid, local: true,url:fixer_bids_path ) do |form| %>
                     <% if @bid.errors.any? %>
                       <div id="error_explanation">
-                        <h2><%= pluralize(bid.errors.count, "error") %> prohibited this bid from being saved:</h2>
+                        <h2><%= pluralize(@bid.errors.count, "error") %> prohibited this estimate from being saved:</h2>
 
                         <ul>
-                        <% bid.errors.full_messages.each do |message| %>
+                        <% @bid.errors.full_messages.each do |message| %>
                           <li><%= message %></li>
                         <% end %>
                         </ul>
                       </div>
                     <% end %>
-                    <div class="field">
-                      <%= form.hidden_field :report_id, :value => @report_id %>
+
+                    <h3>Report Information</h3>
+                    <hr>
+
+                    <div class="field form-group row form_part" >
+                      <%= image_tag @report.picture_url_url.to_s, style:"height:230px;"%>
+                    </div>
+
+
+                    <div class="field form-group row form_part">
+                      <%= label_tag "Address:"  %>
+                      <%= @report.address  %>
                     </div>
 
                     <div class="field form-group row form_part">
-                      <%= form.label :description %>
+                      <%= label_tag "Report Description:"  %>
+                      <%= @report.description %>
+                    </div>
+
+                    <div class="field">
+                      <%= form.hidden_field :report_id, :value => @report.id %>
+                    </div>
+                    <hr>
+                    <div class="field form-group row form_part">
+                      <%= form.label "Describe your solution:" %>
                       <%= form.text_area :description, class: "col-sm-2 form-control" %>
                     </div>
 
                     <div class="field form-group row form_part">
-                      <%= form.label :cost %>
+                      <%= form.label "Cost($)" %>
                       <%= form.number_field :cost, class: "col-sm-2 form-control" %>
                     </div>
 
@@ -87,14 +106,11 @@
 
                   </div>
 
-
-
-
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+
           </div><!-- /#right-panel -->
 
 <script type="text/javascript">

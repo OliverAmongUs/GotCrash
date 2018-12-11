@@ -11,12 +11,15 @@ class BidsController < ApplicationController
   # GET /bids/1.json
   def show
     @bid = Bid.find(params[:id])
+    @report = Report.find(@bid.report_id)
   end
 
   # GET /bids/new
   def new
     @bid = Bid.new
-    @report_id = params[:report_id]
+    @report = Report.find(params[:report_id])
+    # byebug
+    # @tc = 0
   end
 
   # GET /bids/1/edit
@@ -30,8 +33,6 @@ class BidsController < ApplicationController
     @bid[:fixer_id] = current_user.id
     @bid[:marked] = 0 #default false
     @bid[:ignored] = 0 #default false
-
-
     respond_to do |format|
       if @bid.save
         format.html { redirect_to fixer_bid_path(current_user, @bid), notice: 'Bid was successfully created.' }
