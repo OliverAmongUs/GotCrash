@@ -13,10 +13,10 @@ Rails.application.routes.draw do
 
   resources :messages
 
-  get 'cars/edit'
-  get 'cars/index'
-  get 'cars/new'
-  get 'cars/show'
+  # get 'cars/edit'
+  # get 'cars/index'
+  # get 'cars/new'
+  # get 'cars/show'
 
   post '/search_vin', to: 'cars#search_vin'
 
