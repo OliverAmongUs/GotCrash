@@ -9,7 +9,6 @@
 //
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
-//= require newalert
 //= require rails-ujs
 //= require jquery
 //= require admin

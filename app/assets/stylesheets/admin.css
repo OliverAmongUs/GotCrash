@@ -5,7 +5,6 @@
  *= require admin/flag-icon.min
  *= require admin/cs-skin-elastic
  *= require admin/style
- *= require sweetalert2
  */
 .bg-dark{
   background-color: #343a40;
