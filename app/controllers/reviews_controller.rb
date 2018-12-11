@@ -46,7 +46,7 @@ class ReviewsController < ApplicationController
       flash[:success] = 'create new review successfully'
       updateFU = ForeignUser.where(user_id: @review.fixer_id)[0]
       numReview = Review.where(fixer_id: @review.fixer_id).count
-      byebug
+      #byebug
       result = ((numReview - 1) * updateFU.average_rating + @review.rating) / numReview
       updateFU.update(average_rating: result)
       # updateFixer.assign_attributes(average_rating: (updateFixer.average_rating * numReview + @review.rating) / numReview)
