@@ -11,6 +11,7 @@ class BidsController < ApplicationController
   # GET /bids/1.json
   def show
     @bid = Bid.find(params[:id])
+    @report = Report.find(@bid.report_id)
   end
 
   # GET /bids/new

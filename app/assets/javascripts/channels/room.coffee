@@ -6,7 +6,7 @@ App.room = App.cable.subscriptions.create "RoomChannel",
 
   received: (data) ->
     $('#submit').removeAttr("disabled")
-    $('#' + data.receiver_id).text data.count
+    $('#receiver_' + data.receiver_id).text data.count
     $('#drop' + data.receiver_id).append '<p><a href=https://got-crash.herokuapp.com/fixers/' + data.fixer_id + '/bids/' +
       data.bid_id + '/messages>' + data.sender_name + ' has sent a reply!</a></p>'
     unless data.body.blank?

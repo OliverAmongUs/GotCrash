@@ -1,9 +1,9 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>Bid</th>
-      <th>Create Time</th>
-      <th>Update Time</th>
+      <th>Estimate ID</th>
+      <th>Report Description</th>
+      <th>Last Updated Time</th>
       <th>Marked?</th>
       <th>Ignored?</th>
       <th colspan="3"></th>
@@ -14,7 +14,7 @@
     <% bids.each do |bid| %>
       <tr>
         <td><%= bid.id %></td>
-        <td><%= bid.created_at %></td>
+        <td><%= Report.find(bid.report_id).description %></td>
         <td><%= bid.updated_at %></td>
         <td><% if bid.marked == 0 %>
           No
@@ -27,10 +27,10 @@
           Yes
           <% end %></td>
         <td><%= link_to 'Show', fixer_bid_path(current_user,bid) %></td>
-
-        <td><%= link_to 'Finish Bid', fixer_bid_path(current_user,bid), method: :delete, data: {confirm: 'Are you sure?' } %></td>
-
         <td><%= link_to 'Conversation', fixer_bid_messages_path(current_user,bid) %></td>
+        <td><%= link_to 'Recall', fixer_bid_path(current_user,bid), method: :delete, data: {confirm: 'Are you sure?' } %></td>
+
+
       </tr>
     <% end %>
   </tbody>

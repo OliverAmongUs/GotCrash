@@ -17,7 +17,7 @@
             <div class="col-sm-4">
                 <div class="page-header float-left">
                     <!-- <div class="page-title"> -->
-                        <h1 style="display: inline-block;">My Bids</h1>
+                        <h1 style="display: inline-block;">My Estimates</h1>
                         <select name="select" id="select" class="form-control select" onchange="changeTable(this.options[this.options.selectedIndex].value)">
                             <option value="0">All</option>
                             <option value="1">Marked</option>
@@ -36,7 +36,7 @@
                         <ol class="breadcrumb text-right">
                             <li><a href="/">GotCrash</a></li>
 
-                            <li class="active">My Bids</li>
+                            <li class="active">My Estimates</li>
 
                         </ol>
                     </div>
@@ -48,12 +48,12 @@
             <div class="row">
             <div class="col-lg-11">
             <div class="card" id="bid_table">
-              <%= render partial: 'bidTable', locals: {bids: @bids} %>
+              <%= render partial: 'bidTable', locals: {bids: @bids, report: @report} %>
             </div>
             </div>
             </div>
             </div>
-            <%= link_to 'Create a new bid', choosereport_path, class:"btn btn-primary" %>
+            <%= link_to 'Create a new Estimate', choosereport_path, class:"btn btn-primary" %>
 
         </div>
     </div><!-- /#right-panel -->
