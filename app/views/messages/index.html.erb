@@ -46,22 +46,28 @@
     <div class="messages">
       <div class="simplebar-content" style="padding: 0px calc(20px) 0px 0px; height: 100%">
       <% @messages.each do |message| %>
-        <% if message.body %>
-        <% user = User.find(message.user_id) %>
-        <div class=”header”>
-          <%= image_tag user.picture_url_url.to_s, class:"img-circle", style:"height:25px;margin-bottom:7px"%>
-          <div style="margin-left:8px;display:inline"><strong><%= user.name %></strong> <%= message.created_at.strftime("%F %R") %></div>
-        </div>
-        <div style="margin-top:10px; padding-bottom:10px">
-          <%= message.body %>
-        </div>
-        <% end %>
+          <% user = User.find(message.user_id) %>
+          <div class="message-header">
+            <%= image_tag user.picture_url_url.to_s, class:"img-circle small-image"%>
+            <div class="message-name">
+              <strong><%= user.name %></strong>
+              <div class="message-time"><%= message.created_at.strftime("%F %R") %></div>
+            </div>
+          </div>
 
-        <% if !message.picture_url.blank?%>
-        <div style="margin-top:-10px; padding-bottom:10px">
-          <%= link_to "View Atatchment", message.picture_url_url.to_s, target: '_blank' %>
-        </div>
-        <% end %>
+
+          <% if message.body %>
+          <div class="message-body">
+            <%= message.body %>
+          </div>
+          <% end %>
+
+
+          <% if !message.picture_url.blank?%>
+          <div class="message-attachment">
+            <%= link_to "View Atatchment", message.picture_url_url.to_s, target: '_blank' %>
+          </div>
+          <% end %>
 
       <% end %>
       </div>
@@ -88,7 +94,7 @@
     </div>
   </div>
 </body>
-<<script type="text/javascript">
+<script type="text/javascript">
   $(function(){
     $(".navbar-nav>li").eq(2).addClass("active");
   });

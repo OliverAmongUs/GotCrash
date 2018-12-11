@@ -243,3 +243,28 @@
   padding: 10px;
   height: 350px;
 }
+
+.small-image {
+  height:25px;
+  margin-bottom:7px;
+}
+
+.message-name {
+  margin-left:8px;
+  display:inline;
+}
+
+.message-body {
+  margin-top:10px;
+  padding-bottom:15px;
+}
+
+.message-attachment {
+  margin-top:-10px;
+  padding-bottom:15px;
+}
+
+.message-time {
+  margin-left: 10px;
+  display: inline;
+}
