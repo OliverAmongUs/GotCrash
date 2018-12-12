@@ -47,7 +47,7 @@ class MessagesController < ApplicationController
         @receiver_number = @bid.owner.phone
         receiver = @bid.owner
       end
-      #send_message(@receiver_number)
+      send_message(@receiver_number)
 
       check = true
       receiver.notifications.each do |notification| #check if there is a notification for this bid
