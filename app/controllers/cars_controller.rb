@@ -1,5 +1,6 @@
 class CarsController < ApplicationController
   def new
+    @car = Car.new
     # puts params
     # @car = Car.new
     # if params[:vin] != '' && !params[:vin].nil?
@@ -58,10 +59,10 @@ class CarsController < ApplicationController
 
     @car.owner_id = current_user.id
     if @car.save
-
+      byebug
       flash[:success] = 'create new car successfully'
-      # byebug
-      redirect_to "/cars"
+      render :js => "window.location.href='"+cars_path+"'"
+      return
     else
       #params.delete :user
       #params.delete :owner

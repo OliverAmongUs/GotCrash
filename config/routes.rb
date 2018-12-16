@@ -21,7 +21,6 @@ Rails.application.routes.draw do
   post '/search_vin', to: 'cars#search_vin'
 
   resources :cars
-
   # post '/cars/:id', to: 'car#show'
   # resources :cars
   # get '/car_edit', to: 'car#edit'
