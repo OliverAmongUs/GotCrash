@@ -4,10 +4,10 @@ one:
   fixer_id: 1
   report_id: 1
   rating: 1.5
-  description: MyString
+  description: Test review one
 
 two:
   fixer_id: 1
   report_id: 1
   rating: 1.5
-  description: MyString
+  description: Test review two
