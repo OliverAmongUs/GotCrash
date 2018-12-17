@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class MessagesControllerTest < ActionDispatch::IntegrationTest
+  #run rails test to run these tests
   setup do #Make sure to define any variables you need for testing here
     @message = messages(:one) #These variables are defined in test/fixtures. You will have to add/edit them
     @bid = bids(:one) #one of the two bid fixtures, fixtures are added from bottom to top, so Bid.last will be bids(:one)
@@ -14,7 +15,7 @@ class MessagesControllerTest < ActionDispatch::IntegrationTest
     post login_path, params: { session: { email:    @fixer.email,
                                           password: 'password' } }
   end
-  
+
   test "should get index" do
     get messages_url(bid_id: @bid.id) #make sure that you pass in any parameters
     assert_response :success
