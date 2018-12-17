@@ -58,9 +58,9 @@ class MessagesController < ApplicationController
       end
       if check == true #Sets up notifications if there isn't one already and action cable broadcast
         if current_user.id == message.bid.fixer.id
-          Notification.create(user_id: message.bid.report.owner.id, bid_id: @bid.id)
+          Notification.create(user_id: message.bid.report.owner.id, bid_id: @bid.id, sender_id: @bid.owner.id)
         else
-          Notification.create(user_id: message.bid.fixer.id, bid_id: @bid.id)
+          Notification.create(user_id: message.bid.fixer.id, bid_id: @bid.id, sender_id: @bid.fixer.id)
         end
       end
       ActionCable.server.broadcast 'room_channel',
