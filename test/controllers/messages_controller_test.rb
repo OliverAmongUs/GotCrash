@@ -1,48 +1,33 @@
 require 'test_helper'
 
 class MessagesControllerTest < ActionDispatch::IntegrationTest
-  setup do
-    @message = messages(:one)
+  setup do #Make sure to define any variables you need for testing here
+    @message = messages(:one) #These variables are defined in test/fixtures. You will have to add/edit them
+    @bid = bids(:one) #one of the two bid fixtures, fixtures are added from bottom to top, so Bid.last will be bids(:one)
+    @fixer = users(:two) #test Fixer
+    sign_in
   end
+  #Note: you will have to go through the controllers to make sure everything works with the test data
+  #Byebug calls in your controllers will work during the test if you want to use that
 
+  def sign_in #Use this if you need a user to be logged in
+    post login_path, params: { session: { email:    @fixer.email,
+                                          password: 'password' } }
+  end
+  
   test "should get index" do
-    get messages_url
+    get messages_url(bid_id: @bid.id) #make sure that you pass in any parameters
     assert_response :success
   end
 
   test "should get new" do
-    get new_message_url
+    get messages_url(bid_id: @bid.id)
     assert_response :success
   end
 
   test "should create message" do
     assert_difference('Message.count') do
-      post messages_url, params: { message: { body: @message.body, conversation_id: @message.conversation_id, user_id: @message.user_id } }
+      post messages_url, params: { bid_id: @bid.id, message: { body: @message.body, user_id: @fixer.id } }
     end
-
-    assert_redirected_to message_url(Message.last)
-  end
-
-  test "should show message" do
-    get message_url(@message)
-    assert_response :success
-  end
-
-  test "should get edit" do
-    get edit_message_url(@message)
-    assert_response :success
-  end
-
-  test "should update message" do
-    patch message_url(@message), params: { message: { body: @message.body, conversation_id: @message.conversation_id, user_id: @message.user_id } }
-    assert_redirected_to message_url(@message)
-  end
-
-  test "should destroy message" do
-    assert_difference('Message.count', -1) do
-      delete message_url(@message)
-    end
-
-    assert_redirected_to messages_url
   end
 end

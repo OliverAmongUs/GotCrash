@@ -39,6 +39,7 @@ class MessagesController < ApplicationController
   def create
     message = @bid.messages.build(message_params)
     if message.save
+
       user = User.find(message.user_id)
       if current_user.type == "Owner" #sets up and sends to phone number
         @receiver_number = @bid.fixer.phone
@@ -47,9 +48,12 @@ class MessagesController < ApplicationController
         @receiver_number = @bid.owner.phone
         receiver = @bid.owner
       end
-      send_message(@receiver_number)
+      if Rails.env.production? #texting costs money, so only use during production
+        send_message(@receiver_number)
+      end
 
       check = true
+      
       receiver.notifications.each do |notification| #check if there is a notification for this bid
         if notification.bid.id == @bid.id
           check = false
@@ -58,9 +62,9 @@ class MessagesController < ApplicationController
       end
       if check == true #Sets up notifications if there isn't one already and action cable broadcast
         if current_user.id == message.bid.fixer.id
-          Notification.create(user_id: message.bid.report.owner.id, bid_id: @bid.id)
+          Notification.create(user_id: message.bid.report.owner.id, bid_id: @bid.id, sender_id: @bid.owner.id)
         else
-          Notification.create(user_id: message.bid.fixer.id, bid_id: @bid.id)
+          Notification.create(user_id: message.bid.fixer.id, bid_id: @bid.id, sender_id: @bid.fixer.id)
         end
       end
       ActionCable.server.broadcast 'room_channel',

@@ -1,17 +1,38 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  user_id: 1
+  owner_id: 1
   make: MyString
   model: MyString
   year: MyString
   color: MyString
   vin: MyString
+  licence: MyString
+  picture_url: MyString
+  vehicle_type: MyString
+  body_class: MyString
+  doors: 4
+  gross_vehicle_weight_rating: MyString
+  transmission_style: MyString
+  engine_number_of_cylinders: MyString
+  engine_power: MyString
+  fuel_type: MyString
+
 
 two:
-  user_id: 1
+  owner_id: 1
   make: MyString
   model: MyString
   year: MyString
   color: MyString
   vin: MyString
+  licence: MyString
+  picture_url: MyString
+  vehicle_type: MyString
+  body_class: MyString
+  doors: 4
+  gross_vehicle_weight_rating: MyString
+  transmission_style: MyString
+  engine_number_of_cylinders: MyString
+  engine_power: MyString
+  fuel_type: MyString

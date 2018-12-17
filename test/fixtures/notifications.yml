@@ -1,9 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  user_id: 
-  message_id: 
+  user_id: 1
+  bid_id: 1
+  sender_id: 1
 
 two:
-  user_id: 
-  message_id: 
+  user_id: 1
+  bid_id: 1
+  sender_id: 1

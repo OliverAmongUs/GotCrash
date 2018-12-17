@@ -1,19 +1,19 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  user_id: 1
-  case_id: 1
-  privacy: 1
-  description: MyString
+  fixer_id: 2
+  report_id: 1
+  privacy: 0
+  description: Sample Bid one
   cost: 1.5
-  marked: 1
-  ignored: 1
+  marked: 0
+  ignored: 0
 
 two:
-  user_id: 1
-  case_id: 1
-  privacy: 1
-  description: MyString
+  fixer_id: 2
+  report_id: 2
+  privacy: 0
+  description: Sample Bid two
   cost: 1.5
-  marked: 1
-  ignored: 1
+  marked: 0
+  ignored: 0

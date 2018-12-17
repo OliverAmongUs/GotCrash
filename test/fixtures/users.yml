@@ -1,15 +1,19 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  email: MyString
+  id: 1
+  name: TestOwner
+  email: testowner@test.com
   address: MyString
-  phone: MyString
-  type: 
+  phone: "6175491769"
+  type: Owner
+  password_digest: <%= BCrypt::Password.create('password') %>
 
 two:
-  name: MyString
-  email: MyString
+  id: 2
+  name: TestFixer
+  email: testfixer@test.com
   address: MyString
-  phone: MyString
-  type: 
+  phone: "6175491769"
+  type: Fixer
+  password_digest: <%= BCrypt::Password.create('password') %>

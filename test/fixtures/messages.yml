@@ -3,9 +3,9 @@
 one:
   body: MyString
   user_id: 1
-  conversation_id: 1
+  bid_id: 1
 
 two:
   body: MyString
   user_id: 1
-  conversation_id: 1
+  bid_id: 1

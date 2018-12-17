@@ -1,2 +1,79 @@
-<h1>HelpPages#fixerhelp</h1>
-<p>Find me in app/views/help_pages/fixerhelp.html.erb</p>
+<html>
+<head>
+<link rel="apple-touch-icon" href="apple-icon.png">
+<link rel="shortcut icon" href="favicon.ico">
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+
+</head>
+
+<body>
+    <%= render "layouts/left_panel" %>
+    <!-- Right Panel -->
+
+    <div id="right-panel" class="right-panel">
+
+
+        <%= render "layouts/header" %>
+        <div class="breadcrumbs">
+            <div class="col-sm-4">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1>Get Started</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="page-header float-right">
+                    <div class="page-title">
+                        <ol class="breadcrumb text-right">
+                            <li><a href="/">GotCrash</a></li>
+                            <li class="active">Get Started</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content mt-3">
+            <div class="animated fadeIn">
+            <div class="row">
+            <div class="col-lg-10">
+            <div class="card">
+            <div class="card-body card-block">
+              <h3>Welcome to GotCrash! Let's get Started!</h3>
+              <hr>
+
+              <div>
+                <h4>1.Start an estimate. </h4>
+                <p>An "estimate" is where you respond to a car owner's uploaded reports about your solution to their car problems. </p>
+                <p><%= image_tag '/ffindestimate.png', style:"width:1250px" %></p>
+                <p>The tab "Estimates" is where your estimates for the reports are kept, simply click on it to find a report via a map or view and manage your started estimates.</p>
+                <p><%= image_tag '/fstartestimate.png', style:"width:1250px" %></p>
+                <p>Click on the "Create a new Estimate" to find a report to start an estimate. To manage your started estimates, you can also use the dropdown to choose to only see the ones chosen by the car owners or the ones being ignored. </p>
+              </div>
+              <hr>
+              <div>
+                <h4>2.See car owners' reviews on your service </h4>
+                <p><%= image_tag '/ffindreviews.png', style:"width:1250px" %></p>
+                <p>"Reviews" is where you can see the detailed reviews left by car owners after using your service.</p>
+              </div>
+
+              <hr>
+              <div>
+                <h4>3.Learn about your profile page and edit profile. </h4>
+                <p><%= image_tag '/fprofile.png', style:"width:1250px" %></p>
+                <p>"Existing labels" shows which kinds of car problems you have solved, and "Average Rating" is calculated from all the reviews car owners have left for you. If you wish to edit your profile information you can simply click on the "Edit profile" button located on your profile page.</p>
+              </div>
+
+            </div>
+            </div>
+            </div>
+            </div>
+            </div>
+    </div>
+
+    </div><!-- /#right-panel -->
+</body>
+
+
+</html>

@@ -38,7 +38,7 @@ class BidsController < ApplicationController
         format.html do
           receiver = User.find(@bid.report.owner.id) #Create notification and send action cable
           send_message(receiver.phone)
-          Notification.create(user_id: receiver.id, bid_id: @bid.id)
+          Notification.create(user_id: receiver.id, bid_id: @bid.id, sender_id: current_user.id)
           ActionCable.server.broadcast 'room_channel',
                                        body: "",
                                        sender: @bid.fixer.id,

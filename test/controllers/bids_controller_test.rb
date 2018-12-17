@@ -3,46 +3,47 @@ require 'test_helper'
 class BidsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @bid = bids(:one)
+    @fixer = fixers(:one)
   end
 
   test "should get index" do
-    get bids_url
+    get fixer_bids_path(@fixer) #this needs to be bids_url or something, cuz I was messing with it. Look at the cars test for example
     assert_response :success
   end
 
   test "should get new" do
-    get new_bid_url
+    get new_fixer_bid_path
     assert_response :success
   end
 
   test "should create bid" do
     assert_difference('Bid.count') do
-      post bids_url, params: { bid: {  } }
+      post fixer_bids_path, params: { bid: {  } }
     end
 
-    assert_redirected_to bid_url(Bid.last)
+    assert_redirected_to fixer_bid_path(Bid.last)
   end
 
   test "should show bid" do
-    get bid_url(@bid)
+    get fixer_bid_path(@bid)
     assert_response :success
   end
 
   test "should get edit" do
-    get edit_bid_url(@bid)
+    get edit_fixer_bid_path(@bid)
     assert_response :success
   end
 
   test "should update bid" do
-    patch bid_url(@bid), params: { bid: {  } }
-    assert_redirected_to bid_url(@bid)
+    patch fixer_bid_path(@bid), params: { bid: {  } }
+    assert_redirected_to fixer_bid_path(@bid)
   end
 
   test "should destroy bid" do
     assert_difference('Bid.count', -1) do
-      delete bid_url(@bid)
+      delete fixer_bid_path(@bid)
     end
 
-    assert_redirected_to bids_url
+    assert_redirected_to fixer_bids_path
   end
 end
