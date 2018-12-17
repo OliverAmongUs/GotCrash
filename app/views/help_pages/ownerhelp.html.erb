@@ -1,0 +1,87 @@
+<html>
+<head>
+<link rel="apple-touch-icon" href="apple-icon.png">
+<link rel="shortcut icon" href="favicon.ico">
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+
+</head>
+
+<body>
+    <%= render "layouts/left_panel" %>
+    <!-- Right Panel -->
+
+    <div id="right-panel" class="right-panel">
+
+
+        <%= render "layouts/header" %>
+        <div class="breadcrumbs">
+            <div class="col-sm-4">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1>Get Started</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="page-header float-right">
+                    <div class="page-title">
+                        <ol class="breadcrumb text-right">
+                            <li><a href="/">GotCrash</a></li>
+                            <li class="active">Get Started</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content mt-3">
+            <div class="animated fadeIn">
+            <div class="row">
+            <div class="col-lg-10">
+            <div class="card">
+            <div class="card-body card-block">
+              <h3>Welcome to GotCrash! Let's get Started!</h3>
+              <hr>
+
+              <div>
+                <h4>1.Add your cars. </h4>
+                <p><%= image_tag '/ofindmycars.png', style:"width:1250px" %></p>
+                <p>"My Cars" is where your car information is kept, simply click on it to add, view and manage your cars.</p>
+                <p><%= image_tag '/oaddcar.png', style:"width:1250px" %></p>
+                <p>Click on the "New Car" to add information for your car. </p>
+              </div>
+              <hr>
+              <div>
+                <h4>2.Add a report. </h4>
+                <p>A "report" is where you share the information of your car problem and auto shops will respond upon. </p>
+                <p><%= image_tag '/ofindreports.png', style:"width:1250px" %></p>
+                <p>The "Reports" tab is where all of your reports are kept, simply click on it to start a new one, or view and manage your started reports.</p>
+                <p><%= image_tag '/oreports.png', style:"width:1250px" %></p>
+                <p>Click on the "New Report" to start a new report. To manage your started reports, you can also use the dropdown to choose to only see the completed ones or the uncompleted ones. </p>
+              </div>
+              <hr>
+              <div>
+                <h4>3.Search for an nearby auto shop. </h4>
+                <p><%= image_tag '/ofindautoshop.png', style:"width:1250px" %></p>
+                <p>"Auto Shop Search" is where you can search for a local auto shop via a map and see information about it including the ratings by car owners like you.</p>
+              </div>
+
+              <hr>
+              <div>
+                <h4>4.Edit profile. </h4>
+                <p><%= image_tag '/ofindeditp.png', style:"width:1250px" %></p>
+                <p>If you wish to edit your profile information you can simply click on the "Edit profile" button located on your profile page.</p>
+              </div>
+
+            </div>
+            </div>
+            </div>
+            </div>
+            </div>
+    </div>
+
+    </div><!-- /#right-panel -->
+</body>
+
+
+</html>

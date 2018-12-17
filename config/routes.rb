@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'help_pages/ownerhelp'
+  get 'help_pages/fixerhelp'
   get 'shop_search/search'
   get 'report_join_auto/new'
   delete 'report_join_auto', to: 'report_join_auto#destroy'

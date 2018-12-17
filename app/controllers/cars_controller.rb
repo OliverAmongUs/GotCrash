@@ -59,7 +59,6 @@ class CarsController < ApplicationController
 
     @car.owner_id = current_user.id
     if @car.save
-      byebug
       flash[:success] = 'create new car successfully'
       render :js => "window.location.href='"+cars_path+"'"
       return
