@@ -2,8 +2,10 @@
 
 one:
   user_id: 1
-  message_id: 1
+  bid_id: 1
+  sender_id: 1
 
 two:
-  user_id: 2
-  message_id: 2
+  user_id: 1
+  bid_id: 1
+  sender_id: 1
