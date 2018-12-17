@@ -20,12 +20,7 @@
         <td><%if report.completed == 0 %> No <% else %> Yes <% end %></td>
         <td><%= link_to 'Show', report %></td>
         <td><%= link_to 'Edit', edit_report_path(report) %></td>
-<<<<<<< HEAD
 
-
-=======
-        <td><%= link_to 'Destroy', report, method: :delete, data: { confirm: 'Delete this report?' } %></td>
->>>>>>> bef969bc3f9c25804671dddf11ea2f42c5591f0b
       </tr>
     <% end %>
   </tbody>
