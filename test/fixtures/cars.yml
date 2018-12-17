@@ -2,11 +2,11 @@
 
 one:
   owner_id: 1
-  make: MyString
-  model: MyString
+  make: VOLKSWAGEN
+  model: Tiguan
   year: MyString
-  color: MyString
-  vin: MyString
+  color: Black
+  vin: WVGAV75N09W005563
   licence: MyString
   picture_url: MyString
   vehicle_type: MyString
@@ -21,11 +21,11 @@ one:
 
 two:
   owner_id: 1
-  make: MyString
-  model: MyString
+  make: TOYOTA
+  model: RAV4
   year: MyString
-  color: MyString
-  vin: MyString
+  color: White
+  vin: 2T3BFREV5EW130598
   licence: MyString
   picture_url: MyString
   vehicle_type: MyString

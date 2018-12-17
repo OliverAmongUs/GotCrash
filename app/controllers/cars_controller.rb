@@ -26,7 +26,7 @@ class CarsController < ApplicationController
   end
 
   def index
-    @cars = current_user.cars
+    @cars = Car.where(owner_id: current_user.id)
 
   end
 
