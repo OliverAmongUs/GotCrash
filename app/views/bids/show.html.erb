@@ -50,7 +50,7 @@
             <div class="card-body card-block">
               <div class="col-lg-12">
                 <h3 class="padding_label">
-                  Report id:<span class="grey right"><%= @bid.report_id %></span>
+                  Car Owner:<span class="grey right"><%= Owner.find(Report.find(@bid.report_id).owner_id).name %></span>
                 </h3>
                 <hr>
                 <h3 class="padding_label">
