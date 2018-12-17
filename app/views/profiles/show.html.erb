@@ -40,15 +40,27 @@
             <div class="col-lg-10">
             <div class="card">
             <div class="card-body card-block">
-              <div style = "padding:20px">
-                <h2>Hi, <%= @user2.name %></h2>
-                <hr>
+              <div style = "height:60px; padding:20px">
+                <div class="col-lg-9">
+                  <h2>Hi, <%= @user2.name %></h2>
+                </div>
+
+                <div class="col-lg-3 need-help">
+                  <% if current_user.type == "Owner" %>
+                    <a href="/help_pages/ownerhelp">Need some help?</a>
+                  <% else %>
+                    <a href="/help_pages/fixerhelp">Need some help?</a>
+                    <% end %>
+                </div>
+
               </div>
+              <hr>
               <div class="col-lg-7">
+
                 <%= image_tag current_user.picture_url_url.to_s, style:"height:300px; width:300px" %>
               </div>
               <div class="col-lg-5">
-                <h3 class="padding_label">
+                <h3 class="height:100px; padding_label">
                   <strong>Name:</strong>
                   <%= @user2.name %>
                 </h3>
@@ -97,7 +109,7 @@
 
 
       <div class="col-lg-4">
-        <%= link_to '<button type="button"  class="btn btn-success">Edit Your Profile </button>'.html_safe, profiles_edit_path(current_user)%>
+        <%= link_to '<button type="button"  class="btn btn-success edit-profile">Edit Your Profile </button>'.html_safe, profiles_edit_path(current_user)%>
       </div>
       <div class="col-lg-4 col-lg-offset-4">
           <%= link_to '<button type="button"  class="btn btn-danger btn-back">Log out </button>'.html_safe, logout_path%>

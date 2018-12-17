@@ -50,17 +50,17 @@
 
                 <div class="card-body">
                 <h3 class="padding_label">
-                  <strong>This review is for Report ID</strong>
+                  <strong>This review is from Car Owner</strong>
                 </h3>
                 <h3 class="padding_label grey">
-                  <%= @review.report_id %>
+                  <%= Owner.find(Report.find(@review.report_id).owner_id).name %>
                 </h3>
                 <hr>
                 <h3 class="padding_label">
-                  <strong>This is a review for Auto Shoper:</strong
+                  <strong>The report was about:</strong
                 </h3>
                 <h3 class="padding_label grey">
-                  <%= User.find(@review.fixer_id).name %>
+                  <%=Report.find(@review.report_id).description %>
                 </h3>
                 <hr>
                 <h3 class="padding_label">

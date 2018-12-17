@@ -3,10 +3,10 @@
                 <%= form_with(model: @car) do |form| %>
                   <div class="row form-group form_part">
                     <div class="col-md-2">
-                      <%= form.label :vin, "Vin number:" %>
+                      <label for="vin" data-tooltip="The car's vehicle identification number (VIN) is the identifying code for a SPECIFIC automobile.">Vin number:</label>
                     </div>
                     <div class="col-md-9">
-                      <%= form.text_field :vin, class: "form-control" %>
+                      <%= text_field_tag :vin, params[:vin], placeholder: "Use Vin number to search detail information here", onchange: "search_vin(#{:value})", class: "form-control" %>
                     </div>
                   </div>
 
@@ -148,3 +148,20 @@
                   <%= form.submit "Submit", class: "btn btn-primary edit_move2" %>
                 <% end %>
               <% end %>
+
+<script type="text/javascript">
+  function search_vin(value){
+    // alert(value.length);
+    if (value.length == 17){
+      $.ajax({
+        method: 'Post',
+        url: '/search_vin',
+        data: {vin: value},
+        headers: {
+          'X-Transaction': 'POST Example',
+          'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+        },
+      });
+    }
+  }
+</script>
