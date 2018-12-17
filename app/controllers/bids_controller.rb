@@ -18,16 +18,14 @@ class BidsController < ApplicationController
   def new
     @bid = Bid.new
     @report = Report.find(params[:report_id])
-    # byebug
-    # @tc = 0
+
   end
 
-  # GET /bids/1/edit
+
   def edit
   end
 
-  # POST /bids
-  # POST /bids.json
+
   def create
     @bid = Bid.new(bid_params)
     @bid[:fixer_id] = current_user.id
