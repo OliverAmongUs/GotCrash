@@ -14,4 +14,5 @@
 //= require admin
 //= require activestorage
 //= require cable
+//= require data-confirm-modal
 //= require_tree ./channels
