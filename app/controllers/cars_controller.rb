@@ -1,23 +1,6 @@
 class CarsController < ApplicationController
   def new
     @car = Car.new
-    # puts params
-    # @car = Car.new
-    # if params[:vin] != '' && !params[:vin].nil?
-    #   @car.vin = params[:vin]
-    #
-    #
-    #   carData = VehicleAPI.new(params[:vin])
-    #   @car.make, @car.model, @car.year, @car.vehicle_type, @car.body_class, @car.doors, @car.gross_vehicle_weight_rating,
-    #   @car.transmission_style, @car.engine_number_of_cylinders, @car.engine_power, @car.fuel_type = carData.getDetail
-    #
-    # end
-    #
-    # respond_to do |format|
-    #   format.html
-    #   format.js
-    # end
-
   end
 
   def search_vin
@@ -34,7 +17,6 @@ class CarsController < ApplicationController
     end
     puts("car is: #{@car}")
     respond_to do |format|
-      # format.html
       format.js
     end
   end
@@ -59,14 +41,11 @@ class CarsController < ApplicationController
 
     @car.owner_id = current_user.id
     if @car.save
-      flash[:success] = 'create new car successfully'
+      flash[:success] = 'Add a new car successfully!'
       render :js => "window.location.href='"+cars_path+"'"
       return
     else
-      #params.delete :user
-      #params.delete :owner
       render 'new'
-      #redirect_to new_user_path, alert: 'You have an error in your submission.'
     end
   end
 
@@ -76,10 +55,16 @@ class CarsController < ApplicationController
     respond_to do |format|
       @car = Car.find(params[:id])
       if @car.update(car_params)
-        format.html { redirect_to cars_path, notice: 'Car was successfully updated.' }
+        format.html {
+          flash[:success] = 'Update the car information successfully!'
+          redirect_to cars_path
+        }
         format.json { render :show, status: :ok, location: @car }
       else
-        format.html { redirect_to edit_car_path }
+        format.html {
+          flash[:danger] = 'Failed to update the car information!'
+          redirect_to edit_car_path
+        }
         format.json { render json: @car.errors, status: :unprocessable_entity }
       end
     end

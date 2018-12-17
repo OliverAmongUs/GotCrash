@@ -14,6 +14,16 @@
   </head>
 
   <body>
+    <% if flash[:success] %>
+    <div class="notify bar-top do-show" data-notification-status="success">
+      <%= flash[:success] %>
+    </div>
+    <% end %>
+    <% if flash[:danger] %>
+    <div class="notify bar-top do-show" data-notification-status="warning">
+      <%= flash[:danger] %>
+    </div>
+    <% end %>
     <%=yield %>
   </body>
 </html>
