@@ -5,8 +5,8 @@ one:
   owner_id: 1
   car_id: 1
   completed: 0
-  address: MyString
-  description: MyString
+  address: 415 South Street
+  description: First stupid report
   privacy: 1
   picture_url: MyString
   longitude: 1.5
@@ -17,8 +17,8 @@ two:
   owner_id: 1
   car_id: 2
   completed: 0
-  address: MyString
-  description: MyString
+  address: 80 hope ave
+  description: Second stupid report
   privacy: 1
   picture_url: MyString
   longitude: 1.5

@@ -12,7 +12,7 @@ function initMap(){
     mapId = maps[i].id;
     map = new google.maps.Map(document.getElementById(mapId), {
       center: new google.maps.LatLng(0,0),
-      zoom: 15
+      zoom: 14
     });
     infoWindow = new google.maps.InfoWindow;
     geocoder = new google.maps.Geocoder();
