@@ -50,13 +50,12 @@
                 <div class="row">
         <div class="col-lg-10">
             <div class="card">
-
-              <div class="container" style = "padding:20px">
+              <div style = "padding:20px">
 <div class="search-report">
 <h2>Reports around you </h2>
 <div class="search-line">
   <h3 style="display:inline">Choose a label:</h3>
-  <select id="reportlabel" class= "form-control" style="width:20%;display:inline">
+  <select id="reportlabel" class= "form-control-sm form-control" style="width:40%;display:inline;margin-bottom:5px">
     <option value=0></option>
     <option value=1>Need a Tow</option>
     <option value=2>Flat Tire</option>
@@ -75,13 +74,13 @@
   </select>
   <br>
   <h3 style="display:inline">Search on description:</h3>
-  <input type="text" id="filterdesp" class= "form-control" style="width:30%;display:inline"></input>
-  <button onclick="loadsomeReports()" class="btn btn-primary">See these reports</button>
-  <button onclick="loadReports()" class="btn btn-primary">See all reports instead</button>
+  <input type="text" id="filterdesp" class= "form-control" style="width:33%;display:inline"></input>
+  <button onclick="loadsomeReports()" class="btn btn-primary" style="width:135px;margin-left:30px">See these reports</button>
+  <button onclick="loadReports()" class="btn btn-primary" style="width:170px; margin-left:15px">See all reports instead</button>
   <h3 id="numreportfound" style="color:red;"></h3>
 </div>
 </div>
-<div class="mapouter col-sm-10" style="margin-top:20px">
+<div class="mapouter col-sm-12" style="margin-top:20px">
 <div class="map" id="fixermap" >
   Error loading map, click to retry.
 <button onclick="initMap()">Retry</button>
@@ -89,7 +88,7 @@
 </div>
 
 <div id= "showreport" style="display: none"></div>
-<div class="col-lg-10">
+<div class="col-lg-12">
   <table id= "reporttable" class="table table-striped" style="display:none" >
     <thead>
       <tr>
