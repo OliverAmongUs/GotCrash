@@ -48,6 +48,7 @@ class BidsController < ApplicationController
                                        fixer_id: @bid.fixer.id,
                                        bid_id: @bid.id
           flash[:success] = 'Create a new estimate successfully!'
+          byebug
           redirect_to fixer_bid_path(current_user, @bid)
         end
         #format.html { redirect_to fixer_bid_path(current_user,@bid), notice: 'Bid was successfully created.' }
