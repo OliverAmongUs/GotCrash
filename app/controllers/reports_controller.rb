@@ -31,7 +31,7 @@ class ReportsController < ApplicationController
     @report.owner_id = current_user[:id]
 
     if @report.save
-      flash[:success] = 'Upload a report successfully!'
+      flash[:success] = 'Upload a new report successfully!'
       (1..14).each do |a|
         if params.key?(a.to_s)
           o = ReportJoinAuto.new(:report_id => @report.id, :auto_part_id => a)
@@ -41,7 +41,7 @@ class ReportsController < ApplicationController
       redirect_to @report
     else
       puts "something wrong"
-      flash[:danger] = 'Upload a report failed!'
+      flash[:danger] = 'Upload a new report failed!'
       render 'new'
     end
   end
@@ -56,10 +56,16 @@ class ReportsController < ApplicationController
             o.save
           end
         end
-        format.html { redirect_to @report, notice: 'Report was successfully updated.' }
+        format.html {
+          flash[:success] = 'Update the report information successfully!'
+          redirect_to @report
+        }
         format.json { render :show, status: :ok, location: @report }
       else
-        format.html { redirect_to reports_edit_path }
+        format.html {
+          flash[:danger] = 'Failed to update the report information!'
+          redirect_to reports_edit_path
+        }
         format.json { render json: @report.errors, status: :unprocessable_entity }
       end
     end

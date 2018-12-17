@@ -41,7 +41,7 @@ class CarsController < ApplicationController
 
     @car.owner_id = current_user.id
     if @car.save
-      flash[:success] = 'create new car successfully'
+      flash[:success] = 'Add a new car successfully!'
       render :js => "window.location.href='"+cars_path+"'"
       return
     else
@@ -55,10 +55,16 @@ class CarsController < ApplicationController
     respond_to do |format|
       @car = Car.find(params[:id])
       if @car.update(car_params)
-        format.html { redirect_to cars_path, notice: 'Car was successfully updated.' }
+        format.html {
+          flash[:success] = 'Update the car information successfully!'
+          redirect_to cars_path
+        }
         format.json { render :show, status: :ok, location: @car }
       else
-        format.html { redirect_to edit_car_path }
+        format.html {
+          flash[:danger] = 'Failed to update the car information!'
+          redirect_to edit_car_path
+        }
         format.json { render json: @car.errors, status: :unprocessable_entity }
       end
     end

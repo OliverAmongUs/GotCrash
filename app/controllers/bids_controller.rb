@@ -47,12 +47,16 @@ class BidsController < ApplicationController
                                        receiver_id: receiver.id,
                                        fixer_id: @bid.fixer.id,
                                        bid_id: @bid.id
-          redirect_to fixer_bid_path(current_user, @bid), notice: 'Bid was successfully created.'
+          flash[:success] = 'Create a new estimate successfully!'
+          redirect_to fixer_bid_path(current_user, @bid)
         end
         #format.html { redirect_to fixer_bid_path(current_user,@bid), notice: 'Bid was successfully created.' }
         format.json { render :show, status: :created, location: fixer_bid_path(current_user,@bid) }
       else
-        format.html { render :new }
+        format.html {
+          flash[:danger] = 'Failed to create a new estimate!'
+          render :new
+        }
         format.json { render json: @bid.errors, status: :unprocessable_entity }
       end
     end
@@ -63,10 +67,16 @@ class BidsController < ApplicationController
   def update
     respond_to do |format|
       if @bid.update(bid_params)
-        format.html { redirect_to fixer_bid_path(current_user, @bid), notice: 'Bid was successfully updated.' }
+        format.html {
+          flash[:success] = 'Update the estimate successfully!'
+          redirect_to fixer_bid_path(current_user, @bid)
+        }
         format.json { render :show, status: :ok, location: fixer_bid_path(current_user,@bid)  }
       else
-        format.html { render :edit }
+        format.html {
+          flash[:danger] = 'Failed to update the estimate!'
+          render :edit
+        }
         format.json { render json: @bid.errors, status: :unprocessable_entity }
       end
     end

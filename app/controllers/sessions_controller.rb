@@ -9,10 +9,11 @@ class SessionsController < ApplicationController
 
      log_in user
 
+     flash[:success] = 'Sign in successfully!'
      redirect_to '/profiles'
 
    else
-     flash.now[:danger] = 'Invalid email/password combination'
+     flash.now[:danger] = 'Invalid email/password combination!'
      render 'new'
    end
  end
