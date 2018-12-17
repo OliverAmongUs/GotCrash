@@ -7,7 +7,7 @@ class BidsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index" do
-    get fixer_bids_path(@fixer)
+    get fixer_bids_path(@fixer) #this needs to be bids_url or something, cuz I was messing with it. Look at the cars test for example
     assert_response :success
   end
 
