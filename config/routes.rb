@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'help_pages/ownerhelp'
+  get 'help_pages/fixerhelp'
   get 'shop_search/search'
   get 'report_join_auto/new'
   delete 'report_join_auto', to: 'report_join_auto#destroy'
@@ -13,15 +15,14 @@ Rails.application.routes.draw do
 
   resources :messages
 
-  get 'cars/edit'
-  get 'cars/index'
-  get 'cars/new'
-  get 'cars/show'
+  # get 'cars/edit'
+  # get 'cars/index'
+  # get 'cars/new'
+  # get 'cars/show'
 
   post '/search_vin', to: 'cars#search_vin'
 
   resources :cars
-
   # post '/cars/:id', to: 'car#show'
   # resources :cars
   # get '/car_edit', to: 'car#edit'

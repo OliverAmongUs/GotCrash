@@ -46,6 +46,7 @@
     <div class="messages">
       <div class="simplebar-content" style="padding: 0px calc(20px) 0px 0px; height: 100%">
       <% @messages.each do |message| %>
+        <% if message.user_id != nil %>
           <% user = User.find(message.user_id) %>
           <div class="message-header">
             <%= image_tag user.picture_url_url.to_s, class:"img-circle small-image"%>
@@ -68,7 +69,7 @@
             <%= link_to "View Atatchment", message.picture_url_url.to_s, target: '_blank' %>
           </div>
           <% end %>
-
+          <%end%>
       <% end %>
       </div>
     </div>

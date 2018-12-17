@@ -42,8 +42,8 @@ class CarsController < ApplicationController
     @car.owner_id = current_user.id
     if @car.save
       flash[:success] = 'create new car successfully'
-      # byebug
-      redirect_to @car
+      render :js => "window.location.href='"+cars_path+"'"
+      return
     else
       render 'new'
     end
@@ -95,11 +95,7 @@ end
 
 class VehicleAPI
   include HTTParty
-  # @vin = "5UXWX7C5*BA"
-  # @year = "2011"
-  # BASE_URL = "https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVin/"+@vin+"?"
-  # API_PARTIAL_URL = "format=json&modelyear="+@year
-  # attr_accessor :vin, :year,
+
   def initialize(vin)
     @vin = vin
     aa = "https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVin/"+@vin+"?"

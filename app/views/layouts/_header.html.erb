@@ -24,7 +24,7 @@
                           <!-- Notification code here: -->
                           <% count = current_user.notifications.count %>
                           <!-- check if count is greater than 0 first-->
-                          <span class="count bg-primary" id="receiver_"+"<%= current_user.id %>"><%= count %></span>
+                          <span class="count bg-primary" id="receiver_<%= current_user.id %>"><%= count %></span>
 
                       </button>
                       <div class="user-menu dropdown-menu" aria-labelledby="message" id="drop<%= current_user.id%>">

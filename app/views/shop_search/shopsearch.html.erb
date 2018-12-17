@@ -100,7 +100,7 @@
           <% @shops.each do |shop| %>
           <tr >
             <td><%= shop.name %></td>
-            <td><%= shop.average_rating%></td>
+            <td><%= ForeignUser.where(user_id: shop.id)[0].average_rating%></td>
             <td><%= link_to 'See on Map', "javascript:moveToShop(#{shop.id})" %></td>
           </tr>
           <% end %>

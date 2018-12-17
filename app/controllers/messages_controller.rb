@@ -20,7 +20,7 @@ class MessagesController < ApplicationController
     end
     @message = @bid.messages.new
     current_user.notifications.each do |notification|
-      if notification.message.bid.id == @bid.id
+      if notification.bid.id == @bid.id
         notification.destroy
       end
     end
@@ -47,19 +47,20 @@ class MessagesController < ApplicationController
         @receiver_number = @bid.owner.phone
         receiver = @bid.owner
       end
-      #send_message(@receiver_number)
+      send_message(@receiver_number)
 
       check = true
       receiver.notifications.each do |notification| #check if there is a notification for this bid
-        if notification.message.bid.id == @bid.id
+        if notification.bid.id == @bid.id
           check = false
+          break
         end
       end
-      if check == true #Sets up notifications and action cable broadcast
+      if check == true #Sets up notifications if there isn't one already and action cable broadcast
         if current_user.id == message.bid.fixer.id
-          Notification.create(user_id: message.bid.report.owner.id, message_id: message.id)
+          Notification.create(user_id: message.bid.report.owner.id, bid_id: @bid.id)
         else
-          Notification.create(user_id: message.bid.fixer.id, message_id: message.id)
+          Notification.create(user_id: message.bid.fixer.id, bid_id: @bid.id)
         end
       end
       ActionCable.server.broadcast 'room_channel',

@@ -35,7 +35,20 @@ class BidsController < ApplicationController
     @bid[:ignored] = 0 #default false
     respond_to do |format|
       if @bid.save
-        format.html { redirect_to fixer_bid_path(current_user, @bid), notice: 'Bid was successfully created.' }
+        format.html do
+          receiver = User.find(@bid.report.owner.id) #Create notification and send action cable
+          send_message(receiver.phone)
+          Notification.create(user_id: receiver.id, bid_id: @bid.id)
+          ActionCable.server.broadcast 'room_channel',
+                                       body: "",
+                                       sender: @bid.fixer.id,
+                                       sender_name: @bid.fixer.name,
+                                       count: receiver.notifications.count,
+                                       receiver_id: receiver.id,
+                                       fixer_id: @bid.fixer.id,
+                                       bid_id: @bid.id
+          redirect_to fixer_bid_path(current_user, @bid), notice: 'Bid was successfully created.'
+        end
         #format.html { redirect_to fixer_bid_path(current_user,@bid), notice: 'Bid was successfully created.' }
         format.json { render :show, status: :created, location: fixer_bid_path(current_user,@bid) }
       else
@@ -128,7 +141,19 @@ class BidsController < ApplicationController
     def set_bid
       @bid = Bid.find(params[:id])
     end
+    def send_message(phone)
+      @alert_message = "Someone responded to your report on GotCrash!"
+      @twilio_number = ENV['TWILIO_NUMBER']
+      @client = Twilio::REST::Client.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN']
 
+      message = @client.messages.create(
+        :from => @twilio_number,
+        :to => "+1#{phone}",
+        :body => @alert_message
+        # US phone numbers can make use of an image as well.
+        # :media_url => image_url
+      )
+    end
     # Never trust parameters from the scary internet, only allow the white list through.
     def bid_params
       params.require(:bid).permit(:description, :cost,:report_id)
