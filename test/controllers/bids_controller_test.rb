@@ -30,10 +30,10 @@ class BidsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create bid" do
     assert_difference('Bid.count') do
-      post fixer_bids_path(fixer_id: @fixer.id, id: @bid.id, params: { bid: {description: "insert bid test", cost: 100, report_id: @report.id} })
+      post fixer_bids_path(fixer_id: @fixer.id,id:@bid.id, bid:{description: @bid.description,cost:@bid.cost,report_id: @report.id})
     end
 
-    assert_redirected_to fixer_bid_path(Bid.last)
+    assert_redirected_to fixer_bid_path(@fixer, Bid.last)
   end
 
   test "should get edit" do
