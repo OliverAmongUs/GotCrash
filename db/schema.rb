@@ -78,10 +78,7 @@ ActiveRecord::Schema.define(version: 2018_12_11_054313) do
   create_table "notifications", force: :cascade do |t|
     t.integer "user_id"
     t.integer "bid_id"
-<<<<<<< HEAD
     t.integer "sender_id"
-=======
->>>>>>> d8e9a7bb30e2a3b1712f548768a51df37e3ed4ad
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
