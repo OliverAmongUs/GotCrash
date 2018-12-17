@@ -53,7 +53,6 @@ class MessagesController < ApplicationController
       end
 
       check = true
-      
       receiver.notifications.each do |notification| #check if there is a notification for this bid
         if notification.bid.id == @bid.id
           check = false
