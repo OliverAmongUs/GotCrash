@@ -6,7 +6,8 @@
                       <label for="vin" data-tooltip="The car's vehicle identification number (VIN) is the identifying code for a SPECIFIC automobile.">Vin number:</label>
                     </div>
                     <div class="col-md-9">
-                      <%= text_field_tag :vin, params[:vin], placeholder: "Use Vin number to search detail information here", onchange: "search_vin(#{:value})", class: "form-control" %>
+                      <!-- <input type="text" name="car[vin]" id="car_vin" placeholder="Use Vin number to search detail information here" onchange="search_vin(value)" class="form-control"> -->
+                        <%= form.text_field :vin, class: "form-control", onchange:"search_vin(value)" %>
                     </div>
                   </div>
 
