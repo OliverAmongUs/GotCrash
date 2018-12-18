@@ -31,7 +31,6 @@
 /config/master.key
 
 /deployment.env
-/.env
 /codeship.aes
 
 /public/uploads/message
