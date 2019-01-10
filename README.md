@@ -1,27 +1,9 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Welcome to GotCrash, your one-stop shop for all your car problems! Use it as an auto shop to sell your store and find local jobs. Use it as an owner of a car to share your car problems with all nearby shops. Our app also has in-app chat feature to negotiate any deals and afterwards add ratings to any shop you worked with.
 
-Things you may want to cover:
+# App
+https://got-crash.herokuapp.com/
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-Google Map API key
-AIzaSyCWBlx4DztlxWz5BxNCOi2dZX3ubSr_Ab4
+# About us
+https://wb493797144.wixsite.com/gotcrash
